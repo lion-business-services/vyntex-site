@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
-import { SITE, CONTACT_HREFS, LEGAL_LINKS } from "@/lib/site";
+import { SITE, CONTACT_HREFS, LEGAL_LINKS, ERP, erpHref } from "@/lib/site";
+import { useTheme } from "@/context/ThemeContext";
 import Container from "@/components/ui/Container";
 import LanguageToggle from "@/components/ui/LanguageToggle";
 import Button from "@/components/ui/Button";
@@ -12,6 +13,7 @@ import { openConsultation } from "@/components/BookConsultation";
 
 export default function Footer({ showCta = true }: { showCta?: boolean }) {
   const { t, lang } = useLang();
+  const { theme } = useTheme();
   const year = new Date().getFullYear();
 
   const words = lang === "es" ? {
@@ -31,7 +33,7 @@ export default function Footer({ showCta = true }: { showCta?: boolean }) {
   };
 
   return (
-    <footer className="border-t border-vx-line bg-vx-bg2/70">
+    <footer className="vx-dark-scope vx-footer border-t border-vx-line">
       <Container className="py-12 sm:py-14">
         {showCta ? (
           <div className="mb-10 flex flex-col gap-5 rounded-2xl border border-vx-blue/25 bg-vx-blue/[0.06] p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
@@ -46,8 +48,10 @@ export default function Footer({ showCta = true }: { showCta?: boolean }) {
         <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr]">
           <div>
             <Link href="/" className="flex items-center gap-2.5" aria-label={SITE.name}>
-              <Image src="/vyntex-mark.png" alt="" width={52} height={45} className="h-11 w-auto" />
-              <span className="text-xl font-bold tracking-tight vx-grad-text">VYNTEX</span>
+              <span className="vx-logo-tile vx-logo-tile--lg" aria-hidden="true">
+                <Image src="/vyntex-mark.png" alt="" width={52} height={45} className="vx-logo-img w-auto" />
+              </span>
+              <span className="vx-wordmark text-xl font-bold">VYNTEX</span>
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-6 text-vx-muted">{t.footer.tagline}</p>
             <p className="mt-4 inline-flex items-center gap-2 text-sm text-vx-silver"><MapPin size={15}/>{SITE.address.locality}, {SITE.address.region} {SITE.address.postalCode}</p>
@@ -71,6 +75,16 @@ export default function Footer({ showCta = true }: { showCta?: boolean }) {
               <li><Link href="/partners" className="hover:text-vx-ink">Partners</Link></li>
               <li><Link href="/about" className="hover:text-vx-ink">About</Link></li>
               <li><Link href="/contact" className="hover:text-vx-ink">Contact</Link></li>
+            </ul>
+            <h2 className="mt-7 font-mono text-xs uppercase tracking-[0.18em] text-vx-blue">{t.erp.footerHeading}</h2>
+            <ul className="mt-4 space-y-2 text-sm text-vx-muted">
+              <li>
+                <a href={erpHref(ERP.paths.home, { lang, theme })} className="inline-flex items-center gap-1 font-semibold text-vx-ink hover:text-vx-cyan">
+                  {t.erp.footerOpen}<ArrowUpRight size={14} aria-hidden />
+                </a>
+              </li>
+              <li><a href={erpHref(ERP.paths.demo, { lang, theme })} className="hover:text-vx-ink">{t.erp.footerDemo}</a></li>
+              <li><a href={erpHref(ERP.paths.pricing, { lang, theme })} className="hover:text-vx-ink">{t.erp.footerPricing}</a></li>
             </ul>
           </nav>
 

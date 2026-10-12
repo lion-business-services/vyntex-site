@@ -116,7 +116,7 @@ export default function FileManager({ files }: { files: ClientFileView[] }) {
         <h2 className="text-lg font-semibold text-vx-ink">{f.upload}</h2>
         <p className="mt-1.5 text-sm text-vx-muted">{f.maxSize}</p>
 
-        <label className="mt-5 inline-flex min-h-[48px] cursor-pointer items-center gap-2 rounded-xl bg-gradient-to-r from-vx-blue to-vx-cyan px-5 py-3 text-sm font-semibold text-vx-bg transition-opacity hover:opacity-90 has-[:disabled]:opacity-60">
+        <label className="mt-5 inline-flex min-h-[48px] cursor-pointer items-center gap-2 rounded-xl bg-gradient-to-r from-vx-blue to-vx-cyan px-5 py-3 text-sm font-semibold text-vx-onaccent transition-opacity hover:opacity-90 has-[:disabled]:opacity-60">
           {busy === "upload" ? (
             <Loader2 size={16} className="animate-spin" aria-hidden />
           ) : (

@@ -130,7 +130,7 @@ export default function Contact() {
 
             {showSuccess ? (
               <div className="flex flex-col items-center gap-4 py-8 text-center">
-                <span className="grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-vx-blue to-vx-cyan text-vx-bg">
+                <span className="grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-vx-blue to-vx-cyan text-vx-onaccent">
                   <Check size={26} aria-hidden />
                 </span>
                 <div>
@@ -234,7 +234,7 @@ function Row({
 }) {
   return (
     <li className="flex items-start gap-3">
-      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-vx-blue to-vx-cyan text-vx-bg">
+      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-vx-blue to-vx-cyan text-vx-onaccent">
         {icon}
       </span>
       <span className="flex flex-col">

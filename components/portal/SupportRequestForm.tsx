@@ -104,7 +104,7 @@ export default function SupportRequestForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-vx-blue to-vx-cyan px-5 py-2.5 text-sm font-semibold text-vx-bg transition-opacity hover:opacity-90 disabled:opacity-60"
+          className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-vx-blue to-vx-cyan px-5 py-2.5 text-sm font-semibold text-vx-onaccent transition-opacity hover:opacity-90 disabled:opacity-60"
         >
           {status === "submitting" ? <Loader2 size={16} className="animate-spin" aria-hidden /> : null}
           {status === "submitting" ? s.creating : s.create}

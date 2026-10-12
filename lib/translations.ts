@@ -1320,6 +1320,53 @@ const en = {
     humanCta: "Talk to a person",
     bookCta: "Book a free consultation",
   },
+  erp: {
+    navLabel: "VYNTEX ERP",
+    navTitle: "Open VYNTEX ERP at erp.vyntexusa.com",
+    navBadge: "Live",
+    eyebrow: "VYNTEX ERP",
+    status: "Live at erp.vyntexusa.com",
+    titleA: "Your whole operation,",
+    titleB: "run from one command center.",
+    lede:
+      "Leads, clients, jobs, crews, tasks, documents, scheduling, payments and reports in one place, set up for your industry, with automations that take the repetitive work off your plate.",
+    features: [
+      {
+        title: "Industry editions",
+        body: "Starts out speaking your trade: its wording, service types, documents and task lists.",
+      },
+      {
+        title: "Automations you control",
+        body: "Rules you switch on or off, and task lists that start by themselves when a job is won or finished.",
+      },
+      {
+        title: "Access by role",
+        body: "Owners, managers and office staff each see what their role allows, with a separate portal for crews.",
+      },
+      {
+        title: "English and Spanish",
+        body: "Your team and your clients can work in the language they prefer.",
+      },
+    ],
+    ctaDemo: "Explore the live demo",
+    ctaOpen: "Open VYNTEX ERP",
+    ctaPricing: "See ERP plans",
+    ctaRequest: "Request a guided demo",
+    demoNote: "The demo opens a sample company with made-up records. Nothing you do there is sent to anyone.",
+    shotAlt: "VYNTEX ERP dashboard from the live demo, showing a sample construction company",
+    shotCaption: "Real screen from the live demo. Sample company, made-up records.",
+    footerHeading: "Platform",
+    footerOpen: "VYNTEX ERP",
+    footerDemo: "Live demo",
+    footerPricing: "ERP plans",
+  },
+
+  theme: {
+    toLight: "Switch to day mode",
+    toDark: "Switch to night mode",
+    day: "Day",
+    night: "Night",
+  },
 };
 
 type Dict = typeof en;
@@ -2635,6 +2682,53 @@ const es: Dict = {
     backToTopics: "Preguntar otra cosa",
     humanCta: "Hablar con una persona",
     bookCta: "Agenda una consulta gratis",
+  },
+  erp: {
+    navLabel: "VYNTEX ERP",
+    navTitle: "Abrir VYNTEX ERP en erp.vyntexusa.com",
+    navBadge: "En vivo",
+    eyebrow: "VYNTEX ERP",
+    status: "Disponible en erp.vyntexusa.com",
+    titleA: "Todo tu negocio,",
+    titleB: "manejado desde un solo centro de mando.",
+    lede:
+      "Prospectos, clientes, trabajos, equipos, tareas, documentos, agenda, pagos y reportes en un solo lugar, configurado para tu industria y con automatizaciones que se encargan del trabajo repetitivo.",
+    features: [
+      {
+        title: "Ediciones por industria",
+        body: "Desde el primer día habla el idioma de tu oficio: sus términos, tipos de servicio, documentos y listas de tareas.",
+      },
+      {
+        title: "Automatizaciones a tu medida",
+        body: "Reglas que activas o apagas cuando quieras, y listas de tareas que arrancan solas cuando ganas o terminas un trabajo.",
+      },
+      {
+        title: "Acceso según el rol",
+        body: "Dueños, gerentes y personal de oficina ven solo lo que les toca, y tus equipos tienen su propio portal.",
+      },
+      {
+        title: "En inglés y español",
+        body: "Tu equipo y tus clientes trabajan en el idioma que prefieran.",
+      },
+    ],
+    ctaDemo: "Prueba el demo en vivo",
+    ctaOpen: "Abrir VYNTEX ERP",
+    ctaPricing: "Ver planes del ERP",
+    ctaRequest: "Pide un demo guiado",
+    demoNote: "El demo abre una empresa de ejemplo con datos inventados. Nada de lo que hagas ahí se le envía a nadie.",
+    shotAlt: "Panel de VYNTEX ERP en el demo en vivo, con una empresa de construcción de ejemplo",
+    shotCaption: "Pantalla real del demo en vivo. Empresa de ejemplo, datos inventados.",
+    footerHeading: "Plataforma",
+    footerOpen: "VYNTEX ERP",
+    footerDemo: "Demo en vivo",
+    footerPricing: "Planes del ERP",
+  },
+
+  theme: {
+    toLight: "Cambiar a modo día",
+    toDark: "Cambiar a modo noche",
+    day: "Día",
+    night: "Noche",
   },
 };
 

@@ -3,6 +3,8 @@ import { inter, jetbrainsMono } from "@/app/fonts";
 import { SITE } from "@/lib/site";
 import { siteJsonLd } from "@/lib/schema";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { ThemeProvider } from "@/context/ThemeContext";
+import { THEME_INIT_SCRIPT, THEME_COLOR } from "@/lib/theme";
 import SiteAtmosphere from "@/components/SiteAtmosphere";
 import MagneticCursor from "@/components/MagneticCursor";
 import "@/app/globals.css";
@@ -73,7 +75,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#e9eff7",
+  // Day is the default; the inline theme script swaps this per visitor choice.
+  themeColor: THEME_COLOR.light,
   colorScheme: "light dark",
   width: "device-width",
   initialScale: 1,
@@ -85,9 +88,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html
+      lang="en"
+      data-theme="light"
+      // The inline script below may switch data-theme before React hydrates.
+      suppressHydrationWarning
+      className={`${inter.variable} ${jetbrainsMono.variable}`}
+    >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var c=document.cookie.match(/(?:^|; )vyntex_theme=(light|dark)(?:;|$)/);var t=c?c[1]:localStorage.getItem('vyntex_theme');document.documentElement.dataset.theme=t==='dark'?'dark':'light';}catch(e){document.documentElement.dataset.theme='light';}})();` }} />
+        {/* Day / night: applied before first paint so there is never a flash. */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <script
           type="application/ld+json"
           // Verified-facts-only structured data (see lib/schema.ts).
@@ -95,11 +105,13 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen font-sans text-vx-ink antialiased">
-        <LanguageProvider>
-          <SiteAtmosphere />
-          <MagneticCursor />
-          <div className="site-content">{children}</div>
-        </LanguageProvider>
+        <ThemeProvider>
+          <LanguageProvider>
+            <SiteAtmosphere />
+            <MagneticCursor />
+            <div className="site-content">{children}</div>
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

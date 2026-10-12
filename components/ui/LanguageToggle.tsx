@@ -13,7 +13,7 @@ export default function LanguageToggle({ className }: { className?: string }) {
   const optionClasses = (active: boolean) =>
     [
       "px-3 py-1 text-xs font-semibold font-mono rounded-full transition-colors",
-      active ? "bg-vx-blue text-vx-bg" : "text-vx-muted hover:text-vx-ink",
+      active ? "bg-vx-blue text-vx-onaccent" : "text-vx-muted hover:text-vx-ink",
     ].join(" ");
 
   return (

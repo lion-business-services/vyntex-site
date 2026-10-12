@@ -89,7 +89,7 @@ export default function ConnectedHero() {
             initial={reduceMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.75, delay: reduceMotion ? 0 : 0.06, ease: motionTokens.ease }}
-            className="mx-auto mt-5 max-w-4xl text-4xl font-extrabold leading-[1.02] tracking-[-0.06em] sm:text-6xl lg:text-[4.9rem]"
+            className="vx-hero-title mx-auto mt-5 max-w-4xl text-4xl font-extrabold leading-[1.02] tracking-[-0.06em] sm:text-6xl lg:text-[4.9rem]"
           >
             {c.title}
           </motion.h1>

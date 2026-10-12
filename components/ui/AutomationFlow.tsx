@@ -97,7 +97,7 @@ export default function AutomationFlow({
               <span
                 className={[
                   "grid h-9 w-9 shrink-0 place-items-center rounded-lg transition-colors duration-300",
-                  reached ? "bg-gradient-to-br from-vx-blue to-vx-cyan text-vx-bg" : "bg-vx-bg3 text-vx-muted",
+                  reached ? "bg-gradient-to-br from-vx-blue to-vx-cyan text-vx-onaccent" : "bg-vx-bg3 text-vx-muted",
                 ].join(" ")}
                 aria-hidden
               >

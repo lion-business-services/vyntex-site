@@ -64,7 +64,7 @@ export default function About() {
             {t.about.values.map((value, i) => (
               <AnimatedSection key={value.id} delay={i * 0.08}>
                 <GlowCard className="flex items-start gap-4 p-6">
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-vx-blue to-vx-cyan text-vx-bg">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-vx-blue to-vx-cyan text-vx-onaccent">
                     {VALUE_ICONS[value.id]}
                   </span>
                   <div>

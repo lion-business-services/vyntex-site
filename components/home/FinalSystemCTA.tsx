@@ -20,7 +20,7 @@ export default function FinalSystemCTA() {
   return (
     <section className="py-16 sm:py-20">
       <Container>
-        <div className="final-system-cta">
+        <div className="final-system-cta vx-dark-scope">
           <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1100 320" aria-hidden><motion.path d="M0 85 C260 85 300 160 550 160 C800 160 840 85 1100 85 M0 245 C260 245 300 160 550 160 C800 160 840 245 1100 245" fill="none" stroke="#22d3ee" strokeOpacity="0.2" strokeWidth="2" initial={reduceMotion ? false : { pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 1.2 }} viewport={{ once: true }} /></svg>
           <ScrollReveal className="relative z-10 mx-auto max-w-2xl text-center">
             <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl border border-vx-blue/30 bg-vx-blue/10 text-vx-cyan"><Network size={23} aria-hidden /></span>
