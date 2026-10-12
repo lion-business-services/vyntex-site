@@ -12,7 +12,7 @@ import {
 /**
  * Day / night theme.
  *
- * Day is the default. The real switch happens on <html data-theme>, which the
+ * Night is the default. The real switch happens on <html data-theme>, which the
  * inline script in app/layout.tsx sets before first paint (no flash); this
  * context only mirrors it for React and performs the animated change.
  *
