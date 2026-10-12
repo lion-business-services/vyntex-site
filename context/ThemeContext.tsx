@@ -24,6 +24,7 @@ import {
 import {
   DEFAULT_THEME,
   THEME_COLOR,
+  THEME_COOKIE,
   THEME_STORAGE_KEY,
   type Theme,
 } from "@/lib/theme";
@@ -58,6 +59,17 @@ function applyDom(next: Theme) {
     .forEach((m) => m.setAttribute("content", THEME_COLOR[next]));
 }
 
+/** Writes the shared cookie so erp.vyntexusa.com opens in the same theme. */
+function shareTheme(theme: Theme) {
+  try {
+    const host = window.location.hostname;
+    const parent = host === "vyntexusa.com" || host.endsWith(".vyntexusa.com");
+    document.cookie = `${THEME_COOKIE}=${theme}; Path=/; Max-Age=31536000; SameSite=Lax${parent ? "; Domain=.vyntexusa.com" : ""}${window.location.protocol === "https:" ? "; Secure" : ""}`;
+  } catch {
+    /* cookies blocked: the choice still lives in this browser */
+  }
+}
+
 type ViewTransitionDoc = Document & {
   startViewTransition?: (cb: () => void) => { ready: Promise<void>; finished: Promise<void> };
 };
@@ -89,6 +101,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     } catch {
       /* private mode: the choice lasts for this page view */
     }
+    shareTheme(next);
 
     const commit = () => {
       applyDom(next);
