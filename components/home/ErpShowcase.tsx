@@ -9,14 +9,14 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Languages, Layers, Lock, ShieldCheck, Workflow } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Languages, Layers, Lock, ShieldCheck, Workflow, type LucideIcon } from "lucide-react";
 import Container from "@/components/ui/Container";
 import { useLang } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 import { ERP, erpHref } from "@/lib/site";
 import { motionTokens, revealVariants, staggerVariants } from "@/components/home/motion";
 
-const FEATURE_ICONS = [Layers, Workflow, ShieldCheck, Languages] as const;
+const FEATURE_ICONS: LucideIcon[] = [Layers, Workflow, ShieldCheck, Languages];
 
 /**
  * Homepage showcase for VYNTEX ERP (erp.vyntexusa.com).
@@ -88,7 +88,7 @@ export default function ErpShowcase() {
 
             <motion.ul variants={staggerVariants} className="mt-7 grid gap-3 sm:grid-cols-2">
               {e.features.map((f, i) => {
-                const Icon = FEATURE_ICONS[i % FEATURE_ICONS.length];
+                const Icon = FEATURE_ICONS[i % FEATURE_ICONS.length] ?? Layers;
                 return (
                   <motion.li key={f.title} variants={revealVariants} className="vx-erp-feature">
                     <span className="vx-erp-feature__icon" aria-hidden="true">
