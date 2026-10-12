@@ -122,15 +122,19 @@ export default function Nav() {
       aria-label={SITE.name}
       onClick={() => setOpen(false)}
     >
-      <Image
-        src="/vyntex-mark.png"
-        alt=""
-        width={44}
-        height={38}
-        priority
-        className="h-9 w-auto shrink-0"
-      />
-      <span className="whitespace-nowrap text-lg font-bold tracking-tight vx-grad-text">
+      {/* The mark is drawn for a dark ground, so it always sits on its own
+          obsidian tile; in day mode the tile becomes a visible brand chip. */}
+      <span className="vx-logo-tile" aria-hidden="true">
+        <Image
+          src="/vyntex-mark.png"
+          alt=""
+          width={44}
+          height={38}
+          priority
+          className="h-[26px] w-auto"
+        />
+      </span>
+      <span className="vx-wordmark whitespace-nowrap text-lg font-bold">
         VYNTEX
       </span>
     </Link>

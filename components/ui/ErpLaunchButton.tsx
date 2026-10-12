@@ -37,7 +37,7 @@ export default function ErpLaunchButton({
       aria-label={t.erp.navTitle}
       onClick={onNavigate}
       data-variant={variant}
-      className={["vx-erp-launch", className].filter(Boolean).join(" ")}
+      className={["vx-erp-launch vx-dark-scope", className].filter(Boolean).join(" ")}
     >
       <span className="vx-erp-launch__inner">
         <span className="vx-erp-launch__dot" aria-hidden="true" />

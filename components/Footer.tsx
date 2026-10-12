@@ -33,7 +33,7 @@ export default function Footer({ showCta = true }: { showCta?: boolean }) {
   };
 
   return (
-    <footer className="border-t border-vx-line bg-vx-bg2/70">
+    <footer className="vx-dark-scope vx-footer border-t border-vx-line">
       <Container className="py-12 sm:py-14">
         {showCta ? (
           <div className="mb-10 flex flex-col gap-5 rounded-2xl border border-vx-blue/25 bg-vx-blue/[0.06] p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
@@ -48,8 +48,10 @@ export default function Footer({ showCta = true }: { showCta?: boolean }) {
         <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr]">
           <div>
             <Link href="/" className="flex items-center gap-2.5" aria-label={SITE.name}>
-              <Image src="/vyntex-mark.png" alt="" width={52} height={45} className="h-11 w-auto" />
-              <span className="text-xl font-bold tracking-tight vx-grad-text">VYNTEX</span>
+              <span className="vx-logo-tile vx-logo-tile--lg" aria-hidden="true">
+                <Image src="/vyntex-mark.png" alt="" width={52} height={45} className="h-8 w-auto" />
+              </span>
+              <span className="vx-wordmark text-xl font-bold">VYNTEX</span>
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-6 text-vx-muted">{t.footer.tagline}</p>
             <p className="mt-4 inline-flex items-center gap-2 text-sm text-vx-silver"><MapPin size={15}/>{SITE.address.locality}, {SITE.address.region} {SITE.address.postalCode}</p>

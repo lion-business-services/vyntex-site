@@ -44,26 +44,30 @@
 }
 
 :root[data-theme="light"] {
-  --vx-bg-rgb: 244 247 252;
-  --vx-bg-mid-rgb: 236 242 250;
+  /* "Platinum daylight": brushed platinum ground, white chrome-edged panels,
+     graphite ink, cobalt and electric cyan accents. The brand's dark material
+     (obsidian) stays present as anchors: logo tile, ERP launcher, final call
+     to action and footer, so day mode still reads unmistakably VYNTEX. */
+  --vx-bg-rgb: 236 241 247;
+  --vx-bg-mid-rgb: 226 233 243;
   --vx-bg2-rgb: 255 255 255;
-  --vx-bg3-rgb: 232 238 247;
-  --vx-ink-rgb: 10 18 34;
-  --vx-muted-rgb: 74 85 109;
-  --vx-blue-rgb: 2 120 199;
-  --vx-blue-deep-rgb: 3 87 140;
-  --vx-silver-rgb: 51 65 85;
+  --vx-bg3-rgb: 243 246 251;
+  --vx-ink-rgb: 8 17 33;
+  --vx-muted-rgb: 68 81 104;
+  --vx-blue-rgb: 0 98 204;
+  --vx-blue-deep-rgb: 0 70 150;
+  --vx-silver-rgb: 44 58 80;
   --vx-silver-dim-rgb: 148 163 184;
-  --vx-cyan-rgb: 14 116 144;
-  --vx-glow-rgb: 14 165 233;
+  --vx-cyan-rgb: 0 116 150;
+  --vx-glow-rgb: 0 168 228;
   --vx-onaccent-rgb: 255 255 255;
-  --vx-shade-rgb: 15 35 70;
-  --vx-shade-k: 0.32;
-  --vx-grad-text: linear-gradient(135deg, #0369a1, #0891b2 48%, #334155);
-  --vx-chrome-text: linear-gradient(178deg, #1b2533 0%, #566274 45%, #232d3b 60%, #6a7687 100%);
+  --vx-shade-rgb: 12 26 52;
+  --vx-shade-k: 0.36;
+  --vx-grad-text: linear-gradient(135deg, #0062cc 0%, #0083b8 45%, #2c3a50 100%);
+  --vx-chrome-text: linear-gradient(176deg, #1a2433 0%, #4d5a6e 38%, #121a27 56%, #5d6a7e 82%, #2a3446 100%);
   --vx-atmo-grid: 0.09;
   --vx-hair-rgb: 71 85 105;
-  --vx-hair-k: 1.5;
+  --vx-hair-k: 1.6;
   color-scheme: light;
 }
 
@@ -2129,9 +2133,6 @@ html.vx-theme-fade *::after {
     linear-gradient(180deg, rgb(255 255 255 / 0.06), transparent 60%),
     linear-gradient(135deg, rgb(var(--vx-bg3-rgb)), rgb(var(--vx-bg2-rgb)));
 }
-:root[data-theme="light"] .vx-erp-launch__inner {
-  background: linear-gradient(180deg, #ffffff 0%, #f1f5fb 60%, #e4ebf5 100%);
-}
 .vx-erp-launch__brand {
   background: var(--vx-chrome-text);
   -webkit-background-clip: text;
@@ -2464,8 +2465,6 @@ html.vx-theme-fade *::after {
 :root[data-theme="light"] .text-emerald-400 { color: #047857; }
 
 /* Glassy panels read as frosted pearl with a soft lift in day mode. */
-:root[data-theme="light"] .site-atmosphere__vignette { opacity: 0.35; }
-:root[data-theme="light"] .site-atmosphere__network { opacity: 0.55; }
 
 @media (prefers-reduced-motion: reduce) {
   .vx-erp-launch,
@@ -2475,3 +2474,171 @@ html.vx-theme-fade *::after {
   .vx-erp-window__scan,
   .vx-erp-cta--primary::after { animation: none !important; }
 }
+
+
+/* ==========================================================================
+   OBSIDIAN SCOPE: the brand's dark material, used as anchors in day mode.
+   Re-declares the night tokens (channels and the colours derived from them)
+   so everything inside renders exactly as it does at night.
+   ========================================================================== */
+.vx-dark-scope {
+  --vx-bg-rgb: 5 7 20;
+  --vx-bg-mid-rgb: 7 10 25;
+  --vx-bg2-rgb: 10 13 31;
+  --vx-bg3-rgb: 14 18 41;
+  --vx-ink-rgb: 232 234 255;
+  --vx-muted-rgb: 140 148 186;
+  --vx-blue-rgb: 14 165 233;
+  --vx-blue-deep-rgb: 3 105 161;
+  --vx-silver-rgb: 203 213 225;
+  --vx-silver-dim-rgb: 71 85 105;
+  --vx-cyan-rgb: 34 211 238;
+  --vx-glow-rgb: 56 189 248;
+  --vx-onaccent-rgb: 5 7 20;
+  --vx-shade-rgb: 0 0 0;
+  --vx-shade-k: 1;
+  --vx-hair-rgb: 148 163 184;
+  --vx-hair-k: 1;
+  --vx-grad-text: linear-gradient(135deg, #38bdf8, #22d3ee, #e2e8f0);
+  --vx-chrome-text: linear-gradient(178deg, #ffffff 0%, #d5dae3 30%, #8a93a1 52%, #e6eaf0 62%, #a2aab7 100%);
+  --vx-bg: rgb(var(--vx-bg-rgb));
+  --vx-bg2: rgb(var(--vx-bg2-rgb));
+  --vx-bg3: rgb(var(--vx-bg3-rgb));
+  --vx-ink: rgb(var(--vx-ink-rgb));
+  --vx-muted: rgb(var(--vx-muted-rgb));
+  --vx-blue: rgb(var(--vx-blue-rgb));
+  --vx-cyan: rgb(var(--vx-cyan-rgb));
+  --vx-silver: rgb(var(--vx-silver-rgb));
+  --vx-glow: rgb(var(--vx-glow-rgb));
+  --vx-line: rgb(var(--vx-blue-rgb) / 0.15);
+  color: var(--vx-ink);
+  color-scheme: dark;
+}
+
+/* ---- Logo: the mark always sits on its own obsidian tile ---------------- */
+.vx-logo-tile {
+  position: relative;
+  display: inline-grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  isolation: isolate;
+  transition: background 450ms ease, box-shadow 450ms ease;
+}
+.vx-logo-tile--lg { width: 48px; height: 48px; border-radius: 13px; }
+.vx-logo-tile img { position: relative; z-index: 1; filter: drop-shadow(0 0 6px rgb(34 211 238 / 0.25)); }
+:root[data-theme="light"] .vx-logo-tile {
+  background:
+    radial-gradient(70% 60% at 70% 85%, rgb(14 165 233 / 0.35), transparent 70%),
+    linear-gradient(160deg, #141b33 0%, #070a17 60%, #04060f 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.16),
+    inset 0 0 0 1px rgb(203 213 225 / 0.18),
+    0 0 0 1px rgb(10 20 40 / 0.06),
+    0 6px 16px rgb(12 26 52 / 0.22),
+    0 2px 4px rgb(12 26 52 / 0.12);
+}
+:root[data-theme="light"] .vx-logo-tile::after {
+  /* a single cyan circuit edge along the bottom, echoing the mark */
+  content: "";
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #22d3ee, transparent);
+  opacity: 0.85;
+}
+
+/* Wordmark: brand gradient at night, engraved graphite chrome by day. */
+.vx-wordmark {
+  letter-spacing: 0.04em;
+  background: var(--vx-grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+:root[data-theme="light"] .vx-wordmark { background-image: var(--vx-chrome-text); }
+:root[data-theme="light"] .vx-dark-scope .vx-wordmark { background-image: var(--vx-grad-text); }
+
+/* ---- Day mode: platinum atmosphere -------------------------------------- */
+:root[data-theme="light"] .site-atmosphere {
+  background:
+    radial-gradient(1100px 520px at 78% -8%, rgb(0 120 230 / 0.16), transparent 62%),
+    radial-gradient(900px 600px at -6% 38%, rgb(0 180 230 / 0.10), transparent 60%),
+    radial-gradient(900px 700px at 100% 100%, rgb(70 90 130 / 0.10), transparent 60%),
+    linear-gradient(180deg, #f2f5fa 0%, #e9eef5 48%, #edf1f7 100%);
+}
+:root[data-theme="light"] .site-atmosphere::after {
+  /* brushed-metal grain: hair-thin vertical strokes at very low strength */
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: repeating-linear-gradient(90deg, rgb(255 255 255 / 0.35) 0 1px, transparent 1px 3px, rgb(90 110 140 / 0.025) 3px 4px, transparent 4px 7px);
+  mix-blend-mode: soft-light;
+}
+:root[data-theme="light"] .site-atmosphere__vignette {
+  background: radial-gradient(ellipse at center, transparent 45%, rgb(214 224 237 / 0.55) 100%);
+}
+:root[data-theme="light"] .site-atmosphere__network { opacity: 0.7; }
+
+/* Hero headline reads as engraved metal in day mode. */
+:root[data-theme="light"] .vx-hero-title {
+  background: linear-gradient(176deg, #0a1324 0%, #26334a 42%, #0a1324 58%, #3a475e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Header: frosted platinum glass with a chrome underline. */
+:root[data-theme="light"] header.fixed {
+  background: rgb(246 249 252 / 0.78);
+  border-bottom-color: rgb(120 136 160 / 0.22);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.9) inset;
+}
+
+/* Panels: white with a chrome hairline and a soft, cool lift. */
+:root[data-theme="light"] :is(
+  .hero-system-stage, .vx-service-demo, .comparison-panel-after, .process-card,
+  .industry-panel, .services-price-card, .vx-erp-feature, .vx-journey-shell
+) {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.95),
+    0 1px 2px rgb(12 26 52 / 0.06),
+    0 14px 36px -12px rgb(12 26 52 / 0.16);
+}
+
+/* Footer and the closing call to action: obsidian anchors. */
+.vx-footer {
+  background:
+    radial-gradient(900px 300px at 85% 0%, rgb(14 165 233 / 0.10), transparent 70%),
+    linear-gradient(180deg, #070a18 0%, #04060f 100%);
+}
+:root[data-theme="light"] .final-system-cta.vx-dark-scope {
+  background:
+    radial-gradient(circle at 50% 48%, rgb(14 165 233 / 0.16), transparent 50%),
+    linear-gradient(145deg, #0e1229 0%, #050714 100%);
+  box-shadow: 0 30px 70px -20px rgb(12 26 52 / 0.45), inset 0 1px rgb(255 255 255 / 0.06);
+}
+
+/* ERP launcher in day mode: an obsidian capsule with the live cyan edge. */
+:root[data-theme="light"] .vx-erp-launch { box-shadow: 0 8px 22px rgb(12 26 52 / 0.25), 0 0 0 1px rgb(12 26 52 / 0.05); }
+
+/* ERP showcase: keep the two main actions on one line where they fit. */
+.vx-erp-cta { min-height: 50px; padding: 0.75rem 1.2rem; }
+@media (min-width: 640px) {
+  .vx-erp-ctas { flex-wrap: nowrap; }
+}
+
+/* Day mode: the product window gets a platinum frame and a deeper lift. */
+:root[data-theme="light"] .vx-erp-window {
+  background: linear-gradient(150deg, #c9d2de, #0e7490 40%, #0062cc 70%, #b9c4d2);
+  box-shadow: 0 40px 80px -20px rgb(12 26 52 / 0.35), 0 0 0 1px rgb(12 26 52 / 0.05);
+}
+:root[data-theme="light"] .vx-erp-window__bar { background: linear-gradient(180deg, #f8fafc, #eef2f7); }
