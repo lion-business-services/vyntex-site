@@ -24,7 +24,7 @@ const base =
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-gradient-to-r from-vx-blue to-vx-cyan text-vx-bg shadow-vx-glow-sm " +
+    "bg-gradient-to-r from-vx-blue to-vx-cyan text-vx-onaccent shadow-vx-glow-sm " +
     "hover:shadow-vx-glow",
   secondary:
     "bg-vx-bg2 text-vx-ink border border-[rgba(14,165,233,0.25)] " +

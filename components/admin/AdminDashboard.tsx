@@ -271,7 +271,7 @@ export default function AdminDashboard({
                           ),
                       )
                     }
-                    className="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-gradient-to-r from-vx-blue to-vx-cyan px-4 py-2.5 text-sm font-semibold text-vx-bg transition-opacity hover:opacity-90 disabled:opacity-60"
+                    className="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-gradient-to-r from-vx-blue to-vx-cyan px-4 py-2.5 text-sm font-semibold text-vx-onaccent transition-opacity hover:opacity-90 disabled:opacity-60"
                   >
                     {busy === app.id ? (
                       <Loader2 size={15} className="animate-spin" aria-hidden />

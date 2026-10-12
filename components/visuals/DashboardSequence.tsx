@@ -107,7 +107,7 @@ export default function DashboardSequence({
                         <motion.div 
                           initial={{ scale: 0, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
-                          className="absolute -bottom-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-vx-cyan text-black"
+                          className="absolute -bottom-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-vx-cyan text-vx-onaccent"
                         >
                           <Check size={12} strokeWidth={3} />
                         </motion.div>
@@ -117,12 +117,14 @@ export default function DashboardSequence({
 
                   {/* Label */}
                   <div className="flex flex-col sm:items-center sm:text-center sm:w-24">
-                    <motion.span 
-                      animate={{ color: isActive ? "#F8FAFC" : "#64748B" }}
-                      className="text-[0.65rem] sm:text-xs font-semibold uppercase tracking-wider leading-tight"
+                    <span
+                      className={[
+                        "text-[0.65rem] sm:text-xs font-semibold uppercase tracking-wider leading-tight transition-colors duration-300",
+                        isActive ? "text-vx-ink" : "text-vx-muted",
+                      ].join(" ")}
                     >
                       {label}
-                    </motion.span>
+                    </span>
                     <AnimatePresence>
                       {isJustActivated && (
                         <motion.span 

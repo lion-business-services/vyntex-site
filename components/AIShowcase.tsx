@@ -71,7 +71,7 @@ export default function AIShowcase() {
                 className={[
                   "rounded-full px-4 py-2 text-sm font-medium transition-colors",
                   selected
-                    ? "bg-gradient-to-r from-vx-blue to-vx-cyan text-vx-bg"
+                    ? "bg-gradient-to-r from-vx-blue to-vx-cyan text-vx-onaccent"
                     : "border border-[rgba(14,165,233,0.2)] text-vx-muted hover:text-vx-ink",
                 ].join(" ")}
               >
@@ -197,7 +197,7 @@ function ChatbotDemo() {
               className={[
                 "max-w-[80%] rounded-2xl px-4 py-2.5 text-sm",
                 isVisitor
-                  ? "rounded-br-sm bg-gradient-to-r from-vx-blue to-vx-cyan text-vx-bg"
+                  ? "rounded-br-sm bg-gradient-to-r from-vx-blue to-vx-cyan text-vx-onaccent"
                   : "rounded-bl-sm border border-[rgba(14,165,233,0.18)] bg-vx-bg3 text-vx-ink",
               ].join(" ")}
             >

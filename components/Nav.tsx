@@ -9,6 +9,8 @@ import { NAV_LINKS, SECTION_IDS, SITE, CONTACT_HREFS } from "@/lib/site";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 import Button from "@/components/ui/Button";
 import LanguageToggle from "@/components/ui/LanguageToggle";
+import ThemeToggle from "@/components/ui/ThemeToggle";
+import ErpLaunchButton from "@/components/ui/ErpLaunchButton";
 import LogoutButton from "@/components/auth/LogoutButton";
 import { openConsultation } from "@/components/BookConsultation";
 
@@ -188,6 +190,7 @@ export default function Nav() {
         {/* Desktop actions */}
         <div className="hidden shrink-0 items-center gap-2 xl:flex 2xl:gap-3">
           <LanguageToggle />
+          <ThemeToggle />
 
           {authed ? (
             <>
@@ -215,6 +218,8 @@ export default function Nav() {
             </Link>
           )}
 
+          <ErpLaunchButton />
+
           <Button
             onClick={openConsultation}
             variant="ghost"
@@ -225,7 +230,11 @@ export default function Nav() {
           </Button>
         </div>
 
-        {/* Mobile / tablet trigger */}
+        {/* Mobile / tablet: the ERP launcher and the theme switch stay one tap
+            away in the bar itself; everything else lives in the drawer. */}
+        <div className="flex shrink-0 items-center gap-2 xl:hidden">
+          <ErpLaunchButton variant="compact" />
+          <ThemeToggle />
         <button
           type="button"
           className="inline-flex shrink-0 items-center justify-center rounded-lg border border-[rgba(14,165,233,0.25)] p-2 text-vx-ink xl:hidden"
@@ -236,6 +245,7 @@ export default function Nav() {
         >
           {open ? <X size={22} aria-hidden /> : <Menu size={22} aria-hidden />}
         </button>
+        </div>
       </nav>
 
       {/* Mobile drawer */}
@@ -260,6 +270,7 @@ export default function Nav() {
           </ul>
 
           <div className="flex flex-col gap-3 border-t border-[rgba(14,165,233,0.12)] px-5 py-4">
+            <ErpLaunchButton variant="block" onNavigate={() => setOpen(false)} />
             <div className="flex items-center justify-between">
               <LanguageToggle />
               <a

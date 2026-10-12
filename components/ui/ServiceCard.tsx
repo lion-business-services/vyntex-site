@@ -31,7 +31,7 @@ export default function ServiceCard({
 }: ServiceCardProps) {
   return (
     <GlowCard as="article" className="flex h-full flex-col gap-4 p-7">
-      <span className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-vx-blue to-vx-cyan text-vx-bg">
+      <span className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-vx-blue to-vx-cyan text-vx-onaccent">
         {icon}
       </span>
 
