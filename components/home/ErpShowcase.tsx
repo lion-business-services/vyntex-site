@@ -103,7 +103,7 @@ export default function ErpShowcase() {
               })}
             </motion.ul>
 
-            <motion.div variants={revealVariants} className="vx-erp-ctas mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <motion.div variants={revealVariants} className="vx-erp-ctas mt-8">
               <a href={link(ERP.paths.demo)} className="vx-erp-cta vx-erp-cta--primary">
                 {e.ctaDemo}
                 <ArrowRight size={18} aria-hidden className="vx-erp-cta__arrow" />

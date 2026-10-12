@@ -2144,6 +2144,8 @@ html.vx-theme-fade *::after {
 }
 .vx-erp-launch__dot {
   position: relative;
+  flex-shrink: 0;
+  margin: 0 0.2rem 0 0.15rem;
   width: 7px;
   height: 7px;
   border-radius: 999px;
@@ -2528,6 +2530,12 @@ html.vx-theme-fade *::after {
   transition: background 450ms ease, box-shadow 450ms ease;
 }
 .vx-logo-tile--lg { width: 48px; height: 48px; border-radius: 13px; }
+/* Night: no tile, the mark sits straight on the dark ground at full size. */
+.vx-logo-img { height: 36px; }
+.vx-logo-tile--lg .vx-logo-img { height: 44px; }
+:root:not([data-theme="light"]) .vx-logo-tile { width: auto; height: auto; }
+:root[data-theme="light"] .vx-logo-img { height: 29px; }
+:root[data-theme="light"] .vx-logo-tile--lg .vx-logo-img { height: 34px; }
 .vx-logo-tile img { position: relative; z-index: 1; filter: drop-shadow(0 0 6px rgb(34 211 238 / 0.25)); }
 :root[data-theme="light"] .vx-logo-tile {
   background:
@@ -2631,9 +2639,10 @@ html.vx-theme-fade *::after {
 :root[data-theme="light"] .vx-erp-launch { box-shadow: 0 8px 22px rgb(12 26 52 / 0.25), 0 0 0 1px rgb(12 26 52 / 0.05); }
 
 /* ERP showcase: keep the two main actions on one line where they fit. */
-.vx-erp-cta { min-height: 50px; padding: 0.75rem 1.2rem; }
+.vx-erp-ctas { display: flex; flex-direction: column; gap: 0.75rem; }
+.vx-erp-cta { min-height: 50px; padding: 0.75rem 1.1rem; font-size: 0.95rem; white-space: nowrap; }
 @media (min-width: 640px) {
-  .vx-erp-ctas { flex-wrap: nowrap; }
+  .vx-erp-ctas { flex-direction: row; flex-wrap: wrap; align-items: center; }
 }
 
 /* Day mode: the product window gets a platinum frame and a deeper lift. */

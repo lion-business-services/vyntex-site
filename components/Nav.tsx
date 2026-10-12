@@ -131,7 +131,7 @@ export default function Nav() {
           width={44}
           height={38}
           priority
-          className="h-[26px] w-auto"
+          className="vx-logo-img w-auto"
         />
       </span>
       <span className="vx-wordmark whitespace-nowrap text-lg font-bold">

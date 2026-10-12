@@ -49,7 +49,7 @@ export default function Footer({ showCta = true }: { showCta?: boolean }) {
           <div>
             <Link href="/" className="flex items-center gap-2.5" aria-label={SITE.name}>
               <span className="vx-logo-tile vx-logo-tile--lg" aria-hidden="true">
-                <Image src="/vyntex-mark.png" alt="" width={52} height={45} className="h-8 w-auto" />
+                <Image src="/vyntex-mark.png" alt="" width={52} height={45} className="vx-logo-img w-auto" />
               </span>
               <span className="vx-wordmark text-xl font-bold">VYNTEX</span>
             </Link>
