@@ -73,8 +73,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#050714",
-  colorScheme: "dark",
+  themeColor: "#e9eff7",
+  colorScheme: "light dark",
   width: "device-width",
   initialScale: 1,
 };
@@ -87,6 +87,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var c=document.cookie.match(/(?:^|; )vyntex_theme=(light|dark)(?:;|$)/);var t=c?c[1]:localStorage.getItem('vyntex_theme');document.documentElement.dataset.theme=t==='dark'?'dark':'light';}catch(e){document.documentElement.dataset.theme='light';}})();` }} />
         <script
           type="application/ld+json"
           // Verified-facts-only structured data (see lib/schema.ts).
