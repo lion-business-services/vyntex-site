@@ -255,7 +255,7 @@ export default function ResellerApplicationForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-vx-blue to-vx-cyan px-6 py-3 text-sm font-semibold text-vx-bg transition-opacity hover:opacity-90 disabled:opacity-60"
+        className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-vx-blue to-vx-cyan px-6 py-3 text-sm font-semibold text-vx-onaccent transition-opacity hover:opacity-90 disabled:opacity-60"
       >
         {status === "submitting" ? (
           <Loader2 size={16} className="animate-spin" aria-hidden />

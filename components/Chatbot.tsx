@@ -240,7 +240,7 @@ export default function Chatbot() {
         aria-expanded={open}
         aria-controls="vx-chat-panel"
         aria-label={open ? c.close : c.open}
-        className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-vx-blue to-vx-cyan text-vx-bg shadow-vx-glow transition-transform motion-safe:hover:scale-105 lg:bottom-8 lg:right-8"
+        className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-vx-blue to-vx-cyan text-vx-onaccent shadow-vx-glow transition-transform motion-safe:hover:scale-105 lg:bottom-8 lg:right-8"
       >
         {open ? <X size={22} aria-hidden /> : <MessageSquare size={22} aria-hidden />}
       </button>
@@ -295,7 +295,7 @@ export default function Chatbot() {
                 {messages.map((m) =>
                   m.from === "user" ? (
                     <div key={m.id} className="flex justify-end">
-                      <p className="max-w-[85%] rounded-2xl rounded-br-sm bg-gradient-to-r from-vx-blue to-vx-cyan px-3.5 py-2 text-sm font-medium text-vx-bg">
+                      <p className="max-w-[85%] rounded-2xl rounded-br-sm bg-gradient-to-r from-vx-blue to-vx-cyan px-3.5 py-2 text-sm font-medium text-vx-onaccent">
                         {m.text}
                       </p>
                     </div>
@@ -377,7 +377,7 @@ export default function Chatbot() {
                   setOpen(false);
                   openConsultation();
                 }}
-                className="inline-flex min-h-[40px] flex-1 items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-vx-blue to-vx-cyan px-3 py-2 text-xs font-semibold text-vx-bg"
+                className="inline-flex min-h-[40px] flex-1 items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-vx-blue to-vx-cyan px-3 py-2 text-xs font-semibold text-vx-onaccent"
               >
                 <Send size={13} aria-hidden />
                 {c.bookCta}

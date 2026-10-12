@@ -26,18 +26,21 @@ const config: Config = {
     },
     extend: {
       colors: {
+        // Theme-aware: each token reads the RGB channels set per theme in
+        // app/globals.css, so opacity modifiers (bg-vx-bg/80) keep working.
         vx: {
-          bg: "#050714", // near-black deep space
-          bg2: "#0A0D1F", // panel background
-          bg3: "#0E1229", // elevated panel
-          ink: "#E8EAFF", // primary text
-          muted: "#7880A8", // secondary text
-          blue: "#0EA5E9", // electric blue
-          "blue-deep": "#0369A1", // deep blue
-          silver: "#CBD5E1", // chrome silver
-          "silver-dim": "#475569", // muted silver
-          cyan: "#22D3EE", // accent cyan
-          glow: "#38BDF8", // glow highlight
+          bg: "rgb(var(--vx-bg-rgb) / <alpha-value>)", // page ground
+          bg2: "rgb(var(--vx-bg2-rgb) / <alpha-value>)", // panel
+          bg3: "rgb(var(--vx-bg3-rgb) / <alpha-value>)", // elevated panel
+          ink: "rgb(var(--vx-ink-rgb) / <alpha-value>)", // primary text
+          muted: "rgb(var(--vx-muted-rgb) / <alpha-value>)", // secondary text
+          blue: "rgb(var(--vx-blue-rgb) / <alpha-value>)", // electric blue
+          "blue-deep": "rgb(var(--vx-blue-deep-rgb) / <alpha-value>)",
+          silver: "rgb(var(--vx-silver-rgb) / <alpha-value>)", // chrome silver
+          "silver-dim": "rgb(var(--vx-silver-dim-rgb) / <alpha-value>)",
+          cyan: "rgb(var(--vx-cyan-rgb) / <alpha-value>)", // accent cyan
+          glow: "rgb(var(--vx-glow-rgb) / <alpha-value>)", // glow highlight
+          onaccent: "rgb(var(--vx-onaccent-rgb) / <alpha-value>)", // text on blue/cyan fills
         },
       },
       fontFamily: {
@@ -52,7 +55,7 @@ const config: Config = {
       },
       backgroundImage: {
         "vx-grad": "linear-gradient(135deg, #0EA5E9, #22D3EE, #CBD5E1)",
-        "vx-grad-text": "linear-gradient(135deg, #38BDF8, #22D3EE, #E2E8F0)",
+        "vx-grad-text": "var(--vx-grad-text)",
       },
       boxShadow: {
         "vx-glow": "0 0 30px rgba(14,165,233,0.20), 0 0 60px rgba(14,165,233,0.08)",

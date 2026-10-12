@@ -7,12 +7,14 @@ import BeforeAfterSystem from "@/components/home/BeforeAfterSystem";
 import ImplementationProcess from "@/components/home/ImplementationProcess";
 import IndustrySelector from "@/components/home/IndustrySelector";
 import FinalSystemCTA from "@/components/home/FinalSystemCTA";
+import ErpShowcase from "@/components/home/ErpShowcase";
 
 export default function HomeExperience() {
   return (
     <>
       <ConnectedHero />
       <WorkflowDemo />
+      <ErpShowcase />
       <ServiceSystems />
       <BeforeAfterSystem />
       <ImplementationProcess />

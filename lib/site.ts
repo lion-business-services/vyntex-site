@@ -78,3 +78,31 @@ export const LEGAL_LINKS = [
   { key: "cookies", href: "/cookies" },
   { key: "accessibility", href: "/accessibility" },
 ] as const;
+
+/**
+ * VYNTEX ERP, the operations platform, served from its own subdomain
+ * (separate Vercel project "vyntex-erp"). Every link out of this site carries
+ * the visitor's language and theme, so the ERP opens exactly as they were
+ * reading here (the ERP reads ?lang= and ?theme=, then tidies the address).
+ */
+export const ERP = {
+  name: "VYNTEX ERP",
+  url: "https://erp.vyntexusa.com",
+  host: "erp.vyntexusa.com",
+  paths: {
+    home: "/",
+    demo: "/demo",
+    pricing: "/pricing",
+    requestDemo: "/request-demo",
+  },
+} as const;
+
+export function erpHref(
+  path: string = ERP.paths.home,
+  opts: { lang?: "en" | "es"; theme?: "light" | "dark" } = {},
+): string {
+  const url = new URL(path, ERP.url);
+  if (opts.lang) url.searchParams.set("lang", opts.lang);
+  if (opts.theme) url.searchParams.set("theme", opts.theme);
+  return url.toString();
+}

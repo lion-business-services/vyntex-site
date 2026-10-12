@@ -201,7 +201,7 @@ export default function BookConsultation() {
 
         {status === "success" ? (
           <div className="flex flex-col items-center py-6 text-center">
-            <span className="grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-vx-blue to-vx-cyan text-vx-bg">
+            <span className="grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-vx-blue to-vx-cyan text-vx-onaccent">
               <Check size={26} aria-hidden />
             </span>
             <h2 id="consult-title" className="mt-4 text-xl font-bold text-vx-ink">

@@ -9,8 +9,8 @@ import { NAV_LINKS, SECTION_IDS, SITE, CONTACT_HREFS } from "@/lib/site";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 import Button from "@/components/ui/Button";
 import LanguageToggle from "@/components/ui/LanguageToggle";
-import ThemeToggle from "@/components/ThemeToggle";
-import { ERP_URL } from "@/lib/erp";
+import ThemeToggle from "@/components/ui/ThemeToggle";
+import ErpLaunchButton from "@/components/ui/ErpLaunchButton";
 import LogoutButton from "@/components/auth/LogoutButton";
 import { openConsultation } from "@/components/BookConsultation";
 
@@ -191,9 +191,6 @@ export default function Nav() {
         <div className="hidden shrink-0 items-center gap-2 xl:flex 2xl:gap-3">
           <LanguageToggle />
           <ThemeToggle />
-          <a href={ERP_URL} className="vx-erp-cta" aria-label="Launch VYNTEX ERP on the VYNTEX ERP subdomain" title="Open VYNTEX ERP">
-            <LayoutDashboard size={16} aria-hidden /><span>VYNTEX ERP</span><span className="vx-erp-arrow" aria-hidden>↗</span>
-          </a>
 
           {authed ? (
             <>
@@ -221,6 +218,8 @@ export default function Nav() {
             </Link>
           )}
 
+          <ErpLaunchButton />
+
           <Button
             onClick={openConsultation}
             variant="ghost"
@@ -231,7 +230,11 @@ export default function Nav() {
           </Button>
         </div>
 
-        {/* Mobile / tablet trigger */}
+        {/* Mobile / tablet: the ERP launcher and the theme switch stay one tap
+            away in the bar itself; everything else lives in the drawer. */}
+        <div className="flex shrink-0 items-center gap-2 xl:hidden">
+          <ErpLaunchButton variant="compact" />
+          <ThemeToggle />
         <button
           type="button"
           className="inline-flex shrink-0 items-center justify-center rounded-lg border border-[rgba(14,165,233,0.25)] p-2 text-vx-ink xl:hidden"
@@ -242,6 +245,7 @@ export default function Nav() {
         >
           {open ? <X size={22} aria-hidden /> : <Menu size={22} aria-hidden />}
         </button>
+        </div>
       </nav>
 
       {/* Mobile drawer */}
@@ -266,9 +270,9 @@ export default function Nav() {
           </ul>
 
           <div className="flex flex-col gap-3 border-t border-[rgba(14,165,233,0.12)] px-5 py-4">
+            <ErpLaunchButton variant="block" onNavigate={() => setOpen(false)} />
             <div className="flex items-center justify-between">
               <LanguageToggle />
-              <ThemeToggle />
               <a
                 href={CONTACT_HREFS.phone}
                 className="inline-flex items-center gap-2 font-mono text-sm text-vx-silver"
@@ -277,7 +281,6 @@ export default function Nav() {
                 {SITE.phone}
               </a>
             </div>
-            <a href={ERP_URL} className="vx-erp-cta vx-erp-cta-mobile" onClick={() => setOpen(false)}><LayoutDashboard size={17} aria-hidden /> VYNTEX ERP <span aria-hidden>↗</span></a>
             {authed ? (
               <Link
                 href="/portal"

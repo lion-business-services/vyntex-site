@@ -69,7 +69,7 @@ export default function ProfileForm({ profile }: { profile: UserProfile }) {
         <button
           type="submit"
           disabled={pending}
-          className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-vx-blue to-vx-cyan px-5 py-2.5 text-sm font-semibold text-vx-bg transition-opacity hover:opacity-90 disabled:opacity-60"
+          className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-vx-blue to-vx-cyan px-5 py-2.5 text-sm font-semibold text-vx-onaccent transition-opacity hover:opacity-90 disabled:opacity-60"
         >
           {pending ? <Loader2 size={16} className="animate-spin" aria-hidden /> : null}
           {pending ? p.saving : p.save}
