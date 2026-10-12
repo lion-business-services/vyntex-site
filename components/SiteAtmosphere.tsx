@@ -33,6 +33,7 @@ export default function SiteAtmosphere() {
         const y = event.clientY / window.innerHeight - 0.5;
         root.style.setProperty("--scene-x", x.toFixed(3));
         root.style.setProperty("--scene-y", y.toFixed(3));
+        root.dataset.pointer = "on";
       });
     };
 
@@ -78,6 +79,51 @@ export default function SiteAtmosphere() {
         </svg>
       </div>
       <div className="site-atmosphere__vignette" />
+
+      {/* Day mode only (hidden at night by CSS): a drifting aurora in the
+          brand spectrum, live circuit traces with light pulses travelling
+          along them, and a soft light that follows the pointer. */}
+      <div className="vx-day-layer">
+        <div className="vx-aurora vx-aurora--cobalt" />
+        <div className="vx-aurora vx-aurora--blue" />
+        <div className="vx-aurora vx-aurora--cyan" />
+        <div className="vx-aurora vx-aurora--chrome" />
+        <svg className="vx-circuits" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="vx-pulse-grad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stopColor="#00ddff" stopOpacity="0" />
+              <stop offset="0.6" stopColor="#00ddff" stopOpacity="0.95" />
+              <stop offset="1" stopColor="#ffffff" stopOpacity="1" />
+            </linearGradient>
+          </defs>
+          <g className="vx-circuits__traces">
+            <path d="M-20 640 H250 L290 600 H520 L560 560 H780" />
+            <path d="M-20 700 H180 L220 740 H430" />
+            <path d="M1620 170 H1330 L1290 210 H1090 L1050 250 H900" />
+            <path d="M1620 230 H1420 L1380 270 H1240" />
+            <path d="M1620 780 H1390 L1350 740 H1170" />
+            <path d="M110 -20 V130 L150 170 H360" />
+            <path d="M1470 920 V790 L1430 750 H1310" />
+          </g>
+          <g className="vx-circuits__pulses">
+            <path className="p1" d="M-20 640 H250 L290 600 H520 L560 560 H780" />
+            <path className="p2" d="M1620 170 H1330 L1290 210 H1090 L1050 250 H900" />
+            <path className="p3" d="M1620 780 H1390 L1350 740 H1170" />
+            <path className="p4" d="M110 -20 V130 L150 170 H360" />
+            <path className="p5" d="M-20 700 H180 L220 740 H430" />
+          </g>
+          <g className="vx-circuits__nodes">
+            <circle cx="780" cy="560" r="5" />
+            <circle cx="430" cy="740" r="4" />
+            <circle cx="900" cy="250" r="5" />
+            <circle cx="1240" cy="270" r="4" />
+            <circle cx="1170" cy="740" r="5" />
+            <circle cx="360" cy="170" r="4" />
+            <circle cx="1310" cy="750" r="4" />
+          </g>
+        </svg>
+        <div className="vx-spotlight" />
+      </div>
     </div>
   );
 }
