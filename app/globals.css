@@ -16,7 +16,7 @@
  * active theme. Night is the original VYNTEX look, unchanged. Day keeps the same
  * identity: pearl and ice surfaces, graphite ink, chrome rendered as brushed
  * steel, and the electric blue / cyan spectrum deepened just enough to pass
- * WCAG AA on light grounds. Day is the default (set before paint in layout.tsx).
+ * WCAG AA on light grounds. Night is the default (set before paint in layout.tsx).
  */
 :root,
 :root[data-theme="dark"] {

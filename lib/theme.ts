@@ -5,13 +5,16 @@
 
 export type Theme = "light" | "dark";
 
-export const THEME_STORAGE_KEY = "vx-theme";
+// Renamed when night became the default (Oct 2026), so every visitor starts
+// on night once; choices made from then on are kept.
+export const THEME_STORAGE_KEY = "vx-mode";
 /**
  * Shared with erp.vyntexusa.com: a cookie on .vyntexusa.com that both sites
  * read and write, so a day/night switch on either one carries over.
  */
-export const THEME_COOKIE = "vx_theme";
-export const DEFAULT_THEME: Theme = "light";
+export const THEME_COOKIE = "vx_mode";
+/** Night is the default on every device, whatever the system appearance. */
+export const DEFAULT_THEME: Theme = "dark";
 /** Browser chrome colour (mobile address bar) per theme. */
 export const THEME_COLOR: Record<Theme, string> = {
   light: "#F4F7FC",
@@ -21,6 +24,6 @@ export const THEME_COLOR: Record<Theme, string> = {
 
 /**
  * Runs inline in <head> before first paint. Kept as a string so it ships
- * without a network request. Day unless the visitor chose night.
+ * without a network request. Night unless the visitor chose day.
  */
 export const THEME_INIT_SCRIPT = `(function(){try{var d=document.documentElement,t=null;try{var m0=/(?:^|;\\s*)${THEME_COOKIE}=(light|dark)/.exec(document.cookie);if(m0)t=m0[1]}catch(e){}if(!t){try{t=localStorage.getItem("${THEME_STORAGE_KEY}")}catch(e){}}if(t!=="dark"&&t!=="light")t="${DEFAULT_THEME}";d.setAttribute("data-theme",t);d.style.colorScheme=t;var c=t==="dark"?"${THEME_COLOR.dark}":"${THEME_COLOR.light}";var m=document.querySelectorAll('meta[name="theme-color"]');for(var i=0;i<m.length;i++)m[i].setAttribute("content",c)}catch(e){}})();`;

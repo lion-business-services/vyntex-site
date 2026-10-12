@@ -75,9 +75,9 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  // Day is the default; the inline theme script swaps this per visitor choice.
-  themeColor: THEME_COLOR.light,
-  colorScheme: "light dark",
+  // Night is the default; the inline theme script swaps this per visitor choice.
+  themeColor: THEME_COLOR.dark,
+  colorScheme: "dark light",
   width: "device-width",
   initialScale: 1,
 };
@@ -90,7 +90,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="light"
+      data-theme="dark"
       // The inline script below may switch data-theme before React hydrates.
       suppressHydrationWarning
       className={`${inter.variable} ${jetbrainsMono.variable}`}
