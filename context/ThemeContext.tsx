@@ -64,7 +64,7 @@ function shareTheme(theme: Theme) {
   try {
     const host = window.location.hostname;
     const parent = host === "vyntexusa.com" || host.endsWith(".vyntexusa.com");
-    document.cookie = `${THEME_COOKIE}=${theme}; Path=/; Max-Age=31536000; SameSite=Lax${parent ? "; Domain=.vyntexusa.com" : ""}${window.location.protocol === "https:" ? "; Secure" : ""}`;
+    document.cookie = `${THEME_COOKIE}=${theme}; Path=/; SameSite=Lax${parent ? "; Domain=.vyntexusa.com" : ""}${window.location.protocol === "https:" ? "; Secure" : ""}`;
   } catch {
     /* cookies blocked: the choice still lives in this browser */
   }
@@ -96,11 +96,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const setTheme = useCallback((next: Theme, origin?: HTMLElement | null) => {
     if (readDomTheme() === next) return;
-    try {
-      window.localStorage.setItem(THEME_STORAGE_KEY, next);
-    } catch {
-      /* private mode: the choice lasts for this page view */
-    }
     shareTheme(next);
 
     const commit = () => {

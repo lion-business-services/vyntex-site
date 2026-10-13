@@ -24,6 +24,9 @@ export const THEME_COLOR: Record<Theme, string> = {
 
 /**
  * Runs inline in <head> before first paint. Kept as a string so it ships
- * without a network request. Night unless the visitor chose day.
+ * without a network request. Every visit opens in night, on every device and
+ * whatever the system appearance (owner's rule): a day switch lasts for that
+ * visit only, so a day choice remembered by earlier versions (saved value or
+ * shared cookie) is cleared here.
  */
-export const THEME_INIT_SCRIPT = `(function(){try{var d=document.documentElement,t=null;try{var m0=/(?:^|;\\s*)${THEME_COOKIE}=(light|dark)/.exec(document.cookie);if(m0)t=m0[1]}catch(e){}if(!t){try{t=localStorage.getItem("${THEME_STORAGE_KEY}")}catch(e){}}if(t!=="dark"&&t!=="light")t="${DEFAULT_THEME}";d.setAttribute("data-theme",t);d.style.colorScheme=t;var c=t==="dark"?"${THEME_COLOR.dark}":"${THEME_COLOR.light}";var m=document.querySelectorAll('meta[name="theme-color"]');for(var i=0;i<m.length;i++)m[i].setAttribute("content",c)}catch(e){}})();`;
+export const THEME_INIT_SCRIPT = `(function(){try{var d=document.documentElement,t="${DEFAULT_THEME}";try{localStorage.removeItem("${THEME_STORAGE_KEY}")}catch(e){}try{var h=location.hostname,p=h==="vyntexusa.com"||/\\.vyntexusa\\.com$/.test(h);document.cookie="${THEME_COOKIE}=; Path=/; Max-Age=0; SameSite=Lax";if(p)document.cookie="${THEME_COOKIE}=; Path=/; Max-Age=0; SameSite=Lax; Domain=.vyntexusa.com"}catch(e){}d.setAttribute("data-theme",t);d.style.colorScheme=t;var c=t==="dark"?"${THEME_COLOR.dark}":"${THEME_COLOR.light}";var m=document.querySelectorAll('meta[name="theme-color"]');for(var i=0;i<m.length;i++)m[i].setAttribute("content",c)}catch(e){}})();`;
