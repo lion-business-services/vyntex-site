@@ -36,6 +36,7 @@ export const SITE = {
   social: {
     facebook: "https://www.facebook.com/vyntexusaa/",
     instagram: "https://www.instagram.com/vyntexusa/",
+    googleBusiness: "https://maps.google.com/?cid=16318301074226518600",
   },
 } as const;
 

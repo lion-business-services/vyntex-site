@@ -15,7 +15,8 @@ export default function VyntexJsonLd() {
     "@graph": [
       {
         "@type": "Organization", "@id": `${base}/#organization`,
-        name: SITE.name, legalName: "Vyntex LLC", alternateName: "VYNTEX USA",
+        name: SITE.name, legalName: "VYNTEX LLC", alternateName: "VYNTEX USA", foundingDate: "2026-06-30",
+        address: { "@type": "PostalAddress", streetAddress: SITE.address.street, addressLocality: SITE.address.locality, addressRegion: SITE.address.region, postalCode: SITE.address.postalCode, addressCountry: SITE.address.country },
         url: base, logo: `${base}/vyntex-logo.png`,
         email: SITE.email, telephone: "+1-609-780-3218",
         founder: { "@type": "Person", name: "Daysi Bettran" },
@@ -27,6 +28,7 @@ export default function VyntexJsonLd() {
         parentOrganization: { "@id": `${base}/#organization` },
         description: "Bilingual English and Spanish technology services: websites, CRM, AI automation, chatbots, branding and digital marketing for businesses across the United States.",
         telephone: "+1-609-780-3218", email: SITE.email,
+        hasMap: SITE.social.googleBusiness, sameAs: Object.values(SITE.social),
         address: { "@type": "PostalAddress", streetAddress: SITE.address.street, addressLocality: SITE.address.locality,
           addressRegion: SITE.address.region, postalCode: SITE.address.postalCode,
           addressCountry: SITE.address.country },

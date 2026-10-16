@@ -1,6 +1,6 @@
 # VYNTEX
 
-> VYNTEX (Vyntex LLC, DBA VYNTEX USA) is a bilingual (English/Spanish) digital technology company in Northfield, New Jersey. We connect a business's website, CRM, customer communication, scheduling, payments, AI automation, marketing and reporting into one organized system — for small and growing businesses across the United States.
+> VYNTEX (VYNTEX LLC, doing business as VYNTEX USA; New Jersey limited liability company formed June 30, 2026) is a bilingual (English/Spanish) digital technology company in Northfield, New Jersey. We connect a business's website, CRM, customer communication, scheduling, payments, AI automation, marketing and reporting into one organized system — for small and growing businesses across the United States.
 
 VYNTEX es una empresa de tecnología digital bilingüe (inglés y español) en Northfield, New Jersey. Creamos sitios web, CRM, automatización con IA, chatbots, branding y marketing digital, todo conectado en un solo sistema para su negocio.
 
@@ -11,6 +11,7 @@ VYNTEX es una empresa de tecnología digital bilingüe (inglés y español) en N
 - Email: info@vyntexusa.com
 - Facebook: https://www.facebook.com/vyntexusaa/
 - Instagram: https://www.instagram.com/vyntexusa/
+- Google Business Profile: https://maps.google.com/?cid=16318301074226518600
 - Website: https://www.vyntexusa.com/
 - Free 30-minute consultation: https://www.vyntexusa.com/contact
 - Languages: English, Spanish
