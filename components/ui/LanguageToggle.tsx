@@ -18,7 +18,7 @@ export default function LanguageToggle({ className }: { className?: string }) {
 
   return (
     <div
-      role="radiogroup"
+      role="group"
       aria-label={`${t.language.en} / ${t.language.es}`}
       className={[
         "inline-flex items-center rounded-full border border-[rgba(14,165,233,0.25)] p-0.5",
@@ -29,8 +29,7 @@ export default function LanguageToggle({ className }: { className?: string }) {
     >
       <button
         type="button"
-        role="radio"
-        aria-checked={lang === "en"}
+                aria-pressed={lang === "en"}
         aria-label={t.language.switchToEn}
         onClick={() => setLang("en")}
         className={optionClasses(lang === "en")}
@@ -39,8 +38,7 @@ export default function LanguageToggle({ className }: { className?: string }) {
       </button>
       <button
         type="button"
-        role="radio"
-        aria-checked={lang === "es"}
+                aria-pressed={lang === "es"}
         aria-label={t.language.switchToEs}
         onClick={() => setLang("es")}
         className={optionClasses(lang === "es")}

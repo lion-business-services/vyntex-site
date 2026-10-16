@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { localizedPath } from "@/lib/seo-routes";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
 import { getService } from "@/lib/marketing-content";
@@ -26,7 +27,7 @@ const CATALOG_SCOPE: Record<"websites" | "ai" | "crm" | "branding" | "social", {
 export default function ServiceDetail({ slug }: { slug: string }) {
   const { lang } = useLang(); const service = getService(lang, slug); const l = labels[lang];
   if (!service) return null;
-  return <PageShell><MarketingHero eyebrow={service.eyebrow} title={service.title} description={service.summary} primaryHref="/contact" primaryLabel={l.discuss} secondaryHref="/services" secondaryLabel={l.all} />
+  return <PageShell><MarketingHero eyebrow={service.eyebrow} title={service.title} description={service.summary} primaryHref={localizedPath("/contact", lang)} primaryLabel={l.discuss} secondaryHref={localizedPath("/services", lang)} secondaryLabel={l.all} />
     <section className="py-16"><Container><div className="rounded-2xl border border-[rgba(34,211,238,0.2)] bg-vx-bg2 p-7 text-xl font-medium text-vx-silver">{service.promise}</div></Container></section>
     <section className="pb-20"><Container className="grid gap-14 lg:grid-cols-2"><div><h2 className="text-3xl font-semibold">{l.ideal}</h2><div className="mt-6"><List items={service.idealFor} /></div></div><div><h2 className="text-3xl font-semibold">{l.challenges}</h2><div className="mt-6"><List items={service.problems} /></div></div></Container></section>
     <section className="bg-vx-bg2/40 py-20"><Container><h2 className="text-3xl font-semibold">{l.capabilities}</h2><div className="mt-8"><List items={service.solutions} /></div><h2 className="mt-16 text-3xl font-semibold">{l.deliverables}</h2><div className="mt-8"><List items={service.deliverables} /></div></Container></section>
@@ -34,6 +35,6 @@ export default function ServiceDetail({ slug }: { slug: string }) {
     <section className="bg-vx-bg2/40 py-20"><Container className="grid gap-14 lg:grid-cols-2"><div><h2 className="text-3xl font-semibold">{l.outcomes}</h2><div className="mt-7"><List items={service.outcomes} /></div></div><div><h2 className="text-3xl font-semibold">{l.integrations}</h2><div className="mt-7"><List items={service.integrations} /></div></div></Container></section>
     <ServiceCatalog id={`options-${slug}`} groups={CATALOG_SCOPE[service.pricingCategory].groups} ids={CATALOG_SCOPE[service.pricingCategory].ids} heading={{ title: l.options, intro: l.optionsIntro }} showBlueprint={service.pricingCategory === "websites" || service.pricingCategory === "ai"} />
     <section className="pb-10"><Container><p className="text-sm text-vx-muted">{l.note}</p></Container></section>
-    <section className="bg-vx-bg2/40 py-20"><Container><h2 className="text-3xl font-semibold">{l.faq}</h2><div className="mt-8 grid gap-4">{service.faq.map((item) => <details key={item.q} className="rounded-xl border border-[rgba(14,165,233,0.14)] bg-vx-bg p-5"><summary className="cursor-pointer font-semibold">{item.q}</summary><p className="mt-3 text-vx-muted">{item.a}</p></details>)}</div><div className="mt-10 flex flex-wrap gap-3"><Button href="/contact">{l.discuss}</Button><Link href="/services" className="inline-flex items-center gap-2 px-4 py-3 text-vx-cyan">{l.all}<ArrowRight size={16}/></Link></div></Container></section>
+    <section className="bg-vx-bg2/40 py-20"><Container><h2 className="text-3xl font-semibold">{l.faq}</h2><div className="mt-8 grid gap-4">{service.faq.map((item) => <details key={item.q} className="rounded-xl border border-[rgba(14,165,233,0.14)] bg-vx-bg p-5"><summary className="cursor-pointer font-semibold">{item.q}</summary><p className="mt-3 text-vx-muted">{item.a}</p></details>)}</div><div className="mt-10 flex flex-wrap gap-3"><Button href={localizedPath("/contact", lang)}>{l.discuss}</Button><Link href={localizedPath("/services", lang)} className="inline-flex items-center gap-2 px-4 py-3 text-vx-cyan">{l.all}<ArrowRight size={16}/></Link></div></Container></section>
   </PageShell>;
 }

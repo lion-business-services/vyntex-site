@@ -10,8 +10,8 @@ export const SITE = {
   legalName: "VYNTEX",
   tagline: "Connected business systems, CRM implementation, automation, websites, and digital solutions.",
 
-  url: "https://vyntexusa.com",
-  domain: "vyntexusa.com",
+  url: "https://www.vyntexusa.com",
+  domain: "www.vyntexusa.com",
 
   email: "info@vyntexusa.com",
 
@@ -20,6 +20,7 @@ export const SITE = {
   phone: "609-780-3218",
 
   address: {
+    street: "331 Tilton Rd, Suite 27",
     locality: "Northfield",
     region: "NJ",
     postalCode: "08225",

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { localizedPath } from "@/lib/seo-routes";
 import Link from "next/link";
 import { Menu, X, Phone, LogIn, LayoutDashboard } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
@@ -23,7 +24,7 @@ import { openConsultation } from "@/components/BookConsultation";
  * - Mobile drawer closes on ESC, on outside click, and on link selection.
  */
 export default function Nav() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [, setActive] = useState<string>(SECTION_IDS.home);
@@ -115,7 +116,7 @@ export default function Nav() {
 
   const Wordmark = (
     <Link
-      href="/"
+      href={localizedPath("/", lang)}
       // shrink-0 is load-bearing: without it flex shrinks the logo past its
       // content and it collides with the first nav link.
       className="flex shrink-0 items-center gap-2.5"
@@ -127,7 +128,7 @@ export default function Nav() {
       <span className="vx-logo-tile" aria-hidden="true">
         <Image
           src="/vyntex-mark.png"
-          alt=""
+          alt="VYNTEX company logo"
           width={44}
           height={38}
           priority
@@ -173,7 +174,7 @@ export default function Nav() {
             return (
               <li key={link.key} className="shrink-0">
                 <Link
-                  href={link.href}
+                  href={localizedPath(link.href, lang)}
                   aria-current={isActive ? "true" : undefined}
                   className={[
                     "relative whitespace-nowrap text-[0.8125rem] font-medium transition-colors 2xl:text-sm",
@@ -263,7 +264,7 @@ export default function Nav() {
             {NAV_LINKS.map((link) => (
               <li key={link.key}>
                 <Link
-                  href={link.href}
+                  href={localizedPath(link.href, lang)}
                   onClick={() => setOpen(false)}
                   className="block rounded-lg px-2 py-2.5 text-base text-vx-muted hover:bg-vx-bg3 hover:text-vx-ink"
                 >

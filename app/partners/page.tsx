@@ -1,1 +1,3 @@
-import type{Metadata}from"next";import PartnersPage from"@/components/marketing/PartnersPage";export const metadata:Metadata={title:"Authorized Reseller Program | VYNTEX",description:"Apply for the VYNTEX authorized reseller program and expand your digital service offering."};export default function Page(){return <PartnersPage/>}
+import { marketingSocial } from "@/lib/seo-metadata";
+import { seoAlternates } from "@/lib/seo-routes";
+import type{Metadata}from"next";import PartnersPage from"@/components/marketing/PartnersPage";export const metadata:Metadata={title:"Authorized Reseller Program",description:"Apply for the VYNTEX authorized reseller program and expand your digital service offering.", alternates: seoAlternates("/partners"), openGraph: marketingSocial("/partners", "Authorized Reseller Program", "Learn how to partner with VYNTEX on approved digital services.")};export default function Page(){return <PartnersPage/>}

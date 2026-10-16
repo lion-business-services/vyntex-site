@@ -1,5 +1,6 @@
 "use client";
 
+import { localizedPath } from "@/lib/seo-routes";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import {
@@ -133,7 +134,7 @@ export default function ConnectedHero() {
             <Button onClick={openConsultation} size="lg">
               {c.primary}<ArrowRight size={18} aria-hidden="true" />
             </Button>
-            <Button href="/services" variant="secondary" size="lg">{c.secondary}</Button>
+            <Button href={localizedPath("/services", lang)} variant="secondary" size="lg">{c.secondary}</Button>
           </motion.div>
         </div>
 

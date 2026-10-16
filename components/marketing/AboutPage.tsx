@@ -1,5 +1,6 @@
 "use client";
 
+import { localizedPath } from "@/lib/seo-routes";
 import { CheckCircle2 } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
 import { pageCopy } from "@/lib/marketing-content";
@@ -17,7 +18,7 @@ export default function AboutPage() {
         eyebrow={c.eyebrow}
         title={c.title}
         description={c.intro}
-        primaryHref="/contact"
+        primaryHref={localizedPath("/contact", lang)}
         primaryLabel={lang === "en" ? "Book a Free Consultation" : "Agenda tu Consulta Gratis"}
       />
 

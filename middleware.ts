@@ -15,9 +15,23 @@ export async function middleware(request: NextRequest) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
+  // Locale header is forwarded to the root layout on both authenticated and public routes.
+  // Using the URL (not a browser setting) ensures SSR language equals canonical locale.
+  request.headers.set("x-vyntex-language", request.nextUrl.pathname === "/es" || request.nextUrl.pathname.startsWith("/es/") ? "es" : "en");
+
+  // Public marketing pages do not need a server-side Supabase network call.
+  // Keep authentication/session refresh for private pages and server APIs.
+  // This avoids waiting on auth during SEO-critical page requests.
+  const pathname = request.nextUrl.pathname;
+  const needsSession = pathname.startsWith("/portal") || pathname.startsWith("/api/") ||
+    pathname.startsWith("/auth/") || pathname === "/login" || pathname === "/verify";
+  if (!needsSession) {
+    return NextResponse.next({ request: { headers: request.headers } });
+  }
+
   // Not configured yet — pass through untouched.
   if (!url || !anonKey) {
-    return NextResponse.next();
+    return NextResponse.next({ request: { headers: request.headers } });
   }
 
   let response = NextResponse.next({ request });

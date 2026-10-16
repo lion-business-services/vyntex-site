@@ -1,4 +1,5 @@
 import type { Lang } from "@/lib/translations";
+import { spanishServiceContent, spanishIndustryContent } from "@/lib/spanish-marketing";
 
 export type ServiceSlug =
   | "ai-automation"
@@ -200,14 +201,9 @@ const enServices: ServiceContent[] = [
   },
 ];
 
-const esServices: ServiceContent[] = enServices.map((s) => ({ ...s }));
-// Spanish content is intentionally authored below rather than machine-translated at render time.
-Object.assign(esServices[0]!, { title: "Automatización con IA para negocios en crecimiento", shortTitle: "Automatización con IA", eyebrow: "Trabaje mejor y responda más rápido", summary: "Diseñamos flujos de trabajo prácticos con inteligencia artificial que reducen tareas repetitivas, mejoran los tiempos de respuesta, organizan información y ayudan a su equipo a avanzar prospectos y clientes sin depender de seguimiento manual constante.", promise: "La automatización debe facilitar la operación de su negocio, no crear otro sistema complicado que administrar." });
-Object.assign(esServices[1]!, { title: "Desarrollo de sitios web enfocados en conversión", shortTitle: "Desarrollo Web", eyebrow: "Un sitio profesional creado para funcionar", summary: "Creamos sitios web rápidos y adaptados a dispositivos móviles que presentan su negocio con claridad, generan confianza y facilitan que el visitante reserve, llame, solicite una cotización, aplique o compre.", promise: "Su sitio debe verse confiable, explicar su valor rápidamente y facilitar que el cliente correcto tome acción." });
-Object.assign(esServices[2]!, { title: "Sistemas CRM y procesos de ventas", shortTitle: "Sistemas CRM", eyebrow: "Organice prospectos, clientes y seguimiento", summary: "Configuramos sistemas CRM prácticos para administrar contactos, oportunidades, tareas, comunicaciones, documentos y actividad comercial en un solo lugar.", promise: "Un CRM debe ayudar a su equipo a seguir un proceso claro, no convertirse en una libreta costosa que nadie usa." });
-Object.assign(esServices[3]!, { title: "Chatbots con IA y asistentes digitales", shortTitle: "Chatbots con IA", eyebrow: "Respuestas útiles sin hacer esperar al cliente", summary: "Creamos asistentes digitales que responden preguntas aprobadas, recopilan información, orientan al visitante y dirigen solicitudes importantes a la persona correcta.", promise: "Un chatbot debe ser útil, preciso y transparente sobre sus límites." });
-Object.assign(esServices[4]!, { title: "Marca e identidad digital", shortTitle: "Branding", eyebrow: "Proyecte una imagen establecida, coherente y memorable", summary: "Creamos identidades visuales y materiales prácticos que ayudan a los clientes a reconocer su negocio y confiar en lo que ven en canales digitales e impresos.", promise: "Una buena marca ofrece una presencia profesional y consistente sin parecer una plantilla genérica." });
-Object.assign(esServices[5]!, { title: "Marketing digital y redes sociales", shortTitle: "Marketing Digital", eyebrow: "Construya una presencia consistente y confiable", summary: "Ayudamos a los negocios a establecer y mantener una presencia digital clara mediante configuración de cuentas, sistemas de contenido, diseños de marca, campañas y apoyo práctico de marketing.", promise: "El marketing debe comunicar su valor y crear oportunidades, no solamente llenar un calendario con publicaciones genéricas." });
+const esServices: ServiceContent[] = enServices.map(({ slug, pricingCategory }) => ({
+  slug, pricingCategory, ...spanishServiceContent[slug],
+}));
 
 export const servicesByLang: Record<Lang, ServiceContent[]> = { en: enServices, es: esServices };
 export const serviceSlugs = enServices.map((service) => service.slug);
@@ -224,7 +220,9 @@ export const industriesByLang: Record<Lang, IndustryContent[]> = {
   ],
   es: [],
 };
-industriesByLang.es = industriesByLang.en.map((i) => ({ ...i }));
+industriesByLang.es = industriesByLang.en.map(({ slug, recommended }) => ({
+  slug, recommended, ...spanishIndustryContent[slug]!,
+}));
 
 export const pageCopy = {
   en: {

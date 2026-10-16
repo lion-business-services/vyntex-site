@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { localizedPath } from "@/lib/seo-routes";
 import { ArrowRight } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
 import { servicesByLang, pageCopy } from "@/lib/marketing-content";
@@ -31,7 +32,7 @@ export default function ServicesHub() {
         eyebrow={copy.eyebrow}
         title={copy.title}
         description={copy.description}
-        primaryHref="/contact"
+        primaryHref={localizedPath("/contact", lang)}
         primaryLabel={lang === "en" ? "Book a Free Consultation" : "Agenda tu Consulta Gratis"}
       />
 
@@ -57,7 +58,7 @@ export default function ServicesHub() {
                 </div>
                 <h3 className="mt-4 text-xl font-bold text-vx-ink">{service.shortTitle}</h3>
                 <p className="mt-3 text-sm leading-6 text-vx-muted">{service.summary}</p>
-                <Link href={`/services/${service.slug}`} className="mt-6 inline-flex items-center gap-2 font-semibold text-vx-cyan transition-colors hover:text-vx-glow">
+                <Link href={localizedPath(`/services/${service.slug}`, lang)} className="mt-6 inline-flex items-center gap-2 font-semibold text-vx-cyan transition-colors hover:text-vx-glow">
                   {lang === "en" ? "Explore Service" : "Explorar Servicio"}
                   <ArrowRight size={16} aria-hidden />
                 </Link>
