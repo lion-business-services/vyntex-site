@@ -27,6 +27,7 @@ export default function VyntexJsonLd() {
         parentOrganization: { "@id": `${base}/#organization` },
         description: "Bilingual English and Spanish technology services: websites, CRM, AI automation, chatbots, branding and digital marketing for businesses across the United States.",
         telephone: "+1-609-780-3218", email: SITE.email,
+        hasMap: SITE.social.googleBusiness, sameAs: Object.values(SITE.social),
         address: { "@type": "PostalAddress", streetAddress: SITE.address.street, addressLocality: SITE.address.locality,
           addressRegion: SITE.address.region, postalCode: SITE.address.postalCode,
           addressCountry: SITE.address.country },
