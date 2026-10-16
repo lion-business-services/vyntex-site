@@ -31,6 +31,12 @@ export const SITE = {
   languages: ["en", "es"] as const,
 
   ogImage: "/og-image.png",
+
+  /** Official VYNTEX social profiles (owner-confirmed). Add others here as they are confirmed. */
+  social: {
+    facebook: "https://www.facebook.com/vyntexusaa/",
+    instagram: "https://www.instagram.com/vyntexusa/",
+  },
 } as const;
 
 /** E.164-style href for tel: links. Strips non-digits and prefixes +1 (US). */

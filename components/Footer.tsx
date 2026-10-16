@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { localizedPath } from "@/lib/seo-routes";
-import { ArrowRight, ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
 import { SITE, CONTACT_HREFS, LEGAL_LINKS, ERP, erpHref } from "@/lib/site";
 import { useTheme } from "@/context/ThemeContext";
@@ -96,6 +96,8 @@ export default function Footer({ showCta = true }: { showCta?: boolean }) {
             <ul className="mt-4 space-y-3 text-sm">
               <li><a href={CONTACT_HREFS.email} className="inline-flex items-center gap-2 text-vx-silver hover:text-vx-ink"><Mail size={15}/>{SITE.email}</a></li>
               <li><a href={CONTACT_HREFS.phone} className="inline-flex items-center gap-2 text-vx-silver hover:text-vx-ink"><Phone size={15}/>{SITE.phone}</a></li>
+              <li><a href={SITE.social.facebook} target="_blank" rel="noopener noreferrer me" className="inline-flex items-center gap-2 text-vx-silver hover:text-vx-ink"><Facebook size={15}/>Facebook</a></li>
+              <li><a href={SITE.social.instagram} target="_blank" rel="noopener noreferrer me" className="inline-flex items-center gap-2 text-vx-silver hover:text-vx-ink"><Instagram size={15}/>Instagram</a></li>
             </ul>
           </div>
         </div>
