@@ -84,7 +84,7 @@ export const NJ_COPY: Record<"en" | "es", LocalCopy> = {
     hours: "Monday to Friday, 9:00 AM to 5:30 PM",
     faqHeading: "Frequently asked questions",
     faq: [
-      { q: "Where is VYNTEX located?", a: "Our office is at 331 Tilton Rd, Suite 27, Northfield, NJ 08225, in Atlantic County." },
+      { q: "Where is VYNTEX located?", a: "Our office is at 331 Tilton Rd, Suite 27, Northfield, NJ 08225, inside Tilton Square in Atlantic County. Suite 27 is reached through the main entrance of Lion Business Services (Suite 26)." },
       { q: "Can we meet in person?", a: "Yes. You can book a consultation at our Northfield office or meet with us online, whichever works best for you." },
       { q: "Do you work with businesses outside Atlantic County?", a: "Yes. We serve businesses within about 50 miles of Northfield, including Cape May, Cumberland, Ocean, Gloucester, Burlington and Camden counties, plus the rest of New Jersey, and we work remotely with clients in other states." },
       { q: "What is the difference between a CRM, project management and an ERP?", a: "A CRM manages customers and sales, project management organizes the work for each job, and an ERP connects the wider operation such as billing, inventory and reporting. We help you choose what you actually need." },
@@ -130,7 +130,7 @@ export const NJ_COPY: Record<"en" | "es", LocalCopy> = {
     hours: "Lunes a viernes, de 9:00 a. m. a 5:30 p. m.",
     faqHeading: "Preguntas frecuentes",
     faq: [
-      { q: "¿Dónde está ubicada VYNTEX?", a: "Nuestra oficina está en 331 Tilton Rd, Suite 27, Northfield, NJ 08225, en el condado de Atlantic." },
+      { q: "¿Dónde está ubicada VYNTEX?", a: "Nuestra oficina está en 331 Tilton Rd, Suite 27, Northfield, NJ 08225, dentro de Tilton Square, en el condado de Atlantic. Se llega a la Suite 27 por la entrada principal de Lion Business Services (Suite 26)." },
       { q: "¿Podemos reunirnos en persona?", a: "Sí. Puede agendar una consulta en nuestra oficina de Northfield o reunirse con nosotros en línea, como le resulte mejor." },
       { q: "¿Trabajan con negocios fuera del condado de Atlantic?", a: "Sí. Atendemos negocios a unas 50 millas de Northfield, incluyendo los condados de Cape May, Cumberland, Ocean, Gloucester, Burlington y Camden, además del resto de Nueva Jersey, y trabajamos de forma remota con clientes en otros estados." },
       { q: "¿Cuál es la diferencia entre un CRM, la gestión de proyectos y un ERP?", a: "Un CRM maneja clientes y ventas, la gestión de proyectos organiza el trabajo de cada proyecto y un ERP conecta toda la operación, como facturación, inventario y reportes. Le ayudamos a elegir lo que realmente necesita." },
