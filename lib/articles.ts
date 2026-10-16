@@ -319,6 +319,288 @@ export const ARTICLES: Article[] = [
       ],
     },
   },
+  {
+    id: "ai-chatbot-small-business",
+    published: "2026-10-16",
+    updated: "2026-10-16",
+    relatedServices: ["ai-chatbots", "ai-automation"],
+    en: {
+      slug: "ai-chatbots-for-small-business-websites",
+      title: "AI Chatbots for Small Business Websites: What They Can and Can't Do",
+      description:
+        "A plain-language guide to website chatbots: the jobs they handle well, where a person still needs to step in, and how to set one up responsibly.",
+      sections: [
+        {
+          heading: "What a website chatbot is",
+          paragraphs: [
+            "A website chatbot is a chat window on your site that answers visitors automatically. Modern AI chatbots can understand questions written in everyday language, in English or Spanish, and reply using information your business has approved.",
+            "The goal is not to replace your team. It is to make sure every visitor gets a quick, accurate first answer and a clear next step, even when nobody is available to reply.",
+          ],
+        },
+        {
+          heading: "Jobs a chatbot handles well",
+          paragraphs: ["When it is set up with your real business information, a chatbot is good at repetitive, predictable conversations:"],
+          bullets: [
+            "Answering common questions about services, hours, location and what to bring",
+            "Collecting a visitor's name, contact details and what they need",
+            "Booking or requesting an appointment through your calendar",
+            "Pointing visitors to the right page, form or document checklist",
+            "Switching between English and Spanish based on the visitor",
+            "Handing the conversation to a person when the question needs one",
+          ],
+        },
+        {
+          heading: "Where a person still needs to step in",
+          paragraphs: [
+            "A chatbot should not make decisions that depend on professional judgment. Questions about a specific legal, tax, medical or financial situation, complaints, pricing exceptions and anything sensitive should go to a member of your team.",
+            "AI can also sound confident when it is wrong. That is why a business chatbot should answer only from information you have reviewed, say clearly when it does not know, and offer a way to reach a person.",
+          ],
+        },
+        {
+          heading: "How to set one up responsibly",
+          paragraphs: ["A few rules keep a chatbot helpful and trustworthy:"],
+          bullets: [
+            "Tell visitors they are chatting with an automated assistant",
+            "Give it an approved list of answers and links instead of letting it guess",
+            "Ask for consent before collecting personal information, and collect only what you need",
+            "Send every lead it collects to your CRM so someone follows up",
+            "Review conversations regularly and update the answers",
+          ],
+        },
+        {
+          heading: "Connect it to the rest of your system",
+          paragraphs: [
+            "A chatbot works best when it is connected to your CRM, calendar and messaging. A visitor who asks a question at night can be added as a contact, booked for a call and sent a confirmation, so your team starts the morning with organized leads instead of missed messages.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "Will a chatbot replace my receptionist or front desk?",
+          a: "No. A chatbot handles repetitive first questions and after-hours inquiries so your team can focus on conversations that need a person.",
+        },
+        {
+          q: "Can the chatbot speak Spanish?",
+          a: "Yes. A bilingual chatbot can answer in English or Spanish and switch based on the language the visitor uses.",
+        },
+        {
+          q: "What happens when the chatbot doesn't know the answer?",
+          a: "A well-built chatbot says it does not know and offers to connect the visitor with your team, collecting their contact information so someone can follow up.",
+        },
+      ],
+    },
+    es: {
+      slug: "chatbots-ia-para-sitios-web-de-pequenos-negocios",
+      title: "Chatbots con IA para sitios web de pequeños negocios: qué pueden y qué no pueden hacer",
+      description:
+        "Guía sencilla sobre los chatbots para sitios web: las tareas que hacen bien, cuándo debe intervenir una persona y cómo configurarlos con responsabilidad.",
+      sections: [
+        {
+          heading: "Qué es un chatbot para su sitio web",
+          paragraphs: [
+            "Un chatbot es una ventana de chat en su sitio web que responde automáticamente a los visitantes. Los chatbots modernos con IA entienden preguntas escritas de forma natural, en español o en inglés, y responden con información que su negocio ha aprobado.",
+            "El objetivo no es reemplazar a su equipo. Es asegurar que cada visitante reciba una primera respuesta rápida y correcta, y un siguiente paso claro, aunque nadie esté disponible para contestar.",
+          ],
+        },
+        {
+          heading: "Tareas que un chatbot hace bien",
+          paragraphs: ["Cuando se configura con la información real de su negocio, un chatbot es bueno para conversaciones repetitivas y previsibles:"],
+          bullets: [
+            "Responder preguntas frecuentes sobre servicios, horarios, ubicación y qué traer",
+            "Recolectar el nombre, los datos de contacto y la necesidad del visitante",
+            "Agendar o solicitar una cita en su calendario",
+            "Dirigir al visitante a la página, formulario o lista de documentos correcta",
+            "Cambiar entre español e inglés según el visitante",
+            "Pasar la conversación a una persona cuando la pregunta lo requiere",
+          ],
+        },
+        {
+          heading: "Cuándo debe intervenir una persona",
+          paragraphs: [
+            "Un chatbot no debe tomar decisiones que dependan del criterio de un profesional. Preguntas sobre una situación legal, de impuestos, médica o financiera específica, quejas, excepciones de precio y cualquier tema delicado deben pasar a una persona de su equipo.",
+            "La IA también puede sonar segura cuando está equivocada. Por eso un chatbot de negocio debe responder solo con información que usted ha revisado, decir claramente cuando no sabe y ofrecer una forma de hablar con una persona.",
+          ],
+        },
+        {
+          heading: "Cómo configurarlo con responsabilidad",
+          paragraphs: ["Unas pocas reglas mantienen al chatbot útil y confiable:"],
+          bullets: [
+            "Avise a los visitantes que están hablando con un asistente automático",
+            "Dele una lista aprobada de respuestas y enlaces en lugar de dejarlo adivinar",
+            "Pida consentimiento antes de recolectar datos personales y pida solo lo necesario",
+            "Envíe cada contacto que recolecte a su CRM para que alguien dé seguimiento",
+            "Revise las conversaciones con regularidad y actualice las respuestas",
+          ],
+        },
+        {
+          heading: "Conéctelo con el resto de su sistema",
+          paragraphs: [
+            "Un chatbot funciona mejor conectado a su CRM, su calendario y su mensajería. Un visitante que pregunta de noche puede quedar registrado como contacto, con una llamada agendada y una confirmación enviada, para que su equipo empiece el día con contactos organizados en lugar de mensajes perdidos.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "¿Un chatbot reemplaza a mi recepcionista?",
+          a: "No. El chatbot atiende las primeras preguntas repetitivas y las consultas fuera de horario para que su equipo se enfoque en las conversaciones que necesitan una persona.",
+        },
+        {
+          q: "¿El chatbot puede hablar en español?",
+          a: "Sí. Un chatbot bilingüe puede responder en español o en inglés y cambiar según el idioma que use el visitante.",
+        },
+        {
+          q: "¿Qué pasa cuando el chatbot no sabe la respuesta?",
+          a: "Un chatbot bien configurado dice que no sabe y ofrece conectar al visitante con su equipo, recolectando sus datos de contacto para que alguien le dé seguimiento.",
+        },
+      ],
+    },
+  },
+  {
+    id: "google-business-profile-checklist",
+    published: "2026-10-16",
+    updated: "2026-10-16",
+    relatedServices: ["digital-marketing", "web-development"],
+    en: {
+      slug: "google-business-profile-checklist",
+      title: "Google Business Profile Checklist for Local Service Businesses",
+      description:
+        "A step-by-step checklist to set up and maintain your Google Business Profile so local customers can find, trust and contact your business.",
+      sections: [
+        {
+          heading: "Why your Google Business Profile matters",
+          paragraphs: [
+            "When someone searches for a service near them, Google often shows a map with local businesses before the regular results. Those listings come from Google Business Profile. A complete, accurate profile helps customers find your hours, call you, get directions and read reviews without leaving Google.",
+          ],
+        },
+        {
+          heading: "1. Claim and verify your profile",
+          paragraphs: [
+            "Search for your business on Google Maps. If a listing already exists, claim it; if not, create one at business.google.com. Google will ask you to verify that you run the business, for example by video, phone, email or mail, depending on what it offers for your listing. Verification is required before your profile can show in local results.",
+          ],
+        },
+        {
+          heading: "2. Keep your name, address and phone consistent",
+          paragraphs: [
+            "Use your real business name, without extra keywords. Your name, address and phone number should match exactly across your website, Google, social media and directories. If you serve customers at their location and do not want your address shown, you can set a service area instead.",
+          ],
+        },
+        {
+          heading: "3. Choose the right categories",
+          paragraphs: [
+            "Your primary category tells Google what your business is. Pick the most specific one that fits, then add a few secondary categories for other services you actually offer.",
+          ],
+        },
+        {
+          heading: "4. Complete every section",
+          paragraphs: ["Fill in everything that applies to your business:"],
+          bullets: [
+            "Hours, including holiday hours",
+            "Website link and appointment link",
+            "Services with short descriptions",
+            "A clear business description in plain language",
+            "Languages spoken, if you serve customers in Spanish",
+            "Real photos of your location, team and work",
+          ],
+        },
+        {
+          heading: "5. Ask for reviews the right way",
+          paragraphs: [
+            "Reviews help customers decide. Ask satisfied customers for a review with a direct link, and reply to every review, positive or negative, politely and professionally. Do not offer discounts or gifts in exchange for reviews, and do not write reviews for your own business; both go against Google's policies.",
+          ],
+        },
+        {
+          heading: "6. Keep it updated",
+          paragraphs: [
+            "Update your hours when they change, add new photos, answer questions customers ask on your profile, and share updates or offers with posts. An active, accurate profile builds trust with customers.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "Does a Google Business Profile cost money?",
+          a: "No. Creating and managing a Google Business Profile is free.",
+        },
+        {
+          q: "Can I have a profile if I work from home or at customers' locations?",
+          a: "Yes. Service-area businesses can list the areas they serve and hide their street address from the public.",
+        },
+        {
+          q: "Can VYNTEX help set up and manage my profile?",
+          a: "Yes. VYNTEX helps businesses set up their profile, connect it to their website and CRM, and build a review request process that follows Google's rules.",
+        },
+      ],
+    },
+    es: {
+      slug: "lista-perfil-de-empresa-en-google",
+      title: "Lista de verificación del Perfil de Empresa en Google para negocios locales",
+      description:
+        "Lista paso a paso para crear y mantener su Perfil de Empresa en Google, para que los clientes de su zona lo encuentren, confíen y lo contacten.",
+      sections: [
+        {
+          heading: "Por qué importa su Perfil de Empresa en Google",
+          paragraphs: [
+            "Cuando alguien busca un servicio cerca, Google muchas veces muestra un mapa con negocios locales antes de los resultados normales. Esos negocios salen del Perfil de Empresa en Google. Un perfil completo y correcto ayuda a los clientes a ver su horario, llamarle, pedir direcciones y leer reseñas sin salir de Google.",
+          ],
+        },
+        {
+          heading: "1. Reclame y verifique su perfil",
+          paragraphs: [
+            "Busque su negocio en Google Maps. Si ya existe, reclámelo; si no, créelo en business.google.com. Google le pedirá verificar que usted maneja el negocio, por ejemplo por video, teléfono, correo electrónico o correo postal, según las opciones disponibles para su perfil. La verificación es necesaria para que su perfil aparezca en los resultados locales.",
+          ],
+        },
+        {
+          heading: "2. Mantenga igual su nombre, dirección y teléfono",
+          paragraphs: [
+            "Use el nombre real de su negocio, sin palabras clave adicionales. Su nombre, dirección y teléfono deben coincidir exactamente en su sitio web, Google, redes sociales y directorios. Si atiende a sus clientes en su ubicación y no quiere mostrar su dirección, puede configurar un área de servicio.",
+          ],
+        },
+        {
+          heading: "3. Elija las categorías correctas",
+          paragraphs: [
+            "La categoría principal le dice a Google qué es su negocio. Elija la más específica que corresponda y agregue algunas categorías secundarias para otros servicios que realmente ofrece.",
+          ],
+        },
+        {
+          heading: "4. Complete todas las secciones",
+          paragraphs: ["Llene todo lo que aplique a su negocio:"],
+          bullets: [
+            "Horario, incluyendo días festivos",
+            "Enlace a su sitio web y para agendar citas",
+            "Servicios con descripciones breves",
+            "Una descripción clara del negocio en lenguaje sencillo",
+            "Idiomas que hablan, si atiende clientes en español",
+            "Fotos reales de su local, su equipo y su trabajo",
+          ],
+        },
+        {
+          heading: "5. Pida reseñas de la forma correcta",
+          paragraphs: [
+            "Las reseñas ayudan a los clientes a decidir. Pida una reseña a clientes satisfechos con un enlace directo y responda cada reseña, positiva o negativa, con cortesía y profesionalismo. No ofrezca descuentos ni regalos a cambio de reseñas y no escriba reseñas para su propio negocio; ambas cosas van contra las políticas de Google.",
+          ],
+        },
+        {
+          heading: "6. Manténgalo actualizado",
+          paragraphs: [
+            "Actualice su horario cuando cambie, agregue fotos nuevas, responda las preguntas que hagan los clientes en su perfil y comparta novedades u ofertas con publicaciones. Un perfil activo y correcto genera confianza en los clientes.",
+          ],
+        },
+      ],
+      faq: [
+        {
+          q: "¿El Perfil de Empresa en Google cuesta dinero?",
+          a: "No. Crear y administrar un Perfil de Empresa en Google es gratis.",
+        },
+        {
+          q: "¿Puedo tener un perfil si trabajo desde casa o en la ubicación del cliente?",
+          a: "Sí. Los negocios con área de servicio pueden indicar las zonas que atienden y ocultar su dirección al público.",
+        },
+        {
+          q: "¿VYNTEX puede ayudarme a crear y manejar mi perfil?",
+          a: "Sí. VYNTEX ayuda a los negocios a crear su perfil, conectarlo con su sitio web y su CRM, y armar un proceso de solicitud de reseñas que cumpla las reglas de Google.",
+        },
+      ],
+    },
+  },
 ];
 
 export function getArticle(lang: "en" | "es", slug: string): { article: Article; copy: ArticleCopy } | undefined {
