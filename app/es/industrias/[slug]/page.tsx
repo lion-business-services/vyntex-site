@@ -3,23 +3,25 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getService, industriesByLang } from "@/lib/marketing-content";
-import { spanishAlternates, localizedPath, INDUSTRY_SLUGS } from "@/lib/seo-routes";
+import { spanishAlternates, localizedPath, INDUSTRY_SLUGS, ES_INDUSTRY_SLUGS, industrySlugFromSpanish } from "@/lib/seo-routes";
 import { PageSchema } from "@/lib/page-schema";
 import PageShell from "@/components/marketing/PageShell";
 import MarketingHero from "@/components/marketing/MarketingHero";
 import Container from "@/components/ui/Container";
 
 export const dynamicParams = false;
-export function generateStaticParams() { return INDUSTRY_SLUGS.map(slug => ({ slug })); }
+export function generateStaticParams() { return INDUSTRY_SLUGS.map(en => ({ slug: ES_INDUSTRY_SLUGS[en] })); }
 export async function generateMetadata({ params }: {params: Promise<{slug: string}>}): Promise<Metadata> {
   const {slug} = await params;
-  const industry = industriesByLang.es.find(i => i.slug === slug);
+  const enSlug = industrySlugFromSpanish(slug);
+  const industry = industriesByLang.es.find(i => i.slug === enSlug);
   if (!industry) return {};
   return { title: `Soluciones para ${industry.title}`, description: industry.summary, alternates: spanishAlternates(`/es/industrias/${slug}`), openGraph: marketingSocial(`/es/industrias/${slug}`, industry.title, industry.summary, true) };
 }
 export default async function IndustryDetailEs({ params }: {params: Promise<{slug: string}>}) {
   const {slug} = await params;
-  const industry = industriesByLang.es.find(i => i.slug === slug);
+  const enSlug = industrySlugFromSpanish(slug);
+  const industry = industriesByLang.es.find(i => i.slug === enSlug);
   if (!industry) notFound();
   return <PageShell>
     <PageSchema path={`/es/industrias/${slug}`} name={industry.title} description={industry.summary} kind="WebPage" parentPath="/es/industrias" parentName="Industrias" />

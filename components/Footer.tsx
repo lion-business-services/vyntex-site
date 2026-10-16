@@ -55,7 +55,7 @@ export default function Footer({ showCta = true }: { showCta?: boolean }) {
               <span className="vx-wordmark text-xl font-bold">VYNTEX</span>
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-6 text-vx-muted">{t.footer.tagline}</p>
-            <p className="mt-4 inline-flex items-center gap-2 text-sm text-vx-silver"><MapPin size={15}/>{SITE.address.locality}, {SITE.address.region} {SITE.address.postalCode}</p>
+            <p className="mt-4 inline-flex items-center gap-2 text-sm text-vx-silver"><MapPin size={15}/>{SITE.address.street}, {SITE.address.locality}, {SITE.address.region} {SITE.address.postalCode}</p>
             <div className="mt-4"><LanguageToggle /></div>
           </div>
 

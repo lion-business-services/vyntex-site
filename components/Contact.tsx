@@ -112,7 +112,7 @@ export default function Contact() {
               </Row>
               <Row icon={<MapPin size={18} aria-hidden />} label={t.contact.labels.location}>
                 <span className="text-vx-silver">
-                  {SITE.address.locality}, {SITE.address.region} {SITE.address.postalCode}
+                  {SITE.address.street}, {SITE.address.locality}, {SITE.address.region} {SITE.address.postalCode}
                 </span>
               </Row>
               <Row icon={<Globe2 size={18} aria-hidden />} label={t.contact.labels.area}>
