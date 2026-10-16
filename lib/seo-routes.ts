@@ -1,3 +1,5 @@
+import { ARTICLES } from "@/lib/articles";
+
 /** Explicit, verified one-to-one routes. No hreflang points to a missing page. */
 export const PUBLIC_LOCALE_ROUTES = {
   "/": "/es",
@@ -12,6 +14,7 @@ export const PUBLIC_LOCALE_ROUTES = {
   "/about": "/es/nosotros",
   "/contact": "/es/contacto",
   "/partners": "/es/socios",
+  "/resources": "/es/recursos",
 } as const;
 
 export type EnglishLocalizedPath = keyof typeof PUBLIC_LOCALE_ROUTES;
@@ -27,6 +30,7 @@ export const EN_TO_ES: Record<string, string> = {
       "multilingual-businesses": "negocios-bilingues",
     }).map(([en, es]) => [`/industries/${en}`, `/es/industrias/${es}`]),
   ),
+  ...Object.fromEntries(ARTICLES.map(a => [`/resources/${a.en.slug}`, `/es/recursos/${a.es.slug}`])),
 };
 export const ES_TO_EN: Record<string, string> = Object.fromEntries(
   Object.entries(EN_TO_ES).map(([en, es]) => [es, en]),

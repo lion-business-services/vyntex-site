@@ -36,6 +36,11 @@ VYNTEX es una empresa de tecnología digital bilingüe (inglés y español) en N
 
 - [Authorized Reseller Program](https://www.vyntexusa.com/partners): agencies and consultants resell VYNTEX solutions under their own client relationships while VYNTEX delivers the technical work.
 
+## Guides
+
+- [Missed-Call Text Back: How Small Businesses Stop Losing Leads After Hours](https://www.vyntexusa.com/resources/missed-call-text-back) — Spanish: https://www.vyntexusa.com/es/recursos/respuesta-automatica-llamadas-perdidas
+- [CRM for Bilingual Businesses: What to Set Up First](https://www.vyntexusa.com/resources/crm-for-bilingual-businesses) — Spanish: https://www.vyntexusa.com/es/recursos/crm-para-negocios-bilingues
+
 ## Key pages
 
 - [Home](https://www.vyntexusa.com/)
