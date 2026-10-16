@@ -4,12 +4,23 @@
  */
 
 export const NJ_TOWNS = [
-  "Northfield", "Egg Harbor Township", "Linwood", "Somers Point", "Pleasantville",
-  "Atlantic City", "Galloway", "Absecon", "Mays Landing", "Hammonton",
-  "Ocean City", "Cape May County",
+  // Atlantic County
+  "Northfield", "Egg Harbor Township", "Linwood", "Somers Point", "Pleasantville", "Absecon",
+  "Atlantic City", "Ventnor City", "Margate City", "Brigantine", "Galloway", "Egg Harbor City",
+  "Mays Landing", "Hammonton",
+  // Cape May County
+  "Ocean City", "Sea Isle City", "Avalon", "Stone Harbor", "Wildwood", "Cape May",
+  // Cumberland County
+  "Vineland", "Millville", "Bridgeton",
+  // Ocean, Burlington, Gloucester and Camden counties
+  "Little Egg Harbor", "Tuckerton", "Long Beach Island", "Manahawkin", "Toms River",
+  "Glassboro", "Williamstown", "Berlin",
 ] as const;
 
-export const NJ_REGIONS = ["Atlantic County", "Cape May County", "South Jersey", "New Jersey"] as const;
+export const NJ_REGIONS = [
+  "Atlantic County", "Cape May County", "Cumberland County", "Ocean County",
+  "Gloucester County", "Burlington County", "Camden County", "South Jersey", "New Jersey",
+] as const;
 
 export type LocalService = { name: string; text: string; href?: string };
 export type LocalFaq = { q: string; a: string };
@@ -44,7 +55,7 @@ export const NJ_COPY: Record<"en" | "es", LocalCopy> = {
     eyebrow: "Northfield, New Jersey",
     intro: [
       "VYNTEX is a technology company with an office at 331 Tilton Rd, Suite 27, in Northfield, New Jersey. We help local businesses connect their website, customer management, projects, operations and marketing into one organized system.",
-      "You can meet with us in person at our office or online. We work in English and Spanish, and we serve businesses across Atlantic County, Cape May County, South Jersey and the rest of New Jersey.",
+      "You can meet with us in person at our office or online. We work in English and Spanish, and we serve businesses within about 50 miles of Northfield, across Atlantic, Cape May, Cumberland, Ocean, Gloucester, Burlington and Camden counties, and the rest of New Jersey.",
     ],
     servicesHeading: "What we set up for New Jersey businesses",
     services: [
@@ -67,7 +78,7 @@ export const NJ_COPY: Record<"en" | "es", LocalCopy> = {
       "Setup, training and ongoing support from people you can call",
     ],
     areaHeading: "Areas we serve",
-    areaText: "From our Northfield office we work with businesses in these communities, and remotely anywhere in New Jersey and the United States.",
+    areaText: "From our Northfield office we serve businesses within about 50 miles, including these communities and counties, and remotely anywhere in New Jersey and the United States.",
     officeHeading: "Visit or contact our office",
     hoursLabel: "Hours",
     hours: "Monday to Friday, 9:00 AM to 5:30 PM",
@@ -75,7 +86,7 @@ export const NJ_COPY: Record<"en" | "es", LocalCopy> = {
     faq: [
       { q: "Where is VYNTEX located?", a: "Our office is at 331 Tilton Rd, Suite 27, Northfield, NJ 08225, in Atlantic County." },
       { q: "Can we meet in person?", a: "Yes. You can book a consultation at our Northfield office or meet with us online, whichever works best for you." },
-      { q: "Do you work with businesses outside Atlantic County?", a: "Yes. We serve businesses across South Jersey and the rest of New Jersey, and we work remotely with clients in other states." },
+      { q: "Do you work with businesses outside Atlantic County?", a: "Yes. We serve businesses within about 50 miles of Northfield, including Cape May, Cumberland, Ocean, Gloucester, Burlington and Camden counties, plus the rest of New Jersey, and we work remotely with clients in other states." },
       { q: "What is the difference between a CRM, project management and an ERP?", a: "A CRM manages customers and sales, project management organizes the work for each job, and an ERP connects the wider operation such as billing, inventory and reporting. We help you choose what you actually need." },
       { q: "Do you offer services in Spanish?", a: "Yes. We work in English and Spanish, and we can build bilingual websites, chatbots and CRM templates." },
     ],
@@ -90,7 +101,7 @@ export const NJ_COPY: Record<"en" | "es", LocalCopy> = {
     eyebrow: "Northfield, Nueva Jersey",
     intro: [
       "VYNTEX es una empresa de tecnología con oficina en 331 Tilton Rd, Suite 27, en Northfield, Nueva Jersey. Ayudamos a los negocios locales a conectar su sitio web, la gestión de clientes, los proyectos, las operaciones y el marketing en un solo sistema organizado.",
-      "Puede reunirse con nosotros en persona en nuestra oficina o en línea. Trabajamos en español e inglés y atendemos negocios en el condado de Atlantic, el condado de Cape May, el sur de Nueva Jersey y el resto del estado.",
+      "Puede reunirse con nosotros en persona en nuestra oficina o en línea. Trabajamos en español e inglés y atendemos negocios a unas 50 millas de Northfield, en los condados de Atlantic, Cape May, Cumberland, Ocean, Gloucester, Burlington y Camden, y en el resto del estado.",
     ],
     servicesHeading: "Lo que configuramos para negocios en Nueva Jersey",
     services: [
@@ -113,7 +124,7 @@ export const NJ_COPY: Record<"en" | "es", LocalCopy> = {
       "Configuración, capacitación y soporte continuo con personas a las que puede llamar",
     ],
     areaHeading: "Zonas que atendemos",
-    areaText: "Desde nuestra oficina en Northfield trabajamos con negocios en estas comunidades, y de forma remota en todo Nueva Jersey y Estados Unidos.",
+    areaText: "Desde nuestra oficina en Northfield atendemos negocios a unas 50 millas a la redonda, incluyendo estas comunidades y condados, y de forma remota en todo Nueva Jersey y Estados Unidos.",
     officeHeading: "Visite o contacte nuestra oficina",
     hoursLabel: "Horario",
     hours: "Lunes a viernes, de 9:00 a. m. a 5:30 p. m.",
@@ -121,7 +132,7 @@ export const NJ_COPY: Record<"en" | "es", LocalCopy> = {
     faq: [
       { q: "¿Dónde está ubicada VYNTEX?", a: "Nuestra oficina está en 331 Tilton Rd, Suite 27, Northfield, NJ 08225, en el condado de Atlantic." },
       { q: "¿Podemos reunirnos en persona?", a: "Sí. Puede agendar una consulta en nuestra oficina de Northfield o reunirse con nosotros en línea, como le resulte mejor." },
-      { q: "¿Trabajan con negocios fuera del condado de Atlantic?", a: "Sí. Atendemos negocios en todo el sur de Nueva Jersey y el resto del estado, y trabajamos de forma remota con clientes en otros estados." },
+      { q: "¿Trabajan con negocios fuera del condado de Atlantic?", a: "Sí. Atendemos negocios a unas 50 millas de Northfield, incluyendo los condados de Cape May, Cumberland, Ocean, Gloucester, Burlington y Camden, además del resto de Nueva Jersey, y trabajamos de forma remota con clientes en otros estados." },
       { q: "¿Cuál es la diferencia entre un CRM, la gestión de proyectos y un ERP?", a: "Un CRM maneja clientes y ventas, la gestión de proyectos organiza el trabajo de cada proyecto y un ERP conecta toda la operación, como facturación, inventario y reportes. Le ayudamos a elegir lo que realmente necesita." },
       { q: "¿Ofrecen servicios en español?", a: "Sí. Trabajamos en español e inglés y podemos crear sitios web, chatbots y plantillas de CRM bilingües." },
     ],

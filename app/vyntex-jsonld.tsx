@@ -33,7 +33,7 @@ export default function VyntexJsonLd() {
         address: { "@type": "PostalAddress", streetAddress: SITE.address.street, addressLocality: SITE.address.locality,
           addressRegion: SITE.address.region, postalCode: SITE.address.postalCode,
           addressCountry: SITE.address.country },
-        areaServed: [...NJ_TOWNS.map(t => ({ "@type": "City", name: `${t}, NJ` })), { "@type": "AdministrativeArea", name: "Atlantic County, NJ" }, { "@type": "AdministrativeArea", name: "South Jersey" }, { "@type": "State", name: "New Jersey" }, { "@type": "Country", name: "United States" }],
+        areaServed: [...NJ_TOWNS.map(t => ({ "@type": "City", name: `${t}, NJ` })), ...["Atlantic", "Cape May", "Cumberland", "Ocean", "Gloucester", "Burlington", "Camden"].map(c => ({ "@type": "AdministrativeArea", name: `${c} County, NJ` })), { "@type": "AdministrativeArea", name: "South Jersey" }, { "@type": "State", name: "New Jersey" }, { "@type": "Country", name: "United States" }],
         openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "17:30" }],
         availableLanguage: ["English", "Spanish"],
         knowsLanguage: ["en", "es"],
