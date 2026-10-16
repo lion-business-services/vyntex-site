@@ -19,6 +19,7 @@ export default function VyntexJsonLd() {
         url: base, logo: `${base}/vyntex-logo.png`,
         email: SITE.email, telephone: "+1-609-780-3218",
         founder: { "@type": "Person", name: "Daysi Bettran" },
+        sameAs: Object.values(SITE.social),
       },
       {
         "@type": "ProfessionalService", "@id": businessId,
