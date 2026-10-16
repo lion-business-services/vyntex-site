@@ -15,7 +15,8 @@ export default function VyntexJsonLd() {
     "@graph": [
       {
         "@type": "Organization", "@id": `${base}/#organization`,
-        name: SITE.name, legalName: "Vyntex LLC", alternateName: "VYNTEX USA",
+        name: SITE.name, legalName: "VYNTEX LLC", alternateName: "VYNTEX USA", foundingDate: "2026-06-30",
+        address: { "@type": "PostalAddress", streetAddress: SITE.address.street, addressLocality: SITE.address.locality, addressRegion: SITE.address.region, postalCode: SITE.address.postalCode, addressCountry: SITE.address.country },
         url: base, logo: `${base}/vyntex-logo.png`,
         email: SITE.email, telephone: "+1-609-780-3218",
         founder: { "@type": "Person", name: "Daysi Bettran" },
