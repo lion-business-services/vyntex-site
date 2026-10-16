@@ -1,5 +1,6 @@
 import { SITE } from "@/lib/site";
 import { PUBLIC_LOCALE_ROUTES } from "@/lib/seo-routes";
+import { NJ_TOWNS } from "@/lib/local-nj";
 
 /** Owner-supplied SEO kit details; unverified hours, profiles and ratings omitted. */
 const SERVICE_NAMES: Record<string, string> = {
@@ -32,10 +33,11 @@ export default function VyntexJsonLd() {
         address: { "@type": "PostalAddress", streetAddress: SITE.address.street, addressLocality: SITE.address.locality,
           addressRegion: SITE.address.region, postalCode: SITE.address.postalCode,
           addressCountry: SITE.address.country },
-        areaServed: [{ "@type": "State", name: "New Jersey" }, { "@type": "Country", name: "United States" }],
+        areaServed: [...NJ_TOWNS.map(t => ({ "@type": "City", name: `${t}, NJ` })), { "@type": "AdministrativeArea", name: "Atlantic County, NJ" }, { "@type": "AdministrativeArea", name: "South Jersey" }, { "@type": "State", name: "New Jersey" }, { "@type": "Country", name: "United States" }],
+        openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "17:30" }],
         availableLanguage: ["English", "Spanish"],
         knowsLanguage: ["en", "es"],
-        knowsAbout: ["AI automation", "AI chatbots", "CRM implementation", "Website development", "Brand identity", "Digital marketing", "Bilingual customer service"],
+        knowsAbout: ["AI automation", "AI agents", "AI employees", "AI chatbots", "CRM implementation", "Custom project management", "ERP implementation", "Website development", "Brand identity", "Digital marketing", "Social media management", "Local SEO", "Bilingual customer service"],
         hasOfferCatalog: {
           "@type": "OfferCatalog", name: "VYNTEX Services",
           itemListElement: Object.entries(PUBLIC_LOCALE_ROUTES)

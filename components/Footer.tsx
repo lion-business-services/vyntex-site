@@ -75,6 +75,7 @@ export default function Footer({ showCta = true }: { showCta?: boolean }) {
               <li><Link href={localizedPath("/industries", lang)} className="hover:text-vx-ink">{lang === "es" ? "Industrias" : "Industries"}</Link></li>
               <li><Link href={localizedPath("/partners", lang)} className="hover:text-vx-ink">{lang === "es" ? "Socios" : "Partners"}</Link></li>
               {lang === "en" ? <li><Link href="/case-studies" className="hover:text-vx-ink">Solution Examples</Link></li> : null}
+              <li><Link href={localizedPath("/new-jersey", lang)} className="hover:text-vx-ink">{lang === "es" ? "Nueva Jersey" : "New Jersey"}</Link></li>
               <li><Link href={localizedPath("/resources", lang)} className="hover:text-vx-ink">{lang === "es" ? "Recursos" : "Resources"}</Link></li>
               <li><Link href={localizedPath("/about", lang)} className="hover:text-vx-ink">{lang === "es" ? "Nosotros" : "About"}</Link></li>
               <li><Link href={localizedPath("/contact", lang)} className="hover:text-vx-ink">{lang === "es" ? "Contacto" : "Contact"}</Link></li>

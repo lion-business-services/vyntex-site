@@ -15,6 +15,7 @@ export const PUBLIC_LOCALE_ROUTES = {
   "/contact": "/es/contacto",
   "/partners": "/es/socios",
   "/resources": "/es/recursos",
+  "/new-jersey": "/es/nueva-jersey",
 } as const;
 
 export type EnglishLocalizedPath = keyof typeof PUBLIC_LOCALE_ROUTES;
