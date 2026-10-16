@@ -17,10 +17,16 @@ export const PUBLIC_LOCALE_ROUTES = {
 export type EnglishLocalizedPath = keyof typeof PUBLIC_LOCALE_ROUTES;
 export const EN_TO_ES: Record<string, string> = {
   ...PUBLIC_LOCALE_ROUTES,
-  ...Object.fromEntries([
-    "professional-services", "home-services", "restaurants-retail",
-    "beauty-wellness", "startups", "multilingual-businesses",
-  ].map(slug => [`/industries/${slug}`, `/es/industrias/${slug}`])),
+  ...Object.fromEntries(
+    Object.entries({
+      "professional-services": "servicios-profesionales",
+      "home-services": "servicios-para-el-hogar",
+      "restaurants-retail": "restaurantes-y-tiendas",
+      "beauty-wellness": "belleza-y-bienestar",
+      "startups": "empresas-nuevas",
+      "multilingual-businesses": "negocios-bilingues",
+    }).map(([en, es]) => [`/industries/${en}`, `/es/industrias/${es}`]),
+  ),
 };
 export const ES_TO_EN: Record<string, string> = Object.fromEntries(
   Object.entries(EN_TO_ES).map(([en, es]) => [es, en]),
@@ -52,4 +58,14 @@ export function spanishAlternates(spanishPath: string) {
     canonical: spanishPath,
     ...(en ? { languages: { "en-US": en, "es-US": spanishPath, "x-default": en } } : {}),
   };
+}
+
+/** Spanish URL slug for each industry (English slug -> Spanish slug). */
+export const ES_INDUSTRY_SLUGS: Record<(typeof INDUSTRY_SLUGS)[number], string> = Object.fromEntries(
+  INDUSTRY_SLUGS.map(en => [en, (EN_TO_ES[`/industries/${en}`] ?? "").split("/").pop() ?? en]),
+) as Record<(typeof INDUSTRY_SLUGS)[number], string>;
+
+/** English industry slug for a Spanish slug, or undefined. */
+export function industrySlugFromSpanish(esSlug: string): (typeof INDUSTRY_SLUGS)[number] | undefined {
+  return INDUSTRY_SLUGS.find(en => ES_INDUSTRY_SLUGS[en] === esSlug);
 }

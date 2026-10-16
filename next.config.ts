@@ -9,6 +9,18 @@ const config: NextConfig = {
       has: [{ type: "host" as const, value: "vyntexusa.com" }],
       destination: "https://www.vyntexusa.com/:path*",
       permanent: true,
+    }, {
+      source: "/es/industrias/professional-services", destination: "/es/industrias/servicios-profesionales", permanent: true,
+    }, {
+      source: "/es/industrias/home-services", destination: "/es/industrias/servicios-para-el-hogar", permanent: true,
+    }, {
+      source: "/es/industrias/restaurants-retail", destination: "/es/industrias/restaurantes-y-tiendas", permanent: true,
+    }, {
+      source: "/es/industrias/beauty-wellness", destination: "/es/industrias/belleza-y-bienestar", permanent: true,
+    }, {
+      source: "/es/industrias/startups", destination: "/es/industrias/empresas-nuevas", permanent: true,
+    }, {
+      source: "/es/industrias/multilingual-businesses", destination: "/es/industrias/negocios-bilingues", permanent: true,
     }];
   },
 
