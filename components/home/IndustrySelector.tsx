@@ -1,5 +1,6 @@
 "use client";
 
+import { localizedPath } from "@/lib/seo-routes";
 import { useId, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Building2, CalendarCheck2, FileText, ReceiptText, UserRoundCheck, Workflow } from "lucide-react";
@@ -97,7 +98,7 @@ export default function IndustrySelector() {
             </motion.ol>
           </div>
         </div>
-        <div className="mt-8 text-center"><Button href="/industries" variant="secondary">{c.cta}</Button></div>
+        <div className="mt-8 text-center"><Button href={localizedPath("/industries", lang)} variant="secondary">{c.cta}</Button></div>
       </Container>
     </section>
   );

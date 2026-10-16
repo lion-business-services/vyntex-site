@@ -9,7 +9,7 @@ import ResellerApplicationForm from "@/components/reseller/ResellerApplicationFo
 import ProgramTerms from "@/components/reseller/ProgramTerms";
 
 export const metadata: Metadata = {
-  title: "Authorized Reseller Program — Apply",
+  title: "Apply to Become a Reseller",
   description:
     "Apply to the VYNTEX Authorized Reseller Program. Approved partners offer websites, AI automation, CRM systems, branding, and social media to their own clients while VYNTEX handles technical delivery. Bilingual English and Spanish. Northfield, NJ.",
   alternates: { canonical: "/partners/apply" },

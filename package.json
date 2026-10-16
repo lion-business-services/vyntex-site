@@ -13,7 +13,8 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
-    "verify": "npm run typecheck && npm run lint && npm run test && npm run build",
+    "verify": "npm run verify:seo && npm run typecheck && npm run lint && npm run test && npm run build",
+    "verify:seo": "node scripts/verify-seo.mjs",
     "check:env": "node --env-file=.env.local scripts/check-env.mjs"
   },
   "dependencies": {

@@ -1,11 +1,26 @@
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/site";
-import { serviceSlugs, industriesByLang } from "@/lib/marketing-content";
+import { EN_TO_ES } from "@/lib/seo-routes";
+
+/** Static, crawlable URLs only. No hash fragments, transactional pages or placeholder case studies. */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/services", "/industries", "/about", "/partners", "/partners/apply", "/contact", "/privacy", "/terms", "/cookies", "/accessibility"];
+  const basicPages = ["/partners/apply", "/privacy", "/terms", "/cookies", "/accessibility"];
+  const bilingual = Object.entries(EN_TO_ES);
+  const alternatesFor = (en: string, es: string) => ({
+    languages: { "en-US": `${SITE.url}${en}`, "es-US": `${SITE.url}${es}`, "x-default": `${SITE.url}${en}` },
+  });
   return [
-    ...routes.map((route) => ({ url: `${SITE.url}${route}`, changeFrequency: route === "" ? "weekly" as const : "monthly" as const, priority: route === "" ? 1 : 0.7 })),
-    ...serviceSlugs.map((slug) => ({ url: `${SITE.url}/services/${slug}`, changeFrequency: "monthly" as const, priority: 0.8 })),
-    ...industriesByLang.en.map((industry) => ({ url: `${SITE.url}/industries#${industry.slug}`, changeFrequency: "monthly" as const, priority: 0.6 })),
+    ...bilingual.flatMap(([en, es]) => {
+      const priority = en === "/" ? 1 : en.startsWith("/services/") ? 0.8 : 0.65;
+      const alternates = alternatesFor(en, es);
+      return [
+        { url: `${SITE.url}${en}`, changeFrequency: "monthly" as const, priority, alternates },
+        { url: `${SITE.url}${es}`, changeFrequency: "monthly" as const, priority, alternates },
+      ];
+    }),
+    ...basicPages.map(path => ({
+      url: `${SITE.url}${path}`, changeFrequency: "yearly" as const,
+      priority: path === "/partners/apply" ? 0.6 : 0.2,
+    })),
   ];
 }

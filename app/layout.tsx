@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { inter, jetbrainsMono } from "@/app/fonts";
 import { SITE } from "@/lib/site";
-import { siteJsonLd } from "@/lib/schema";
+import VyntexJsonLd from "@/app/vyntex-jsonld";
+import { headers } from "next/headers";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { THEME_INIT_SCRIPT, THEME_COLOR } from "@/lib/theme";
@@ -34,13 +35,6 @@ export const metadata: Metadata = {
     "chatbot",
     "small business websites",
   ],
-  alternates: {
-    canonical: "/",
-    languages: {
-      "en-US": "/",
-      "es-US": "/",
-    },
-  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -82,14 +76,15 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const currentLanguage = (await headers()).get("x-vyntex-language") === "es" ? "es" : "en";
   return (
     <html
-      lang="en"
+      lang={currentLanguage}
       data-theme="dark"
       // The inline script below may switch data-theme before React hydrates.
       suppressHydrationWarning
@@ -98,15 +93,11 @@ export default function RootLayout({
       <head>
         {/* Day / night: applied before first paint so there is never a flash. */}
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
-        <script
-          type="application/ld+json"
-          // Verified-facts-only structured data (see lib/schema.ts).
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd()) }}
-        />
+        <VyntexJsonLd />
       </head>
       <body className="min-h-screen font-sans text-vx-ink antialiased">
         <ThemeProvider>
-          <LanguageProvider>
+          <LanguageProvider initialLang={currentLanguage}>
             <SiteAtmosphere />
             <MagneticCursor />
             <div className="site-content">{children}</div>

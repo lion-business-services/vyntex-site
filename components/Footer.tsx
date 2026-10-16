@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { localizedPath } from "@/lib/seo-routes";
 import { ArrowRight, ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
 import { SITE, CONTACT_HREFS, LEGAL_LINKS, ERP, erpHref } from "@/lib/site";
@@ -47,9 +48,9 @@ export default function Footer({ showCta = true }: { showCta?: boolean }) {
 
         <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr]">
           <div>
-            <Link href="/" className="flex items-center gap-2.5" aria-label={SITE.name}>
+            <Link href={localizedPath("/", lang)} className="flex items-center gap-2.5" aria-label={SITE.name}>
               <span className="vx-logo-tile vx-logo-tile--lg" aria-hidden="true">
-                <Image src="/vyntex-mark.png" alt="" width={52} height={45} className="vx-logo-img w-auto" />
+                <Image src="/vyntex-mark.png" alt="VYNTEX company logo" width={52} height={45} className="vx-logo-img w-auto" />
               </span>
               <span className="vx-wordmark text-xl font-bold">VYNTEX</span>
             </Link>
@@ -61,20 +62,21 @@ export default function Footer({ showCta = true }: { showCta?: boolean }) {
           <nav aria-label={words.services}>
             <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-vx-blue">{words.services}</h2>
             <ul className="mt-4 space-y-2 text-sm text-vx-muted">
-              <li><Link href="/services/crm-systems" className="hover:text-vx-ink">CRM Systems</Link></li>
-              <li><Link href="/services/ai-automation" className="hover:text-vx-ink">Automation & AI</Link></li>
-              <li><Link href="/services/web-development" className="hover:text-vx-ink">Web Development</Link></li>
-              <li><Link href="/services/digital-marketing" className="hover:text-vx-ink">Marketing</Link></li>
+              <li><Link href={localizedPath("/services/crm-systems", lang)} className="hover:text-vx-ink">{lang === "es" ? "Sistemas CRM" : "CRM Systems"}</Link></li>
+              <li><Link href={localizedPath("/services/ai-automation", lang)} className="hover:text-vx-ink">{lang === "es" ? "Automatización e IA" : "Automation & AI"}</Link></li>
+              <li><Link href={localizedPath("/services/web-development", lang)} className="hover:text-vx-ink">{lang === "es" ? "Desarrollo web" : "Web Development"}</Link></li>
+              <li><Link href={localizedPath("/services/digital-marketing", lang)} className="hover:text-vx-ink">{lang === "es" ? "Marketing digital" : "Marketing"}</Link></li>
             </ul>
           </nav>
 
           <nav aria-label={words.company}>
             <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-vx-blue">{words.company}</h2>
             <ul className="mt-4 space-y-2 text-sm text-vx-muted">
-              <li><Link href="/industries" className="hover:text-vx-ink">Industries</Link></li>
-              <li><Link href="/partners" className="hover:text-vx-ink">Partners</Link></li>
-              <li><Link href="/about" className="hover:text-vx-ink">About</Link></li>
-              <li><Link href="/contact" className="hover:text-vx-ink">Contact</Link></li>
+              <li><Link href={localizedPath("/industries", lang)} className="hover:text-vx-ink">{lang === "es" ? "Industrias" : "Industries"}</Link></li>
+              <li><Link href={localizedPath("/partners", lang)} className="hover:text-vx-ink">{lang === "es" ? "Socios" : "Partners"}</Link></li>
+              {lang === "en" ? <li><Link href="/case-studies" className="hover:text-vx-ink">Solution Examples</Link></li> : null}
+              <li><Link href={localizedPath("/about", lang)} className="hover:text-vx-ink">{lang === "es" ? "Nosotros" : "About"}</Link></li>
+              <li><Link href={localizedPath("/contact", lang)} className="hover:text-vx-ink">{lang === "es" ? "Contacto" : "Contact"}</Link></li>
             </ul>
             <h2 className="mt-7 font-mono text-xs uppercase tracking-[0.18em] text-vx-blue">{t.erp.footerHeading}</h2>
             <ul className="mt-4 space-y-2 text-sm text-vx-muted">

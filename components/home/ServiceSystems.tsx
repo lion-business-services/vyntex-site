@@ -1,5 +1,6 @@
 "use client";
 
+import { localizedPath } from "@/lib/seo-routes";
 import { motion } from "framer-motion";
 import { ArrowRight, Bot, CalendarDays, CheckCircle2, Globe2, Mail, MessageSquareText, Route, Sparkles, TrendingUp, Users, Workflow } from "lucide-react";
 import Container from "@/components/ui/Container";
@@ -114,7 +115,7 @@ export default function ServiceSystems() {
           })}
         </div>
 
-        <div className="mt-9 text-center"><Button href="/services" variant="secondary">{c.cta}</Button></div>
+        <div className="mt-9 text-center"><Button href={localizedPath("/services", lang)} variant="secondary">{c.cta}</Button></div>
       </Container>
     </section>
   );

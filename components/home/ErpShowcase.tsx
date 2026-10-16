@@ -174,7 +174,7 @@ export default function ErpShowcase() {
                 />
                 <Image
                   src={`/erp/erp-dashboard-${lang}-dark.webp`}
-                  alt=""
+                  alt={lang === "es" ? "Panel de control VYNTEX ERP en modo oscuro" : "VYNTEX ERP dashboard in dark mode"}
                   aria-hidden
                   width={1600}
                   height={1000}
