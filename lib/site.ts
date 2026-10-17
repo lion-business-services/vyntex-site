@@ -105,6 +105,20 @@ export const ERP = {
   },
 } as const;
 
+/**
+ * Where "Book a Free Demo" goes, everywhere on the site and in llms.txt.
+ *
+ * Today this is the guided-demo request page of VYNTEX ERP (a form that reaches
+ * the team and the follow-up in the visitor's language). When a self-serve
+ * calendar link exists (for example a VYNTEX CRM / GoHighLevel booking
+ * calendar), set it here and every "Book a Free Demo" button follows.
+ */
+export const DEMO_BOOKING = {
+  /** An absolute URL to an external calendar, or null to use the ERP request page. */
+  calendarUrl: null as string | null,
+  erpPath: ERP.paths.requestDemo,
+} as const;
+
 export function erpHref(
   path: string = ERP.paths.home,
   opts: { lang?: "en" | "es"; theme?: "light" | "dark" } = {},
@@ -113,4 +127,9 @@ export function erpHref(
   if (opts.lang) url.searchParams.set("lang", opts.lang);
   if (opts.theme) url.searchParams.set("theme", opts.theme);
   return url.toString();
+}
+
+/** The "Book a Free Demo" address: the external calendar when one is set, otherwise the ERP guided-demo request page. */
+export function demoBookingHref(opts: { lang?: "en" | "es"; theme?: "light" | "dark" } = {}): string {
+  return DEMO_BOOKING.calendarUrl ?? erpHref(DEMO_BOOKING.erpPath, opts);
 }

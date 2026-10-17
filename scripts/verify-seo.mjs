@@ -18,6 +18,10 @@ check(read("middleware.ts").includes("x-vyntex-language"), "Locale request heade
 check(read("app/sitemap.ts").includes("EN_TO_ES") && !read("app/sitemap.ts").includes('"/industries#'), "Sitemap has missing hreflang or fragment links");
 check(read("app/robots.ts").includes("SITE.url"), "Robots does not use canonical SITE URL");
 check(exists("public/llms.txt") && read("public/llms.txt").includes("# VYNTEX"), "LLMs summary missing");
+check(read("lib/crawlers.ts").includes("OAI-SearchBot") && read("app/robots.ts").includes("SEARCH_CRAWLERS"), "Robots must name the search and AI-search crawlers");
+check(read("lib/crawlers.ts").includes("AI_TRAINING_CRAWLERS_ALLOWED = false"), "AI training crawlers must stay held until management approves (lib/crawlers.ts)");
+check(read("public/llms.txt").includes("https://erp.vyntexusa.com/demo") && read("public/llms.txt").includes("https://erp.vyntexusa.com/pricing"), "llms.txt must list the live demo and software pricing links");
+check(read("components/home/ConnectedHero.tsx").includes("cta-try-demo") && read("components/home/ConnectedHero.tsx").includes("cta-software-pricing") && read("components/home/ConnectedHero.tsx").includes("cta-book-demo"), "Homepage must show Try Live Demo, View Software & Pricing and Book a Free Demo");
 check(!read("app/vyntex-jsonld.tsx").includes("TODO"), "JSON-LD has unresolved TODO");
 check(!exists("app/loading.tsx"), "Root loading overlay has not been removed");
 for (const [en, es] of [

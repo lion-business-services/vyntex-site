@@ -65,3 +65,21 @@ test.describe("chatbot", () => {
     await expect(panel).toBeHidden();
   });
 });
+
+test.describe("business software on a phone", () => {
+  test.use({ viewport: { width: 390, height: 844 } });
+  test("the Software button stays in the top bar and the three homepage actions stack without overflow", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.locator('a.vx-erp-launch[data-variant="compact"]')).toBeVisible();
+    for (const id of ["cta-try-demo", "cta-software-pricing", "cta-book-demo"]) {
+      const box = await page.getByTestId(id).boundingBox();
+      expect(box).not.toBeNull();
+      expect(box!.x).toBeGreaterThanOrEqual(0);
+      expect(box!.x + box!.width).toBeLessThanOrEqual(390);
+      expect(box!.height).toBeGreaterThanOrEqual(44);
+    }
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+    expect(overflow).toBeLessThanOrEqual(0);
+    await page.screenshot({ path: "test-results/home-ctas-phone.png" });
+  });
+});

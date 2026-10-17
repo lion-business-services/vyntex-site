@@ -219,3 +219,77 @@ test.describe("404", () => {
     await expect(page.getByRole("link", { name: /Home/i }).first()).toBeVisible();
   });
 });
+
+test.describe("business software", () => {
+  test("the header button reads Business Software and opens the ERP", async ({ page }) => {
+    await page.goto("/");
+    const label = page.getByTestId("business-software-label").first();
+    await expect(label).toBeVisible();
+    await expect(label).toHaveText(/Business Software|Software/);
+    const href = await page.locator("a.vx-erp-launch").first().getAttribute("href");
+    expect(href).toMatch(/^https:\/\/erp\.vyntexusa\.com\//);
+  });
+
+  test("the homepage shows Try Live Demo, View Software & Pricing and Book a Free Demo", async ({ page }) => {
+    await page.goto("/");
+    const demo = page.getByTestId("cta-try-demo");
+    const pricing = page.getByTestId("cta-software-pricing");
+    const book = page.getByTestId("cta-book-demo");
+    for (const cta of [demo, pricing, book]) await expect(cta).toBeVisible();
+    await expect(demo).toHaveText(/Try Live Demo/);
+    await expect(pricing).toHaveText(/View Software & Pricing/);
+    await expect(book).toHaveText(/Book a Free Demo/);
+    expect(await demo.getAttribute("href")).toMatch(/^https:\/\/erp\.vyntexusa\.com\/demo/);
+    expect(await pricing.getAttribute("href")).toMatch(/^https:\/\/erp\.vyntexusa\.com\/pricing/);
+    expect(await book.getAttribute("href")).toMatch(/^https:\/\//);
+    await page.screenshot({ path: `test-results/home-ctas-${test.info().project.name}.png`, fullPage: false });
+  });
+
+  test("the three actions are plain links in the server HTML (readable without JavaScript)", async ({ request }) => {
+    const html = await (await request.get("/")).text();
+    expect(html).toContain("https://erp.vyntexusa.com/demo");
+    expect(html).toContain("https://erp.vyntexusa.com/pricing");
+    expect(html).toContain("Try Live Demo");
+    expect(html).toContain("View Software &amp; Pricing");
+    expect(html).toContain("Book a Free Demo");
+  });
+
+  test("the Spanish homepage has the same three actions in Spanish", async ({ page }) => {
+    await page.goto("/es");
+    await expect(page.getByTestId("cta-try-demo")).toHaveText(/Prueba el Demo en Vivo/);
+    await expect(page.getByTestId("cta-software-pricing")).toHaveText(/Ver Software y Precios/);
+    await expect(page.getByTestId("cta-book-demo")).toHaveText(/Agenda un Demo Gratis/);
+    expect(await page.getByTestId("cta-try-demo").getAttribute("href")).toContain("lang=es");
+  });
+});
+
+test.describe("crawler access", () => {
+  test("robots.txt allows search and AI-search crawlers and holds AI training crawlers", async ({ request }) => {
+    const body = await (await request.get("/robots.txt")).text();
+    for (const bot of ["Googlebot", "Bingbot", "OAI-SearchBot", "ChatGPT-User", "PerplexityBot", "Claude-SearchBot"]) {
+      expect(body).toContain(`User-Agent: ${bot}`);
+    }
+    for (const bot of ["GPTBot", "Google-Extended", "CCBot", "ClaudeBot"]) expect(body).toContain(`User-Agent: ${bot}`);
+    expect(body).toContain("Sitemap: https://www.vyntexusa.com/sitemap.xml");
+  });
+
+  for (const ua of [
+    "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+    "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)",
+    "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; OAI-SearchBot/1.0; +https://openai.com/searchbot",
+    "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot)",
+    "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-SearchBot/1.0; +Claude-SearchBot@anthropic.com)",
+  ]) {
+    test(`${ua.match(/(Googlebot|bingbot|OAI-SearchBot|PerplexityBot|Claude-SearchBot)/)?.[1]} gets the full homepage, llms.txt and the sitemap`, async ({ request }) => {
+      const home = await request.get("/", { headers: { "user-agent": ua } });
+      expect(home.status()).toBe(200);
+      const html = await home.text();
+      expect(html).toContain('<link rel="canonical"');
+      expect(html).toContain("application/ld+json");
+      expect(html).toContain("https://erp.vyntexusa.com/demo");
+      expect(html).not.toMatch(/<meta name="robots" content="[^"]*noindex/);
+      expect((await request.get("/llms.txt", { headers: { "user-agent": ua } })).status()).toBe(200);
+      expect((await request.get("/sitemap.xml", { headers: { "user-agent": ua } })).status()).toBe(200);
+    });
+  }
+});

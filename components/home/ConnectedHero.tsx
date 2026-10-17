@@ -2,6 +2,7 @@
 
 import { localizedPath } from "@/lib/seo-routes";
 import { useRef } from "react";
+import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import {
   ArrowRight,
@@ -22,6 +23,8 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { openConsultation } from "@/components/BookConsultation";
 import { useLang } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
+import { ERP, erpHref, demoBookingHref } from "@/lib/site";
 import { motionTokens } from "@/components/home/motion";
 import { useAdaptiveMotion } from "@/hooks/useAdaptiveMotion";
 
@@ -61,7 +64,8 @@ const copy = {
 const labelIcons = [Users, MessageSquareText, CalendarDays, CreditCard, Workflow, BarChart3] as const;
 
 export default function ConnectedHero() {
-  const { lang } = useLang();
+  const { lang, t } = useLang();
+  const { theme } = useTheme();
   const c = copy[lang];
   const { prefersReducedMotion: reduceMotion, disableAmbientMotion } = useAdaptiveMotion();
   const visualRef = useRef<HTMLDivElement>(null);
@@ -129,12 +133,33 @@ export default function ConnectedHero() {
             initial={reduceMotion ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: reduceMotion ? 0 : 0.34, ease: motionTokens.ease }}
-            className="mt-7 flex flex-col justify-center gap-3 sm:flex-row"
+            className="mt-7"
           >
-            <Button onClick={openConsultation} size="lg">
-              {c.primary}<ArrowRight size={18} aria-hidden="true" />
-            </Button>
-            <Button href={localizedPath("/services", lang)} variant="secondary" size="lg">{c.secondary}</Button>
+            {/* Business Software: the three actions every visitor (and every AI
+                assistant reading this page) should find first. Plain links in
+                the server HTML, so they work before scripts load. */}
+            <nav aria-label={t.erp.ctaGroupLabel} className="flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap" data-testid="home-software-ctas">
+              <Button href={erpHref(ERP.paths.demo, { lang, theme })} size="lg" data-testid="cta-try-demo">
+                {t.erp.ctaTryDemo}<ArrowRight size={18} aria-hidden="true" />
+              </Button>
+              <Button href={erpHref(ERP.paths.pricing, { lang, theme })} variant="secondary" size="lg" data-testid="cta-software-pricing">
+                {t.erp.ctaSoftwarePricing}
+              </Button>
+              <Button href={demoBookingHref({ lang, theme })} variant="ghost" size="lg" data-testid="cta-book-demo">
+                <CalendarDays size={18} aria-hidden="true" />{t.erp.ctaBookDemo}
+              </Button>
+            </nav>
+            <p className="mx-auto mt-3 max-w-2xl text-sm text-vx-muted">{t.erp.ctaNote}</p>
+            <p className="mx-auto mt-2 max-w-2xl text-sm text-vx-muted">
+              {t.erp.ctaOther}{" "}
+              <button type="button" onClick={openConsultation} className="font-semibold text-vx-ink underline decoration-vx-cyan/60 underline-offset-4 hover:text-vx-cyan">
+                {c.primary}
+              </button>
+              {" · "}
+              <Link href={localizedPath("/services", lang)} className="font-semibold text-vx-ink underline decoration-vx-cyan/60 underline-offset-4 hover:text-vx-cyan">
+                {c.secondary}
+              </Link>
+            </p>
           </motion.div>
         </div>
 

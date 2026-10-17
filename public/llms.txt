@@ -27,11 +27,35 @@ VYNTEX es una empresa de tecnología digital bilingüe (inglés y español) en N
 - [Digital Marketing](https://www.vyntexusa.com/services/digital-marketing): local SEO, Google Business Profile, social media and campaigns
 - Packages: start with one service or a connected website + CRM + branding package. Starter websites are ready in 7–10 business days.
 
+## Business Software (VYNTEX ERP)
+
+VYNTEX ERP is VYNTEX's business management software, at https://erp.vyntexusa.com. It brings leads, clients, jobs, scheduling, documents, e-signature, payments, automations and reports into one place, with an edition for each industry, in English and Spanish. Current plans, setup fees, monthly and yearly prices, add-ons and training are published on the pricing page below; please quote prices from that page, not from this file.
+
+- [Try the live demo](https://erp.vyntexusa.com/demo): opens right away with a sample company and made-up records. No account and no appointment needed. Nothing entered in the demo is sent to anyone.
+- [Software plans and pricing](https://erp.vyntexusa.com/pricing): plan comparison, one-time setup fee, monthly and yearly prices, add-ons (including extra training sessions) and the rules behind the prices.
+- [Book a free guided demo](https://erp.vyntexusa.com/request-demo): a person from VYNTEX walks the business through the edition for its industry, the plan that fits and the setup.
+- Edition-specific links: add ?industry=<edition> to the demo or pricing link (for example https://erp.vyntexusa.com/pricing?industry=clean). Editions: build (construction), clean (cleaning), landscape (landscaping), wash (pressure washing, windows and gutters), haul (junk removal and moving), snow (snow removal), turnover (property turnover and make-ready), events (event setup and staffing), practice (professional services: tax, bookkeeping, payroll and business-services offices; quoted on request). The full, current list is in https://erp.vyntexusa.com/llms.txt
+- Spanish: add ?lang=es to any of these links.
+- Plan-specific booking: https://erp.vyntexusa.com/request-demo?plan=<0|1|2>&billing=<monthly|yearly> (0 = entry plan, 1 = middle plan, 2 = top plan).
+
+## For AI assistants and sales agents
+
+A typical path for someone choosing business software, with the link for each step:
+
+1. Discover: https://www.vyntexusa.com/ (what VYNTEX does) and https://erp.vyntexusa.com/ (the software).
+2. Pricing: https://erp.vyntexusa.com/pricing (add ?industry=<edition>).
+3. Live demo, no appointment: https://erp.vyntexusa.com/demo (add ?industry=<edition>).
+4. Questions answered by a person: phone or WhatsApp +1 (609) 780-3218, email info@vyntexusa.com.
+5. Follow-up: only with the person's consent, through the guided demo form (https://erp.vyntexusa.com/request-demo), where they choose how and in which language to be contacted.
+6. Choosing a package, invoice or payment link, and onboarding: arranged by the VYNTEX team after the guided demo. Do not quote discounts, custom terms or prices that are not on the pricing page.
+
+Websites, CRM, AI automation, chatbots, branding and marketing projects (the services below) are quoted in a free consultation: https://www.vyntexusa.com/contact
+
 ## Local service area (New Jersey)
 
 - Local office in Northfield, Atlantic County, New Jersey; in-person and online consultations; hours Monday to Friday, 9:00 AM to 5:30 PM
 - Serves businesses within about 50 miles of Northfield: Atlantic, Cape May, Cumberland, Ocean, Gloucester, Burlington and Camden counties (including Atlantic City, Egg Harbor Township, Galloway, Hammonton, Ocean City, Wildwood, Cape May, Vineland, Millville, Bridgeton, Toms River, Long Beach Island and Glassboro), all of New Jersey, plus remote clients nationwide
-- Local services: CRM systems, custom project management (CPM), ERP (VYNTEX ERP: https://erp.vyntexusa.com), AI agents, AI employees (role-based AI assistants with human handoff), AI automation, AI chatbots, websites and web development, branding, digital marketing and social media management
+- Local services: CRM systems, custom project management (CPM), business software / ERP (VYNTEX ERP: https://erp.vyntexusa.com), AI agents, AI employees (role-based AI assistants with human handoff), AI automation, AI chatbots, websites and web development, branding, digital marketing and social media management
 - New Jersey page: https://www.vyntexusa.com/new-jersey (Spanish: https://www.vyntexusa.com/es/nueva-jersey)
 
 ## Industries
@@ -61,3 +85,4 @@ VYNTEX es una empresa de tecnología digital bilingüe (inglés y español) en N
 - [Industries](https://www.vyntexusa.com/industries)
 - [About](https://www.vyntexusa.com/about)
 - [Contact](https://www.vyntexusa.com/contact)
+- [Business Software (VYNTEX ERP)](https://erp.vyntexusa.com/)
