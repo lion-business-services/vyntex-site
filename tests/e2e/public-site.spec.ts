@@ -223,10 +223,10 @@ test.describe("404", () => {
 test.describe("business software", () => {
   test("the header button reads Business Software and opens the ERP", async ({ page }) => {
     await page.goto("/");
-    const label = page.getByTestId("business-software-label").first();
+    const label = page.locator("[data-testid=business-software-label]:visible").first();
     await expect(label).toBeVisible();
     await expect(label).toHaveText(/Business Software|Software/);
-    const href = await page.locator("a.vx-erp-launch").first().getAttribute("href");
+    const href = await page.locator("a.vx-erp-launch:visible").first().getAttribute("href");
     expect(href).toMatch(/^https:\/\/erp\.vyntexusa\.com\//);
   });
 

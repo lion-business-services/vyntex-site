@@ -33,7 +33,12 @@ jobs:
       - name: Browser for the end-to-end tests
         run: npx playwright install --with-deps chromium
       - name: End-to-end tests, desktop Chrome and Pixel 7
-        run: npm run test:e2e
+        run: npx playwright test --reporter=line,json
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/results.json
+      - name: List of failed browser tests
+        if: failure()
+        run: node scripts/e2e-summary.mjs test-results/results.json
       - name: Screenshots and traces
         if: always()
         uses: actions/upload-artifact@v4
