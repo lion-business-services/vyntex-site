@@ -295,6 +295,151 @@ ${SITE.phone} · ${SITE.email}
   return { subject, html, text };
 }
 
+// ---------------- Business Software demo ----------------
+
+const DEMO_TEAM_LABELS: Record<Lang, Record<string, string>> = {
+  en: { "1": "Just me", "2_5": "2 to 5 people", "6_15": "6 to 15 people", "16_50": "16 to 50 people", "50_plus": "More than 50 people" },
+  es: { "1": "Solo yo", "2_5": "De 2 a 5 personas", "6_15": "De 6 a 15 personas", "16_50": "De 16 a 50 personas", "50_plus": "Más de 50 personas" },
+};
+
+const DEMO_TIME_LABELS: Record<Lang, Record<string, string>> = {
+  en: {
+    morning: "Morning (9 AM to 12 PM Eastern)",
+    midday: "Midday (12 PM to 3 PM Eastern)",
+    afternoon: "Afternoon (3 PM to 5:30 PM Eastern)",
+    any: "Any time",
+  },
+  es: {
+    morning: "Mañana (9 AM a 12 PM, hora del Este)",
+    midday: "Mediodía (12 PM a 3 PM, hora del Este)",
+    afternoon: "Tarde (3 PM a 5:30 PM, hora del Este)",
+    any: "Cualquier hora",
+  },
+};
+
+export function demoTeamSizeLabel(token: string, lang: Lang = "en"): string {
+  return DEMO_TEAM_LABELS[lang][token] ?? token;
+}
+
+export function demoTimeLabel(token: string, lang: Lang = "en"): string {
+  return DEMO_TIME_LABELS[lang][token] ?? token;
+}
+
+export function preferredContactLabel(token: string, lang: Lang = "en"): string {
+  return PREFERRED_LABELS[lang][token] ?? token;
+}
+
+/** YYYY-MM-DD to a readable date, without shifting it through a time zone. */
+export function demoDateLabel(value: string, lang: Lang = "en"): string {
+  if (!value) return lang === "es" ? "Sin preferencia" : "No preference";
+  const date = new Date(`${value}T12:00:00Z`);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleDateString(lang === "es" ? "es-US" : "en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+}
+
+export interface DemoRequestEmailData {
+  fullName: string;
+  businessName: string;
+  email: string;
+  phone: string;
+  industry: string;
+  teamSize: string;
+  preferredDate: string;
+  preferredTime: string;
+  preferredContact: string;
+  message: string;
+  language: Lang;
+}
+
+export function demoRequestSubject(d: Pick<DemoRequestEmailData, "businessName" | "fullName">): string {
+  return `New Business Software demo request: ${d.businessName || d.fullName}`;
+}
+
+export function internalDemoRequestEmail(d: DemoRequestEmailData): EmailContent {
+  const subject = demoRequestSubject(d);
+  const html = shell(
+    "New Business Software demo request",
+    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+${row("Name", d.fullName)}
+${row("Business", d.businessName)}
+${row("Email", d.email)}
+${row("Phone", d.phone)}
+${row("Industry", d.industry)}
+${row("Team size", demoTeamSizeLabel(d.teamSize))}
+${row("Preferred date", demoDateLabel(d.preferredDate))}
+${row("Preferred time", demoTimeLabel(d.preferredTime))}
+${row("Preferred contact", preferredContactLabel(d.preferredContact))}
+${row("Language", d.language.toUpperCase())}
+</table>
+<div style="margin-top:16px;padding:14px;background:#F9FAFB;border-radius:8px;font-size:13px;color:#111827;white-space:pre-wrap;">${esc(d.message || "No notes.")}</div>`,
+    `Demo request from ${d.fullName}, ${d.businessName}`,
+  );
+  const text = `New VYNTEX Business Software demo request
+Name: ${d.fullName}
+Business: ${d.businessName || "-"}
+Email: ${d.email}
+Phone: ${d.phone || "-"}
+Industry: ${d.industry}
+Team size: ${demoTeamSizeLabel(d.teamSize)}
+Preferred date: ${demoDateLabel(d.preferredDate)}
+Preferred time: ${demoTimeLabel(d.preferredTime)}
+Preferred contact: ${preferredContactLabel(d.preferredContact)}
+Language: ${d.language}
+
+Notes:
+${d.message || "No notes."}`;
+  return { subject, html, text };
+}
+
+export function clientDemoRequestConfirmation(d: DemoRequestEmailData): EmailContent {
+  const lang = d.language;
+  const es = lang === "es";
+  const subject = es ? "Recibimos tu solicitud de demo de VYNTEX" : "We received your VYNTEX demo request";
+  const greeting = es ? `Hola ${d.fullName},` : `Hi ${d.fullName},`;
+  const intro = es
+    ? "Gracias por pedir un demo del software de negocio de VYNTEX. Te contactamos en un día hábil por tu método preferido para confirmar la fecha y la hora."
+    : "Thanks for requesting a demo of VYNTEX Business Software. We'll reach out within one business day via your preferred method to confirm the date and time.";
+  const summaryLabel = es ? "Resumen de tu solicitud" : "Summary of your request";
+  const labels = es
+    ? { industry: "Industria", team: "Equipo", date: "Fecha preferida", time: "Hora preferida" }
+    : { industry: "Industry", team: "Team size", date: "Preferred date", time: "Preferred time" };
+
+  const html = shell(
+    es ? "Recibimos tu solicitud de demo" : "We received your demo request",
+    `<p style="font-size:14px;color:#111827;margin:0 0 12px;">${esc(greeting)}</p>
+<p style="font-size:14px;color:#374151;margin:0 0 18px;">${esc(intro)}</p>
+<p style="font-size:12px;color:#6B7280;margin:0 0 6px;font-weight:bold;text-transform:uppercase;letter-spacing:0.04em;">${esc(summaryLabel)}</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+${row(labels.industry, d.industry)}
+${row(labels.team, demoTeamSizeLabel(d.teamSize, lang))}
+${row(labels.date, demoDateLabel(d.preferredDate, lang))}
+${row(labels.time, demoTimeLabel(d.preferredTime, lang))}
+</table>
+<p style="font-size:13px;color:#374151;margin:18px 0 0;">${esc(SITE.phone)} · ${esc(SITE.email)}</p>`,
+    intro,
+  );
+  const text = `${greeting}
+
+${intro}
+
+${summaryLabel}:
+${labels.industry}: ${d.industry}
+${labels.team}: ${demoTeamSizeLabel(d.teamSize, lang)}
+${labels.date}: ${demoDateLabel(d.preferredDate, lang)}
+${labels.time}: ${demoTimeLabel(d.preferredTime, lang)}
+
+${SITE.phone} · ${SITE.email}
+
+VYNTEX`;
+  return { subject, html, text };
+}
+
 // =========================================================================
 // Phase 4 — reseller program, agreement, and order emails.
 //

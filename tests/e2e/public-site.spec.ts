@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, type Page } from "@playwright/test";
 
 /**
  * Public site end-to-end.
@@ -217,5 +217,212 @@ test.describe("404", () => {
     const res = await page.goto("/this-page-does-not-exist");
     expect(res?.status()).toBe(404);
     await expect(page.getByRole("link", { name: /Home/i }).first()).toBeVisible();
+  });
+});
+
+test.describe("business software", () => {
+  test("the header button reads Business Software and opens the ERP", async ({ page }) => {
+    await page.goto("/");
+    const label = page.locator("[data-testid=business-software-label]:visible").first();
+    await expect(label).toBeVisible();
+    await expect(label).toHaveText(/Business Software|Software/);
+    const href = await page.locator("a.vx-erp-launch:visible").first().getAttribute("href");
+    expect(href).toMatch(/^https:\/\/erp\.vyntexusa\.com\//);
+  });
+
+  test("the homepage shows Try Live Demo, View Software & Pricing and Book a Free Demo", async ({ page }) => {
+    await page.goto("/");
+    const demo = page.getByTestId("cta-try-demo");
+    const pricing = page.getByTestId("cta-software-pricing");
+    const book = page.getByTestId("cta-book-demo");
+    for (const cta of [demo, pricing, book]) await expect(cta).toBeVisible();
+    await expect(demo).toHaveText(/Try Live Demo/);
+    await expect(pricing).toHaveText(/View Software & Pricing/);
+    await expect(book).toHaveText(/Book a Free Demo/);
+    expect(await demo.getAttribute("href")).toMatch(/^https:\/\/erp\.vyntexusa\.com\/demo/);
+    expect(await pricing.getAttribute("href")).toMatch(/^https:\/\/erp\.vyntexusa\.com\/pricing/);
+    // A real link to the website demo form (works without JavaScript)...
+    expect(await book.getAttribute("href")).toBe("/contact?intent=demo");
+    await page.screenshot({ path: `test-results/home-ctas-${test.info().project.name}.png`, fullPage: false });
+  });
+
+  test("the three actions are plain links in the server HTML (readable without JavaScript)", async ({ request }) => {
+    const html = await (await request.get("/")).text();
+    expect(html).toContain("https://erp.vyntexusa.com/demo");
+    expect(html).toContain("https://erp.vyntexusa.com/pricing");
+    expect(html).toContain("Try Live Demo");
+    expect(html).toContain("View Software &amp; Pricing");
+    expect(html).toContain("Book a Free Demo");
+    expect(html).toContain('href="/contact?intent=demo"');
+  });
+
+  test("the Spanish homepage has the same three actions in Spanish", async ({ page }) => {
+    await page.goto("/es");
+    await expect(page.getByTestId("cta-try-demo")).toHaveText(/Prueba el Demo en Vivo/);
+    await expect(page.getByTestId("cta-software-pricing")).toHaveText(/Ver Software y Precios/);
+    await expect(page.getByTestId("cta-book-demo")).toHaveText(/Agenda un Demo Gratis/);
+    expect(await page.getByTestId("cta-try-demo").getAttribute("href")).toContain("lang=es");
+    expect(await page.getByTestId("cta-book-demo").getAttribute("href")).toBe("/es/contacto?intent=demo");
+  });
+});
+
+test.describe("crawler access", () => {
+  test("robots.txt allows search, AI-search and AI training crawlers on public pages only", async ({ request }) => {
+    const body = await (await request.get("/robots.txt")).text();
+    for (const bot of ["Googlebot", "Bingbot", "OAI-SearchBot", "ChatGPT-User", "PerplexityBot", "Claude-SearchBot"]) {
+      expect(body).toContain(`User-Agent: ${bot}`);
+    }
+    expect(body).toContain("Sitemap: https://www.vyntexusa.com/sitemap.xml");
+
+    // Each robots.txt group: its User-Agent lines plus its rules.
+    const groups = body
+      .split(/\r?\n\s*\r?\n/)
+      .map((block) => block.split(/\r?\n/).map((line) => line.trim()).filter(Boolean));
+    const groupFor = (bot: string) => groups.find((lines) => lines.includes(`User-Agent: ${bot}`));
+
+    // AI training crawlers: approved by management on October 22, 2026.
+    for (const bot of ["GPTBot", "ClaudeBot", "Google-Extended", "CCBot", "Applebot-Extended"]) {
+      const group = groupFor(bot);
+      expect(group, `${bot} group`).toBeDefined();
+      expect(group, bot).toContain("Allow: /");
+      expect(group, `${bot} must not be blocked from the whole site`).not.toContain("Disallow: /");
+      // Private areas stay closed to them, as to everyone.
+      expect(group, bot).toContain("Disallow: /api/");
+      expect(group, bot).toContain("Disallow: /portal/");
+    }
+    for (const bot of ["Googlebot", "*"]) {
+      const group = groupFor(bot);
+      expect(group, `${bot} group`).toBeDefined();
+      expect(group, bot).toContain("Disallow: /api/");
+      expect(group, bot).toContain("Disallow: /portal/");
+    }
+  });
+
+  for (const ua of [
+    "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+    "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)",
+    "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; OAI-SearchBot/1.0; +https://openai.com/searchbot",
+    "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot)",
+    "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-SearchBot/1.0; +Claude-SearchBot@anthropic.com)",
+  ]) {
+    test(`${ua.match(/(Googlebot|bingbot|OAI-SearchBot|PerplexityBot|Claude-SearchBot)/)?.[1]} gets the full homepage, llms.txt and the sitemap`, async ({ request }) => {
+      const home = await request.get("/", { headers: { "user-agent": ua } });
+      expect(home.status()).toBe(200);
+      const html = await home.text();
+      expect(html).toContain('<link rel="canonical"');
+      expect(html).toContain("application/ld+json");
+      expect(html).toContain("https://erp.vyntexusa.com/demo");
+      expect(html).not.toMatch(/<meta name="robots" content="[^"]*noindex/);
+      expect((await request.get("/llms.txt", { headers: { "user-agent": ua } })).status()).toBe(200);
+      expect((await request.get("/sitemap.xml", { headers: { "user-agent": ua } })).status()).toBe(200);
+    });
+  }
+});
+
+test.describe("book a free demo", () => {
+  const demoDialog = (page: Page, name: RegExp = /Book a free demo/i) =>
+    page.getByRole("dialog", { name });
+
+  test("the homepage Book a Free Demo button opens the demo form", async ({ page }) => {
+    await page.goto("/", { waitUntil: "networkidle" });
+    await page.getByTestId("cta-book-demo").click();
+    const dialog = demoDialog(page);
+    await expect(dialog).toBeVisible();
+    await expect(dialog.getByTestId("demo-request-form")).toBeVisible();
+    await expect(dialog.locator("#demo-fullName")).toBeVisible();
+    await expect(dialog.locator("#demo-industry")).toBeVisible();
+    await page.screenshot({ path: `test-results/demo-form-${test.info().project.name}.png` });
+    await page.keyboard.press("Escape");
+    await expect(dialog).toBeHidden();
+  });
+
+  test("the footer and the Business Software section link to the demo form and open it", async ({ page }) => {
+    await page.goto("/", { waitUntil: "networkidle" });
+    const footer = page.getByTestId("footer-book-demo");
+    expect(await footer.getAttribute("href")).toBe("/contact?intent=demo");
+    expect(await page.getByTestId("erp-book-demo").getAttribute("href")).toBe("/contact?intent=demo");
+    // Keyboard activation: a plain click, without floating widgets in the way.
+    await footer.focus();
+    await page.keyboard.press("Enter");
+    await expect(demoDialog(page)).toBeVisible();
+  });
+
+  test("the no-JavaScript address opens the demo form, in English and in Spanish", async ({ page }) => {
+    await page.goto("/contact?intent=demo");
+    await expect(demoDialog(page)).toBeVisible();
+    await page.goto("/es/contacto?intent=demo");
+    await expect(demoDialog(page, /Agenda un demo gratis/i)).toBeVisible();
+  });
+
+  test("the demo links are in the server HTML of every page (readable without JavaScript)", async ({ request }) => {
+    for (const path of ["/", "/contact", "/services"]) {
+      const html = await (await request.get(path)).text();
+      expect(html, path).toContain('href="/contact?intent=demo"');
+    }
+    const es = await (await request.get("/es")).text();
+    expect(es).toContain('href="/es/contacto?intent=demo"');
+  });
+
+  test("submitting an empty demo form shows accessible errors and sends nothing", async ({ page }) => {
+    const posted: string[] = [];
+    page.on("request", (req) => {
+      if (req.url().includes("/api/consultation")) posted.push(req.url());
+    });
+    await page.goto("/contact?intent=demo");
+    const dialog = demoDialog(page);
+    await expect(dialog).toBeVisible();
+    await dialog.getByRole("button", { name: /Request my demo/i }).click();
+
+    const invalid = dialog.locator("[aria-invalid='true']");
+    await expect(invalid.first()).toBeVisible();
+    expect(await invalid.count()).toBeGreaterThanOrEqual(5);
+    await expect(dialog.locator("#demo-fullName")).toHaveAttribute("aria-invalid", "true");
+    await expect(dialog.locator("#demo-email")).toHaveAttribute("aria-invalid", "true");
+    // Each error is text tied to its field, not just a red border.
+    const describedBy = await dialog.locator("#demo-fullName").getAttribute("aria-describedby");
+    expect(describedBy).toBeTruthy();
+    await expect(page.locator(`#${describedBy}`)).toHaveText(/required/i);
+    await expect(dialog.getByText(/consent/i).last()).toBeVisible();
+    expect(posted).toEqual([]);
+  });
+
+  test("a completed demo form posts a demo request through /api/consultation", async ({ page }) => {
+    const captured: { body?: Record<string, unknown> } = {};
+    // The e2e environment has no Supabase, Resend or FormSubmit: answer for the server.
+    await page.route("**/api/consultation", async (route) => {
+      captured.body = route.request().postDataJSON() as Record<string, unknown>;
+      await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true }) });
+    });
+    await page.goto("/contact?intent=demo&industry=clean&plan=1&billing=yearly");
+    const dialog = demoDialog(page);
+    await expect(dialog).toBeVisible();
+    await expect(dialog.locator("#demo-industry")).toHaveValue("Cleaning");
+
+    await dialog.locator("#demo-fullName").fill("Ana Ruiz");
+    await dialog.locator("#demo-businessName").fill("Acme Cleaning LLC");
+    await dialog.locator("#demo-email").fill("ana@example.com");
+    await dialog.locator("#demo-teamSize").selectOption("6_15");
+    await dialog.locator("#demo-preferredTime").selectOption("morning");
+    await dialog.getByRole("radio", { name: "WhatsApp" }).check();
+    await dialog.getByRole("checkbox").check();
+    await dialog.getByRole("button", { name: /Request my demo/i }).click();
+
+    // On success the dialog is relabelled by its success heading.
+    await expect(page.getByRole("dialog", { name: /Demo request received/i })).toBeVisible();
+    await expect(page.getByTestId("demo-request-dialog").getByRole("status")).toContainText(/one business day/i);
+    const body = captured.body ?? {};
+    expect(body.requestType).toBe("demo");
+    expect(body.businessName).toBe("Acme Cleaning LLC");
+    expect(body.industry).toBe("Cleaning");
+    expect(body.teamSize).toBe("6_15");
+    expect(body.preferredContact).toBe("whatsapp");
+    expect(body.consent).toBe(true);
+    expect(String(body.message)).toContain("middle plan");
+  });
+
+  test("the API rejects an incomplete demo request", async ({ request }) => {
+    const res = await request.post("/api/consultation", { data: { requestType: "demo", fullName: "A" } });
+    expect(res.status()).toBe(400);
+    expect(await res.json()).toEqual({ ok: false, code: "validation" });
   });
 });

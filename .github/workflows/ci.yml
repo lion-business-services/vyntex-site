@@ -1,0 +1,51 @@
+# Checks every pull request and every push to main before anything is deployed.
+# Needs no secrets: the build and the browser tests run with an empty environment,
+# so they only exercise public behaviour (see playwright.config.ts).
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: SEO audit, typecheck, lint, unit tests, build, browser tests (desktop + mobile)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install libraries exactly as package-lock.json records them
+        run: npm ci
+      - name: Structural SEO audit, typecheck, lint, unit tests and production build
+        run: npm run verify
+      - name: Browser for the end-to-end tests
+        run: npx playwright install --with-deps chromium
+      - name: End-to-end tests, desktop Chrome and Pixel 7
+        run: npx playwright test --reporter=line,json
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: test-results/results.json
+      - name: List of failed browser tests
+        if: failure()
+        run: node scripts/e2e-summary.mjs test-results/results.json
+      - name: Screenshots and traces
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-results
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 14
+          if-no-files-found: ignore

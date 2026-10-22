@@ -6,7 +6,10 @@ import { useTheme } from "@/context/ThemeContext";
 import { ERP, erpHref } from "@/lib/site";
 
 /**
- * The header launcher for VYNTEX ERP (erp.vyntexusa.com).
+ * The header launcher for the "Business Software" (VYNTEX ERP at
+ * erp.vyntexusa.com). Labelled "Business Software" / "Software de negocio"
+ * so visitors who do not know the word ERP still find the software, its
+ * live demo and its pricing.
  *
  * A chrome capsule with a live cyan edge: a conic light sweeps around the
  * border, a status dot pulses, and the arrow lifts on hover. The link carries
@@ -41,14 +44,8 @@ export default function ErpLaunchButton({
     >
       <span className="vx-erp-launch__inner">
         <span className="vx-erp-launch__dot" aria-hidden="true" />
-        <span className="vx-erp-launch__label">
-          {variant === "compact" ? (
-            "ERP"
-          ) : (
-            <>
-              <span className="vx-erp-launch__brand">VYNTEX</span> ERP
-            </>
-          )}
+        <span className="vx-erp-launch__label" data-testid="business-software-label">
+          {variant === "compact" ? t.erp.navShort : t.erp.navLabel}
         </span>
         {variant === "block" ? (
           <span className="vx-erp-launch__host">{ERP.host}</span>
