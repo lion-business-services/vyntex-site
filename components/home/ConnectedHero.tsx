@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import { openConsultation } from "@/components/BookConsultation";
+import { openConsultation, onDemoLinkClick } from "@/components/BookConsultation";
 import { useLang } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 import { ERP, erpHref, demoBookingHref } from "@/lib/site";
@@ -137,7 +137,9 @@ export default function ConnectedHero() {
           >
             {/* Business Software: the three actions every visitor (and every AI
                 assistant reading this page) should find first. Plain links in
-                the server HTML, so they work before scripts load. */}
+                the server HTML, so they work before scripts load. Book a Free
+                Demo links to /contact?intent=demo and, once scripts run, opens
+                the demo form right here instead. */}
             <nav aria-label={t.erp.ctaGroupLabel} className="flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap" data-testid="home-software-ctas">
               <Button href={erpHref(ERP.paths.demo, { lang, theme })} size="lg" data-testid="cta-try-demo">
                 {t.erp.ctaTryDemo}<ArrowRight size={18} aria-hidden="true" />
@@ -145,7 +147,7 @@ export default function ConnectedHero() {
               <Button href={erpHref(ERP.paths.pricing, { lang, theme })} variant="secondary" size="lg" data-testid="cta-software-pricing">
                 {t.erp.ctaSoftwarePricing}
               </Button>
-              <Button href={demoBookingHref({ lang, theme })} variant="ghost" size="lg" data-testid="cta-book-demo">
+              <Button href={demoBookingHref({ lang })} onClick={onDemoLinkClick} variant="ghost" size="lg" data-testid="cta-book-demo">
                 <CalendarDays size={18} aria-hidden="true" />{t.erp.ctaBookDemo}
               </Button>
             </nav>

@@ -13,8 +13,8 @@ public AI assistants in https://www.vyntexusa.com/llms.txt and https://erp.vynte
 | 2. Pricing | Sends the pricing page for the person's industry | https://erp.vyntexusa.com/pricing?industry=EDITION |
 | 3. Live demo | Sends the demo; no appointment and no account needed | https://erp.vyntexusa.com/demo?industry=EDITION |
 | 4. AI explains | Answers questions from the pricing page and this sheet only | (no link) |
-| 5. Follow-up with consent | Asks permission before any follow-up; the guided demo form records how and in which language to contact them | https://erp.vyntexusa.com/request-demo |
-| 6. Choose a package | Sends the booking link with the plan they chose | https://erp.vyntexusa.com/request-demo?plan=TIER&billing=BILLING |
+| 5. Follow-up with consent | Asks permission before any follow-up; the Book a Free Demo form records how and in which language to contact them | https://www.vyntexusa.com/contact?intent=demo |
+| 6. Choose a package | Sends the booking link with the industry and plan they chose | https://www.vyntexusa.com/contact?intent=demo&industry=EDITION&plan=TIER&billing=BILLING |
 | 7. Invoice or payment link | Hands off to a person. The team sends the invoice or payment link | (person) |
 | 8. Onboarding | Setup is done together with the customer after payment | (person) |
 
@@ -25,7 +25,8 @@ Values:
   `events` (event setup and staffing), `practice` (professional services; quoted on request, no published price).
 * `TIER`: `0` entry plan, `1` middle plan (most popular), `2` top plan.
 * `BILLING`: `monthly` or `yearly`.
-* Spanish: add `lang=es` (for example `https://erp.vyntexusa.com/demo?industry=clean&lang=es`).
+* Spanish: add `lang=es` to erp.vyntexusa.com links (for example `https://erp.vyntexusa.com/demo?industry=clean&lang=es`).
+  The Spanish demo form is `https://www.vyntexusa.com/es/contacto?intent=demo` (same `industry`, `plan`, `billing`).
 * Tracking (optional): add `utm_source=ghl&utm_medium=ai-agent&utm_campaign=CHANNEL` so visits from the agent can be
   told apart in analytics. The ERP ignores parameters it does not use.
 
@@ -46,9 +47,21 @@ https://www.vyntexusa.com/contact
    info@vyntexusa.com, Monday to Friday 9:00 AM to 5:30 PM Eastern.
 6. Answer in the person's language (English or Spanish).
 
+## What happens when someone books a demo
+
+"Book a Free Demo" is a form on the VYNTEX website: https://www.vyntexusa.com/contact?intent=demo (Spanish:
+https://www.vyntexusa.com/es/contacto?intent=demo). On the website every Book a Free Demo button opens it in place.
+Each request:
+
+1. is saved in Supabase (`consultation_requests`, with `services = {business_software_demo}`),
+2. is emailed to the team through FormSubmit (subject "New Business Software demo request: BUSINESS") and through
+   Resend (internal notification), and
+3. sends the person a confirmation in their language.
+
+The visitor sees success as soon as any one of those team channels has the request.
+
 ## When a calendar link exists
 
-"Book a Free Demo" on the website goes to the guided-demo request page today. When a VYNTEX CRM calendar is ready
-(IN: GoHighLevel > Calendars > the demo calendar > Share > copy the booking link), set
-`DEMO_BOOKING.calendarUrl` in `lib/site.ts` (IN: VS Code) and every Book a Free Demo button on the site follows,
-then replace step 6's link in this sheet and in `public/llms.txt`.
+When a VYNTEX CRM calendar is ready (IN: GoHighLevel > Calendars > the demo calendar > Share > copy the booking
+link), set `DEMO_BOOKING.calendarUrl` in `lib/site.ts` (IN: VS Code) and every Book a Free Demo button on the site
+goes there instead of opening the form, then replace steps 5 and 6's links in this sheet and in `public/llms.txt`.

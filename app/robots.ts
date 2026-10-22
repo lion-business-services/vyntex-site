@@ -24,7 +24,8 @@ export default function robots(): MetadataRoute.Robots {
       // to anyone reading robots.txt, and so a future wildcard change can never
       // lock them out by accident.
       { userAgent: [...SEARCH_CRAWLERS], allow: "/", disallow: privatePaths },
-      // AI training crawlers: held until management approves training access.
+      // AI training crawlers: allowed on public pages since management approved
+      // it (October 22, 2026). Flip AI_TRAINING_CRAWLERS_ALLOWED to hold them.
       AI_TRAINING_CRAWLERS_ALLOWED
         ? { userAgent: [...AI_TRAINING_CRAWLERS], allow: "/", disallow: privatePaths }
         : { userAgent: [...AI_TRAINING_CRAWLERS], disallow: "/" },

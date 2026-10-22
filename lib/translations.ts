@@ -665,6 +665,7 @@ const en = {
       server: "Something went wrong on our end. Please try again.",
       session: "Your session has expired. Please sign in again.",
       emailFailed: "We saved your request but could not send a confirmation email.",
+      invalidDate: "Choose a date from today on.",
     },
     success: {
       title: "Message sent",
@@ -724,6 +725,34 @@ const en = {
     ],
     preferredContactOptions: ["Email", "Phone", "Text", "WhatsApp", "Video Call"],
     submit: "Request consultation",
+  },
+
+  demo: {
+    title: "Book a free demo",
+    subtitle:
+      "See VYNTEX Business Software with a person from our team, set up for your industry. Tell us a little about your business and when works for you. We reply within one business day to confirm the time, in English or Spanish.",
+    fields: {
+      industry: "Industry",
+      teamSize: "Team size",
+      preferredDate: "Preferred date",
+      preferredTime: "Preferred time (Eastern)",
+      message: "Anything you want us to cover? (optional)",
+    },
+    industryPlaceholder: "For example: construction, cleaning, landscaping",
+    teamSizeOptions: ["Just me", "2 to 5 people", "6 to 15 people", "16 to 50 people", "More than 50 people"],
+    preferredTimeOptions: [
+      "Morning (9 AM to 12 PM)",
+      "Midday (12 PM to 3 PM)",
+      "Afternoon (3 PM to 5:30 PM)",
+      "Any time",
+    ],
+    submit: "Request my demo",
+    success: {
+      title: "Demo request received",
+      body: "Thanks. We got your request and will reply within one business day to confirm the date and time of your demo.",
+    },
+    otherHelp: "Need a website, CRM or automation project instead?",
+    switchToConsultation: "Book a free consultation",
   },
 
   auth: {
@@ -2034,6 +2063,7 @@ const es: Dict = {
       server: "Ocurrió un problema de nuestro lado. Inténtalo de nuevo.",
       session: "Tu sesión ha expirado. Inicia sesión de nuevo.",
       emailFailed: "Guardamos tu solicitud pero no pudimos enviar el correo de confirmación.",
+      invalidDate: "Elige una fecha de hoy en adelante.",
     },
     success: {
       title: "Mensaje enviado",
@@ -2093,6 +2123,34 @@ const es: Dict = {
     ],
     preferredContactOptions: ["Correo", "Teléfono", "Texto", "WhatsApp", "Videollamada"],
     submit: "Solicitar consulta",
+  },
+
+  demo: {
+    title: "Agenda un demo gratis",
+    subtitle:
+      "Conoce el software de negocio de VYNTEX con una persona de nuestro equipo, configurado para tu industria. Cuéntanos un poco de tu negocio y cuándo te queda bien. Te respondemos en un día hábil para confirmar la hora, en inglés o español.",
+    fields: {
+      industry: "Industria o tipo de negocio",
+      teamSize: "Tamaño de tu equipo",
+      preferredDate: "Fecha preferida",
+      preferredTime: "Hora preferida (hora del Este)",
+      message: "¿Hay algo que quieras ver en el demo? (opcional)",
+    },
+    industryPlaceholder: "Por ejemplo: construcción, limpieza, jardinería",
+    teamSizeOptions: ["Solo yo", "De 2 a 5 personas", "De 6 a 15 personas", "De 16 a 50 personas", "Más de 50 personas"],
+    preferredTimeOptions: [
+      "Mañana (9 AM a 12 PM)",
+      "Mediodía (12 PM a 3 PM)",
+      "Tarde (3 PM a 5:30 PM)",
+      "Cualquier hora",
+    ],
+    submit: "Solicitar mi demo",
+    success: {
+      title: "Recibimos tu solicitud de demo",
+      body: "Gracias. Ya tenemos tu solicitud y te respondemos en un día hábil para confirmar la fecha y la hora de tu demo.",
+    },
+    otherHelp: "¿Necesitas un sitio web, un CRM o un proyecto de automatización?",
+    switchToConsultation: "Agenda tu consulta gratis",
   },
 
   auth: {

@@ -14,6 +14,7 @@ import Container from "@/components/ui/Container";
 import { useLang } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 import { ERP, erpHref, demoBookingHref } from "@/lib/site";
+import { onDemoLinkClick } from "@/components/BookConsultation";
 import { motionTokens, revealVariants, staggerVariants } from "@/components/home/motion";
 
 const FEATURE_ICONS: LucideIcon[] = [Layers, Workflow, ShieldCheck, Languages];
@@ -118,7 +119,7 @@ export default function ErpShowcase() {
               <a href={link(ERP.paths.pricing)} className="vx-erp-textlink">
                 {e.ctaPricing}
               </a>
-              <a href={demoBookingHref({ lang, theme })} className="vx-erp-textlink">
+              <a href={demoBookingHref({ lang })} onClick={onDemoLinkClick} className="vx-erp-textlink" data-testid="erp-book-demo">
                 {e.ctaRequest}
               </a>
             </motion.div>

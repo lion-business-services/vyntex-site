@@ -9,15 +9,17 @@
  *     Perplexity, Claude search, Apple, DuckDuckGo). They are allowed on every
  *     public page.
  *
- *  2. AI TRAINING crawlers collect pages to train models. They are NOT allowed
- *     until management approves it. To approve, set
- *     AI_TRAINING_CRAWLERS_ALLOWED to true; nothing else needs to change.
- *     Blocking them does not affect Google Search, AI Overviews, Bing Copilot,
- *     ChatGPT search or Perplexity answers, which use the search crawlers above.
+ *  2. AI TRAINING crawlers collect pages to train models. Approved by
+ *     management on October 22, 2026: they are allowed on every public page,
+ *     exactly like the search crawlers. To withdraw that approval, set
+ *     AI_TRAINING_CRAWLERS_ALLOWED to false; nothing else needs to change.
+ *     Either setting leaves Google Search, AI Overviews, Bing Copilot,
+ *     ChatGPT search and Perplexity answers untouched, because those use the
+ *     search crawlers above.
  *
  * The private areas are closed to every bot either way.
  */
-export const AI_TRAINING_CRAWLERS_ALLOWED = false;
+export const AI_TRAINING_CRAWLERS_ALLOWED = true;
 
 /** Search engines and AI answer engines (search / user-requested fetches). */
 export const SEARCH_CRAWLERS = [

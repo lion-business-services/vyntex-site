@@ -10,7 +10,7 @@ import { useTheme } from "@/context/ThemeContext";
 import Container from "@/components/ui/Container";
 import LanguageToggle from "@/components/ui/LanguageToggle";
 import Button from "@/components/ui/Button";
-import { openConsultation } from "@/components/BookConsultation";
+import { openConsultation, onDemoLinkClick } from "@/components/BookConsultation";
 
 export default function Footer({ showCta = true }: { showCta?: boolean }) {
   const { t, lang } = useLang();
@@ -89,7 +89,7 @@ export default function Footer({ showCta = true }: { showCta?: boolean }) {
               </li>
               <li><a href={erpHref(ERP.paths.demo, { lang, theme })} className="hover:text-vx-ink">{t.erp.footerDemo}</a></li>
               <li><a href={erpHref(ERP.paths.pricing, { lang, theme })} className="hover:text-vx-ink">{t.erp.footerPricing}</a></li>
-              <li><a href={demoBookingHref({ lang, theme })} className="hover:text-vx-ink">{t.erp.footerBook}</a></li>
+              <li><a href={demoBookingHref({ lang })} onClick={onDemoLinkClick} className="hover:text-vx-ink" data-testid="footer-book-demo">{t.erp.footerBook}</a></li>
             </ul>
           </nav>
 
