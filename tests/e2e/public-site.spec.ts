@@ -407,7 +407,9 @@ test.describe("book a free demo", () => {
     await dialog.getByRole("checkbox").check();
     await dialog.getByRole("button", { name: /Request my demo/i }).click();
 
-    await expect(dialog.getByRole("heading", { name: /Demo request received/i })).toBeVisible();
+    // On success the dialog is relabelled by its success heading.
+    await expect(page.getByRole("dialog", { name: /Demo request received/i })).toBeVisible();
+    await expect(page.getByTestId("demo-request-dialog").getByRole("status")).toContainText(/one business day/i);
     const body = captured.body ?? {};
     expect(body.requestType).toBe("demo");
     expect(body.businessName).toBe("Acme Cleaning LLC");
