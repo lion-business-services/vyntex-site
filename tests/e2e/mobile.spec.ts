@@ -107,3 +107,27 @@ test.describe("portals in the phone drawer", () => {
     await page.screenshot({ path: "test-results/portal-drawer-phone.png" });
   });
 });
+
+test.describe("phone top bar", () => {
+  for (const width of [360, 390]) {
+    test(`at ${width}px the logo, Software button and menu button fit with even gaps`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 800 });
+      await page.goto("/");
+      const menu = page.locator('button[aria-controls="mobile-drawer"]');
+      const box = (await menu.boundingBox())!;
+      expect(box.x).toBeGreaterThanOrEqual(0);
+      expect(box.x + box.width).toBeLessThanOrEqual(width);
+      const logo = (await page.locator('header nav a[aria-label="VYNTEX"]').boundingBox())!;
+      const erp = (await page.locator('a.vx-erp-launch[data-variant="compact"]').boundingBox())!;
+      const gapA = erp.x - (logo.x + logo.width);
+      const gapB = box.x - (erp.x + erp.width);
+      expect(gapA).toBeGreaterThanOrEqual(8);
+      expect(Math.abs(gapA - gapB)).toBeLessThanOrEqual(2);
+      // The theme switch moves into the drawer, beside EN / ES.
+      await menu.click();
+      await expect(page.locator("#mobile-drawer .vx-drawer-theme button")).toBeVisible();
+      const close = (await menu.boundingBox())!;
+      expect(close.x + close.width).toBeLessThanOrEqual(width);
+    });
+  }
+});

@@ -1409,8 +1409,6 @@ const en = {
     partnerDesc: "Invited partners only",
     partnerTitle: "Partner Portal at erp.vyntexusa.com. Invited partners only, sign in with your authenticator app.",
     footerPartner: "Partner Portal",
-    existingLead: "Already a VYNTEX partner?",
-    existingCta: "Sign in to the Partner Portal",
     existingNote: "Invitation only. Use the email we invited and your authenticator app.",
   },
 
@@ -2824,8 +2822,6 @@ const es: Dict = {
     partnerDesc: "Solo socios invitados",
     partnerTitle: "Portal de Socios en erp.vyntexusa.com. Solo para socios invitados, entras con tu app de autenticación.",
     footerPartner: "Portal de Socios",
-    existingLead: "¿Ya eres socio de VYNTEX?",
-    existingCta: "Entra al Portal de Socios",
     existingNote: "Solo por invitación. Usa el correo con el que te invitamos y tu app de autenticación.",
   },
 

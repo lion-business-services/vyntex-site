@@ -2190,6 +2190,23 @@ html.vx-theme-fade *::after {
 @keyframes vx-sweep { to { --vx-sweep: 360deg; } }
 @keyframes vx-ping { 75%, 100% { transform: scale(1.9); opacity: 0; } }
 
+/* ---- Phone top bar (under 420px) -------------------------------------- */
+/* Logo, Software button and menu button only, spread with even gaps; the
+   theme switch lives in the drawer beside EN / ES. */
+.vx-drawer-theme { display: none; }
+@media (max-width: 419.98px) {
+  .vx-topbar { gap: 0.5rem; }
+  .vx-topbar-actions { display: contents; }
+  .vx-topbar-theme { display: none; }
+  .vx-drawer-theme { display: inline-flex; }
+  /* "Software de negocio" plus the host does not fit beside its arrow. */
+  .vx-erp-launch[data-variant="block"] .vx-erp-launch__host { display: none; }
+  .vx-erp-launch[data-variant="block"] .vx-erp-launch__arrow { margin-left: auto; }
+}
+@media (max-width: 379.98px) {
+  .vx-topbar { padding-left: 1rem; padding-right: 1rem; }
+}
+
 /* ---- Sign in menu (header): Client Portal + Partner Portal ------------- */
 .vx-portal-menu__trigger {
   display: inline-flex;

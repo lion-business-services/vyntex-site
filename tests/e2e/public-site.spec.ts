@@ -492,14 +492,21 @@ test.describe("partner portal entry points", () => {
     expect(await page.getByTestId("footer-partner-portal").getAttribute("href")).toMatch(PARTNER_SIGNIN);
 
     await page.goto("/partners");
-    // The program's primary action stays primary; the portal is the line under it.
-    await expect(page.getByRole("link", { name: "Apply to Become a Partner" })).toBeVisible();
+    // The program's primary action stays primary; the one partner sign-in on
+    // the page is the Partner Portal (no hero link to the old /login area).
+    const hero = page.locator("main section").first();
+    await expect(hero.getByRole("link", { name: "Apply to Become a Partner" })).toBeVisible();
     const signin = page.getByTestId("partners-portal-signin");
     await expect(signin).toBeVisible();
-    await expect(signin).toHaveText(/Sign in to the Partner Portal/);
+    await expect(signin).toHaveText(/Partner Login/);
     expect(await signin.getAttribute("href")).toMatch(PARTNER_SIGNIN);
+    await expect(hero.locator('a[href="/login"]')).toHaveCount(0);
+    await expect(page.getByTestId("partners-portal-note")).toContainText("Invitation only");
 
     await page.goto("/es/socios");
-    expect(await page.getByTestId("partners-portal-signin").getAttribute("href")).toMatch(/lang=es/);
+    const es = page.getByTestId("partners-portal-signin");
+    await expect(es).toHaveText(/Acceso de socios/);
+    expect(await es.getAttribute("href")).toMatch(/\/partners\/signin\?lang=es&theme=(dark|light)$/);
+    await expect(page.getByTestId("partners-portal-note")).toContainText("Solo por invitación");
   });
 });

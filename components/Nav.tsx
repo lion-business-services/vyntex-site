@@ -153,7 +153,7 @@ export default function Nav() {
       >
       <nav
         aria-label={t.a11y.primaryNav}
-        className="mx-auto flex h-[72px] max-w-[1200px] items-center justify-between gap-4 px-5 xl:max-w-[1360px] xl:gap-3 2xl:max-w-[1440px] 2xl:gap-4 2xl:px-8"
+        className="vx-topbar mx-auto flex h-[72px] max-w-[1200px] items-center justify-between gap-4 px-5 xl:max-w-[1360px] xl:gap-3 2xl:max-w-[1440px] 2xl:gap-4 2xl:px-8"
       >
         {Wordmark}
 
@@ -222,10 +222,14 @@ export default function Nav() {
         </div>
 
         {/* Mobile / tablet: the ERP launcher and the theme switch stay one tap
-            away in the bar itself; everything else lives in the drawer. */}
-        <div className="flex shrink-0 items-center gap-2 xl:hidden">
+            away in the bar itself; everything else lives in the drawer.
+            Phones under 420px: logo + theme + Software + menu need about 427px,
+            so the theme switch moves into the drawer (next to EN / ES) and the
+            logo, Software button and menu button spread with even gaps
+            (.vx-topbar-actions in globals.css). */}
+        <div className="vx-topbar-actions flex shrink-0 items-center gap-2 xl:hidden">
           <ErpLaunchButton variant="compact" />
-          <ThemeToggle />
+          <ThemeToggle className="vx-topbar-theme" />
         <button
           type="button"
           className="inline-flex shrink-0 items-center justify-center rounded-lg border border-[rgba(14,165,233,0.25)] p-2 text-vx-ink xl:hidden"
@@ -262,8 +266,13 @@ export default function Nav() {
 
           <div className="flex flex-col gap-3 border-t border-[rgba(14,165,233,0.12)] px-5 py-4">
             <ErpLaunchButton variant="block" onNavigate={() => setOpen(false)} />
-            <div className="flex items-center justify-between">
-              <LanguageToggle />
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <LanguageToggle />
+                <span className="vx-drawer-theme">
+                  <ThemeToggle />
+                </span>
+              </div>
               <a
                 href={CONTACT_HREFS.phone}
                 className="inline-flex items-center gap-2 font-mono text-sm text-vx-silver"
