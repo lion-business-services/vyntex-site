@@ -14,7 +14,7 @@ import { demoRequestSubject } from "@/lib/email/templates";
  */
 
 const demo: FormSubmitNotification = {
-  formName: "Business Software Demo Request",
+  formName: "VYNTEX ERP Demo Request",
   subject: demoRequestSubject({ businessName: "Acme Cleaning LLC", fullName: "Ana Ruiz" }),
   replyTo: "ana@example.com",
   fields: {
@@ -49,17 +49,17 @@ describe("buildFormSubmitRequest", () => {
 
   it("sets the subject, table template, no captcha and the visitor as reply-to", () => {
     const { payload } = buildFormSubmitRequest(demo, {}, NOW);
-    expect(payload._subject).toBe("New Business Software demo request: Acme Cleaning LLC");
+    expect(payload._subject).toBe("New VYNTEX ERP demo request: Acme Cleaning LLC");
     expect(payload._template).toBe("table");
     expect(payload._captcha).toBe("false");
     expect(payload._replyto).toBe("ana@example.com");
-    expect(payload["Submission Type"]).toBe("Business Software Demo Request");
+    expect(payload["Submission Type"]).toBe("VYNTEX ERP Demo Request");
     expect(payload["Submitted At"]).toBe("2026-10-22T15:00:00.000Z");
   });
 
   it("uses the person's name in the subject when there is no business name", () => {
     expect(demoRequestSubject({ businessName: "", fullName: "Ana Ruiz" })).toBe(
-      "New Business Software demo request: Ana Ruiz",
+      "New VYNTEX ERP demo request: Ana Ruiz",
     );
   });
 
@@ -70,7 +70,7 @@ describe("buildFormSubmitRequest", () => {
 
   it("keeps the subject on one line (no header injection)", () => {
     const { payload } = buildFormSubmitRequest(
-      { ...demo, subject: "New Business Software demo request: Evil\r\nBcc: x@example.com" },
+      { ...demo, subject: "New VYNTEX ERP demo request: Evil\r\nBcc: x@example.com" },
       {},
       NOW,
     );
@@ -140,7 +140,7 @@ describe("notifyFormSubmit (fetch mocked)", () => {
     expect(init.method).toBe("POST");
     expect(init.headers).toMatchObject({ Accept: "application/json", "Content-Type": "application/json" });
     const sent = JSON.parse(init.body as string);
-    expect(sent._subject).toBe("New Business Software demo request: Acme Cleaning LLC");
+    expect(sent._subject).toBe("New VYNTEX ERP demo request: Acme Cleaning LLC");
     expect(sent._replyto).toBe("ana@example.com");
     expect(sent.Industry).toBe("Cleaning");
   });
@@ -154,7 +154,7 @@ describe("notifyFormSubmit (fetch mocked)", () => {
     expect(result.error).toMatch(/Activation/);
     expect(fetchMock).toHaveBeenCalledTimes(1);
     const logged = errorSpy.mock.calls.flat().join(" ");
-    expect(logged).toContain("Business Software Demo Request");
+    expect(logged).toContain("VYNTEX ERP Demo Request");
     expect(logged).not.toContain("ana@example.com");
     expect(logged).not.toContain("Ana Ruiz");
   });

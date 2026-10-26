@@ -358,13 +358,13 @@ export interface DemoRequestEmailData {
 }
 
 export function demoRequestSubject(d: Pick<DemoRequestEmailData, "businessName" | "fullName">): string {
-  return `New Business Software demo request: ${d.businessName || d.fullName}`;
+  return `New VYNTEX ERP demo request: ${d.businessName || d.fullName}`;
 }
 
 export function internalDemoRequestEmail(d: DemoRequestEmailData): EmailContent {
   const subject = demoRequestSubject(d);
   const html = shell(
-    "New Business Software demo request",
+    "New VYNTEX ERP demo request",
     `<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
 ${row("Name", d.fullName)}
 ${row("Business", d.businessName)}
@@ -380,7 +380,7 @@ ${row("Language", d.language.toUpperCase())}
 <div style="margin-top:16px;padding:14px;background:#F9FAFB;border-radius:8px;font-size:13px;color:#111827;white-space:pre-wrap;">${esc(d.message || "No notes.")}</div>`,
     `Demo request from ${d.fullName}, ${d.businessName}`,
   );
-  const text = `New VYNTEX Business Software demo request
+  const text = `New VYNTEX ERP demo request
 Name: ${d.fullName}
 Business: ${d.businessName || "-"}
 Email: ${d.email}
@@ -403,8 +403,8 @@ export function clientDemoRequestConfirmation(d: DemoRequestEmailData): EmailCon
   const subject = es ? "Recibimos tu solicitud de demo de VYNTEX" : "We received your VYNTEX demo request";
   const greeting = es ? `Hola ${d.fullName},` : `Hi ${d.fullName},`;
   const intro = es
-    ? "Gracias por pedir un demo del software de negocio de VYNTEX. Te contactamos en un día hábil por tu método preferido para confirmar la fecha y la hora."
-    : "Thanks for requesting a demo of VYNTEX Business Software. We'll reach out within one business day via your preferred method to confirm the date and time.";
+    ? "Gracias por pedir un demo de VYNTEX ERP. Te contactamos en un día hábil por tu método preferido para confirmar la fecha y la hora."
+    : "Thanks for requesting a demo of VYNTEX ERP. We'll reach out within one business day via your preferred method to confirm the date and time.";
   const summaryLabel = es ? "Resumen de tu solicitud" : "Summary of your request";
   const labels = es
     ? { industry: "Industria", team: "Equipo", date: "Fecha preferida", time: "Hora preferida" }

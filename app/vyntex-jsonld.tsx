@@ -53,7 +53,7 @@ export default function VyntexJsonLd() {
       // with Offer data) on erp.vyntexusa.com/pricing, from the ERP's own
       // pricing file, so no price is repeated here.
       { "@type": "SoftwareApplication", "@id": `${ERP.url}/#software`,
-        name: ERP.name, alternateName: "VYNTEX Business Software", url: `${ERP.url}/`,
+        name: ERP.name, url: `${ERP.url}/`,
         applicationCategory: "BusinessApplication", operatingSystem: "Web browser",
         inLanguage: ["en", "es"],
         description: "Business management software: leads, clients, jobs, scheduling, documents, e-signature, payments, automations and reports in one place, with editions for each industry. Live demo with sample data, no account needed.",

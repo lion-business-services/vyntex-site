@@ -7,7 +7,7 @@ import { ERP, erpHref } from "@/lib/site";
 
 /**
  * The header launcher for the "Business Software" (VYNTEX ERP at
- * erp.vyntexusa.com). Labelled "Business Software" / "Software de negocio"
+ * erp.vyntexusa.com). Labelled "VYNTEX ERP" in both languages
  * so visitors who do not know the word ERP still find the software, its
  * live demo and its pricing.
  *

@@ -28,12 +28,12 @@ VYNTEX es una empresa de tecnología digital bilingüe (inglés y español) en N
 - [Digital Marketing](https://www.vyntexusa.com/services/digital-marketing): local SEO, Google Business Profile, social media and campaigns
 - Packages: start with one service or a connected website + CRM + branding package. Starter websites are ready in 7–10 business days.
 
-## Business Software (VYNTEX ERP)
+## VYNTEX ERP
 
 VYNTEX ERP is VYNTEX's business management software, at https://erp.vyntexusa.com. It brings leads, clients, jobs, scheduling, documents, e-signature, payments, automations and reports into one place, with an edition for each industry, in English and Spanish. Current plans, setup fees, monthly and yearly prices, add-ons and training are published on the pricing page below; please quote prices from that page, not from this file.
 
 - [Try the live demo](https://erp.vyntexusa.com/demo): opens right away with a sample company and made-up records. No account and no appointment needed. Nothing entered in the demo is sent to anyone.
-- [Software plans and pricing](https://erp.vyntexusa.com/pricing): plan comparison, one-time setup fee, monthly and yearly prices, add-ons (including extra training sessions) and the rules behind the prices.
+- [VYNTEX ERP plans and pricing](https://erp.vyntexusa.com/pricing): plan comparison, one-time setup fee, monthly and yearly prices, add-ons (including extra training sessions) and the rules behind the prices.
 - [Book a free demo](https://www.vyntexusa.com/contact?intent=demo): a short form on the VYNTEX website (name, business, email, industry, team size, preferred date and time, how to be contacted). It reaches the VYNTEX team right away, and a person replies within one business day to confirm the time and walk the business through the edition for its industry, the plan that fits and the setup. Spanish: https://www.vyntexusa.com/es/contacto?intent=demo
 - Edition-specific links: add ?industry=<edition> to the demo or pricing link (for example https://erp.vyntexusa.com/pricing?industry=clean). Editions: build (construction), clean (cleaning), landscape (landscaping), wash (pressure washing, windows and gutters), haul (junk removal and moving), snow (snow removal), turnover (property turnover and make-ready), events (event setup and staffing), practice (professional services: tax, bookkeeping, payroll and business-services offices; quoted on request). The full, current list is in https://erp.vyntexusa.com/llms.txt
 - Spanish: add ?lang=es to the erp.vyntexusa.com links; the demo form in Spanish is https://www.vyntexusa.com/es/contacto?intent=demo
@@ -86,4 +86,4 @@ Websites, CRM, AI automation, chatbots, branding and marketing projects (the ser
 - [Industries](https://www.vyntexusa.com/industries)
 - [About](https://www.vyntexusa.com/about)
 - [Contact](https://www.vyntexusa.com/contact)
-- [Business Software (VYNTEX ERP)](https://erp.vyntexusa.com/)
+- [VYNTEX ERP](https://erp.vyntexusa.com/)
