@@ -137,7 +137,7 @@ function prepareDemo(data: DemoRequestInput): Prepared {
     language: data.language,
   };
   const storedMessage = [
-    "[Business Software demo request]",
+    "[VYNTEX ERP demo request]",
     `Industry: ${data.industry}`,
     `Team size: ${demoTeamSizeLabel(data.teamSize)}`,
     `Preferred date: ${demoDateLabel(data.preferredDate)}`,
@@ -150,11 +150,11 @@ function prepareDemo(data: DemoRequestInput): Prepared {
     log: "demo-request",
     email: data.email,
     formSubmit: {
-      formName: "Business Software Demo Request",
+      formName: "VYNTEX ERP Demo Request",
       subject: demoRequestSubject(data),
       replyTo: data.email,
       fields: {
-        "Request Type": "Book a Free Demo (VYNTEX Business Software)",
+        "Request Type": "Book a Free Demo (VYNTEX ERP)",
         Name: data.fullName,
         Business: data.businessName,
         Email: data.email,

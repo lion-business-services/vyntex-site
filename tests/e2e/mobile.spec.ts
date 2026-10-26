@@ -68,7 +68,7 @@ test.describe("chatbot", () => {
 
 test.describe("business software on a phone", () => {
   test.use({ viewport: { width: 390, height: 844 } });
-  test("the Software button stays in the top bar and the three homepage actions stack without overflow", async ({ page }) => {
+  test("the VYNTEX ERP button stays in the top bar and the three homepage actions stack without overflow", async ({ page }) => {
     await page.goto("/");
     await expect(page.locator('a.vx-erp-launch[data-variant="compact"]')).toBeVisible();
     for (const id of ["cta-try-demo", "cta-software-pricing", "cta-book-demo"]) {
@@ -110,7 +110,7 @@ test.describe("portals in the phone drawer", () => {
 
 test.describe("phone top bar", () => {
   for (const width of [360, 390]) {
-    test(`at ${width}px the logo, Software button and menu button fit with even gaps`, async ({ page }) => {
+    test(`at ${width}px the logo, VYNTEX ERP button and menu button fit with even gaps`, async ({ page }) => {
       await page.setViewportSize({ width, height: 800 });
       await page.goto("/");
       const menu = page.locator('button[aria-controls="mobile-drawer"]');
