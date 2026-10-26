@@ -230,14 +230,14 @@ test.describe("business software", () => {
     expect(href).toMatch(/^https:\/\/erp\.vyntexusa\.com\//);
   });
 
-  test("the homepage shows Try Live Demo, View Software & Pricing and Book a Free Demo", async ({ page }) => {
+  test("the homepage shows Try Live Demo, View VYNTEX ERP & Pricing and Book a Free Demo", async ({ page }) => {
     await page.goto("/");
     const demo = page.getByTestId("cta-try-demo");
     const pricing = page.getByTestId("cta-software-pricing");
     const book = page.getByTestId("cta-book-demo");
     for (const cta of [demo, pricing, book]) await expect(cta).toBeVisible();
     await expect(demo).toHaveText(/Try Live Demo/);
-    await expect(pricing).toHaveText(/View Software & Pricing/);
+    await expect(pricing).toHaveText(/View VYNTEX ERP & Pricing/);
     await expect(book).toHaveText(/Book a Free Demo/);
     expect(await demo.getAttribute("href")).toMatch(/^https:\/\/erp\.vyntexusa\.com\/demo/);
     expect(await pricing.getAttribute("href")).toMatch(/^https:\/\/erp\.vyntexusa\.com\/pricing/);
@@ -251,7 +251,7 @@ test.describe("business software", () => {
     expect(html).toContain("https://erp.vyntexusa.com/demo");
     expect(html).toContain("https://erp.vyntexusa.com/pricing");
     expect(html).toContain("Try Live Demo");
-    expect(html).toContain("View Software &amp; Pricing");
+    expect(html).toContain("View VYNTEX ERP &amp; Pricing");
     expect(html).toContain("Book a Free Demo");
     expect(html).toContain('href="/contact?intent=demo"');
   });
@@ -259,7 +259,7 @@ test.describe("business software", () => {
   test("the Spanish homepage has the same three actions in Spanish", async ({ page }) => {
     await page.goto("/es");
     await expect(page.getByTestId("cta-try-demo")).toHaveText(/Prueba el Demo en Vivo/);
-    await expect(page.getByTestId("cta-software-pricing")).toHaveText(/Ver Software y Precios/);
+    await expect(page.getByTestId("cta-software-pricing")).toHaveText(/Ver VYNTEX ERP y Precios/);
     await expect(page.getByTestId("cta-book-demo")).toHaveText(/Agenda un Demo Gratis/);
     expect(await page.getByTestId("cta-try-demo").getAttribute("href")).toContain("lang=es");
     expect(await page.getByTestId("cta-book-demo").getAttribute("href")).toBe("/es/contacto?intent=demo");
@@ -336,7 +336,7 @@ test.describe("book a free demo", () => {
     await expect(dialog).toBeHidden();
   });
 
-  test("the footer and the Business Software section link to the demo form and open it", async ({ page }) => {
+  test("the footer and the VYNTEX ERP section link to the demo form and open it", async ({ page }) => {
     await page.goto("/", { waitUntil: "networkidle" });
     const footer = page.getByTestId("footer-book-demo");
     expect(await footer.getAttribute("href")).toBe("/contact?intent=demo");
