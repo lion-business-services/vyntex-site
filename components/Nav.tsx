@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { localizedPath } from "@/lib/seo-routes";
 import Link from "next/link";
-import { Menu, X, Phone, LogIn, LayoutDashboard } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
 import { NAV_LINKS, SECTION_IDS, SITE, CONTACT_HREFS } from "@/lib/site";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
@@ -12,6 +12,7 @@ import Button from "@/components/ui/Button";
 import LanguageToggle from "@/components/ui/LanguageToggle";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import ErpLaunchButton from "@/components/ui/ErpLaunchButton";
+import PortalMenu, { PortalTiles } from "@/components/ui/PortalMenu";
 import LogoutButton from "@/components/auth/LogoutButton";
 import { openConsultation } from "@/components/BookConsultation";
 
@@ -152,7 +153,7 @@ export default function Nav() {
       >
       <nav
         aria-label={t.a11y.primaryNav}
-        className="mx-auto flex h-[72px] max-w-[1200px] items-center justify-between gap-4 px-5 xl:px-8"
+        className="mx-auto flex h-[72px] max-w-[1200px] items-center justify-between gap-4 px-5 xl:max-w-[1360px] xl:gap-3 2xl:max-w-[1440px] 2xl:gap-4 2xl:px-8"
       >
         {Wordmark}
 
@@ -160,15 +161,21 @@ export default function Nav() {
           Desktop links.
 
           BREAKPOINT: xl (1280px), not lg (1024px). Eight links plus a language
-          toggle, a login link, and two buttons cannot fit in the ~1136px of
-          usable width at lg — flex would shrink them past their content and they
+          toggle, the sign-in menu, and two buttons cannot fit in the ~1136px of
+          usable width at lg, so flex would shrink them past their content and they
           would overlap. Below xl the drawer handles navigation, which is the
           honest answer rather than a squeezed one.
+
+          WIDTH: the row needs about 1230px in Spanish at xl sizes and about
+          1310px at 2xl sizes, more than the 1200px page container, so the
+          header container widens (1360px at xl, 1440px at 2xl; gutters 20px
+          at xl, 32px at 2xl) and the gaps tighten at xl. Measured at 1280, 1440 and
+          1920 in both languages, signed in and out.
 
           whitespace-nowrap + shrink-0 mean a label can never wrap to a second
           line and an item can never be compressed into its neighbour.
         */}
-        <ul className="hidden shrink-0 items-center gap-4 xl:flex 2xl:gap-6">
+        <ul className="hidden shrink-0 items-center gap-3 xl:flex 2xl:gap-6">
           {NAV_LINKS.map((link) => {
             const isActive = false;
             return (
@@ -193,35 +200,14 @@ export default function Nav() {
         </ul>
 
         {/* Desktop actions */}
-        <div className="hidden shrink-0 items-center gap-2 xl:flex 2xl:gap-3">
+        <div className="hidden shrink-0 items-center gap-1.5 xl:flex 2xl:gap-3">
           <LanguageToggle />
           <ThemeToggle />
 
-          {authed ? (
-            <>
-              <Link
-                href="/portal"
-                aria-label={t.actions.clientPortal}
-                title={t.actions.clientPortal}
-                className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap text-[0.8125rem] font-medium text-vx-muted transition-colors hover:text-vx-ink"
-              >
-                <LayoutDashboard size={15} aria-hidden />
-                {/* Label appears only when there is genuinely room for it. */}
-                <span>{t.actions.clientPortal}</span>
-              </Link>
-              <LogoutButton />
-            </>
-          ) : (
-            <Link
-              href="/login"
-              aria-label={t.actions.clientLogin}
-              title={t.actions.clientLogin}
-              className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap text-[0.8125rem] font-medium text-vx-muted transition-colors hover:text-vx-ink"
-            >
-              <LogIn size={15} aria-hidden />
-              <span>{t.actions.clientLogin}</span>
-            </Link>
-          )}
+          {/* One "Sign in" menu (Client Portal + Partner Portal) instead of
+              separate links. Signed in, it reads "My portals" and holds Log out:
+              a separate Log out button pushed the row past 1280px. */}
+          <PortalMenu authed={authed} />
 
           <ErpLaunchButton />
 
@@ -229,7 +215,7 @@ export default function Nav() {
             onClick={openConsultation}
             variant="ghost"
             size="sm"
-            className="shrink-0"
+            className="shrink-0 xl:px-3.5 2xl:px-4"
           >
             {t.actions.bookConsultation}
           </Button>
@@ -286,25 +272,7 @@ export default function Nav() {
                 {SITE.phone}
               </a>
             </div>
-            {authed ? (
-              <Link
-                href="/portal"
-                onClick={() => setOpen(false)}
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-[rgba(14,165,233,0.2)] px-3.5 py-2.5 text-sm font-medium text-vx-silver hover:text-vx-ink"
-              >
-                <LayoutDashboard size={16} aria-hidden />
-                {t.actions.clientPortal}
-              </Link>
-            ) : (
-              <Link
-                href="/login"
-                onClick={() => setOpen(false)}
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-[rgba(14,165,233,0.2)] px-3.5 py-2.5 text-sm font-medium text-vx-silver hover:text-vx-ink"
-              >
-                <LogIn size={16} aria-hidden />
-                {t.actions.clientLogin}
-              </Link>
-            )}
+            <PortalTiles authed={authed} onNavigate={() => setOpen(false)} />
             <Button
               variant="ghost"
               fullWidth

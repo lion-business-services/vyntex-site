@@ -102,6 +102,12 @@ export const ERP = {
     demo: "/demo",
     pricing: "/pricing",
     requestDemo: "/request-demo",
+    /**
+     * VYNTEX Partner Portal sign-in. Invitation only: accounts exist just for
+     * the emails VYNTEX invited, and every partner signs in with an
+     * authenticator app. Not the website's older reseller area (/portal/partner).
+     */
+    partners: "/partners/signin",
   },
 } as const;
 

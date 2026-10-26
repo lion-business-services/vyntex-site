@@ -74,6 +74,16 @@ export default function Footer({ showCta = true }: { showCta?: boolean }) {
             <ul className="mt-4 space-y-2 text-sm text-vx-muted">
               <li><Link href={localizedPath("/industries", lang)} className="hover:text-vx-ink">{lang === "es" ? "Industrias" : "Industries"}</Link></li>
               <li><Link href={localizedPath("/partners", lang)} className="hover:text-vx-ink">{lang === "es" ? "Socios" : "Partners"}</Link></li>
+              <li>
+                <a
+                  href={erpHref(ERP.paths.partners, { lang, theme })}
+                  title={t.portals.partnerTitle}
+                  className="inline-flex items-center gap-1 hover:text-vx-ink"
+                  data-testid="footer-partner-portal"
+                >
+                  {t.portals.footerPartner}<ArrowUpRight size={14} aria-hidden className="text-vx-cyan" />
+                </a>
+              </li>
               {lang === "en" ? <li><Link href="/case-studies" className="hover:text-vx-ink">Solution Examples</Link></li> : null}
               <li><Link href={localizedPath("/new-jersey", lang)} className="hover:text-vx-ink">{lang === "es" ? "Nueva Jersey" : "New Jersey"}</Link></li>
               <li><Link href={localizedPath("/resources", lang)} className="hover:text-vx-ink">{lang === "es" ? "Recursos" : "Resources"}</Link></li>

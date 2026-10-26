@@ -6,12 +6,8 @@ import { LogOut, Loader2 } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 
-export default function LogoutButton({
-  className,
-}: {
-  className?: string;
-}) {
-  const { t } = useLang();
+/** Signs the visitor out of the website session and returns home. */
+export function useLogout() {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
 
@@ -26,6 +22,17 @@ export default function LogoutButton({
     router.push("/");
     router.refresh();
   };
+
+  return { busy, logout };
+}
+
+export default function LogoutButton({
+  className,
+}: {
+  className?: string;
+}) {
+  const { t } = useLang();
+  const { busy, logout } = useLogout();
 
   return (
     <button

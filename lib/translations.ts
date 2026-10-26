@@ -1398,6 +1398,22 @@ const en = {
     ctaOther: "Looking for a website, CRM or automation project instead?",
   },
 
+  /** Header "Sign in" menu, drawer tiles and the Partner Portal links. */
+  portals: {
+    signIn: "Sign in",
+    myPortals: "My portals",
+    menuHeading: "Choose your portal",
+    client: "Client Portal",
+    clientDesc: "Your orders, files and support",
+    partner: "Partner Portal",
+    partnerDesc: "Invited partners only",
+    partnerTitle: "Partner Portal at erp.vyntexusa.com. Invited partners only, sign in with your authenticator app.",
+    footerPartner: "Partner Portal",
+    existingLead: "Already a VYNTEX partner?",
+    existingCta: "Sign in to the Partner Portal",
+    existingNote: "Invitation only. Use the email we invited and your authenticator app.",
+  },
+
   theme: {
     toLight: "Switch to day mode",
     toDark: "Switch to night mode",
@@ -2796,6 +2812,21 @@ const es: Dict = {
     ctaGroupLabel: "Software de negocio: demo, precios y citas",
     ctaNote: "El demo en vivo abre al instante con una empresa de ejemplo. No necesitas cita ni cuenta.",
     ctaOther: "¿Buscas un sitio web, un CRM o un proyecto de automatización?",
+  },
+
+  portals: {
+    signIn: "Iniciar sesión",
+    myPortals: "Mis portales",
+    menuHeading: "Elige tu portal",
+    client: "Portal de Clientes",
+    clientDesc: "Tus pedidos, archivos y soporte",
+    partner: "Portal de Socios",
+    partnerDesc: "Solo socios invitados",
+    partnerTitle: "Portal de Socios en erp.vyntexusa.com. Solo para socios invitados, entras con tu app de autenticación.",
+    footerPartner: "Portal de Socios",
+    existingLead: "¿Ya eres socio de VYNTEX?",
+    existingCta: "Entra al Portal de Socios",
+    existingNote: "Solo por invitación. Usa el correo con el que te invitamos y tu app de autenticación.",
   },
 
   theme: {

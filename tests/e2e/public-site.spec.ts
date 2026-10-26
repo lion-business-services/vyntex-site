@@ -426,3 +426,80 @@ test.describe("book a free demo", () => {
     expect(await res.json()).toEqual({ ok: false, code: "validation" });
   });
 });
+
+test.describe("partner portal entry points", () => {
+  const PARTNER_SIGNIN = /^https:\/\/erp\.vyntexusa\.com\/partners\/signin\?lang=(en|es)&theme=(dark|light)$/;
+
+  test("the header Sign in menu offers the Client Portal and the Partner Portal", async ({ page }, info) => {
+    test.skip((page.viewportSize()?.width ?? 0) < 1280, "the desktop header row starts at 1280px; phones use the drawer");
+    await page.goto("/");
+    const trigger = page.getByTestId("portal-menu-trigger");
+    await expect(trigger).toHaveText(/Sign in/);
+    await expect(trigger).toHaveAttribute("aria-haspopup", "menu");
+    await expect(trigger).toHaveAttribute("aria-expanded", "false");
+    // The old standalone Client Login link is now inside the menu.
+    await expect(page.locator('header a[href="/login"]:visible')).toHaveCount(0);
+
+    await trigger.click();
+    await expect(trigger).toHaveAttribute("aria-expanded", "true");
+    const menu = page.getByRole("menu");
+    await expect(menu).toBeVisible();
+    const client = menu.getByRole("menuitem", { name: /Client Portal/ });
+    const partner = menu.getByRole("menuitem", { name: /Partner Portal/ });
+    await expect(client).toHaveAttribute("href", "/login");
+    await expect(partner).toContainText("Invited partners only");
+    const href = await partner.getAttribute("href");
+    expect(href).toMatch(PARTNER_SIGNIN);
+    expect(href).toContain("lang=en");
+
+    // Nothing in the header row wraps or spills past the viewport.
+    const box = await menu.boundingBox();
+    expect(box!.x).toBeGreaterThanOrEqual(0);
+    expect(box!.x + box!.width).toBeLessThanOrEqual(page.viewportSize()!.width);
+    const triggerBox = await trigger.boundingBox();
+    expect(triggerBox!.height).toBeLessThanOrEqual(40);
+    await page.screenshot({ path: `test-results/portal-menu-${info.project.name}.png` });
+
+    // Escape closes and puts focus back on the trigger.
+    await page.keyboard.press("Escape");
+    await expect(menu).toBeHidden();
+    await expect(trigger).toBeFocused();
+
+    // Keyboard: Enter opens on the first row, arrows move, a click outside closes.
+    await page.keyboard.press("Enter");
+    await expect(client).toBeFocused();
+    await page.keyboard.press("ArrowDown");
+    await expect(partner).toBeFocused();
+    await page.keyboard.press("ArrowDown");
+    await expect(client).toBeFocused();
+    await page.mouse.click(5, 400);
+    await expect(menu).toBeHidden();
+  });
+
+  test("the Spanish header menu reads Iniciar sesión and opens the portal in Spanish", async ({ page }) => {
+    test.skip((page.viewportSize()?.width ?? 0) < 1280, "the desktop header row starts at 1280px; phones use the drawer");
+    await page.goto("/es");
+    const trigger = page.getByTestId("portal-menu-trigger");
+    await expect(trigger).toHaveText(/Iniciar sesión/);
+    await trigger.click();
+    const partner = page.getByRole("menuitem", { name: /Portal de Socios/ });
+    await expect(partner).toContainText("Solo socios invitados");
+    expect(await partner.getAttribute("href")).toMatch(/\/partners\/signin\?lang=es&theme=(dark|light)$/);
+  });
+
+  test("the footer and the partners page link to the Partner Portal sign-in", async ({ page }) => {
+    await page.goto("/");
+    expect(await page.getByTestId("footer-partner-portal").getAttribute("href")).toMatch(PARTNER_SIGNIN);
+
+    await page.goto("/partners");
+    // The program's primary action stays primary; the portal is the line under it.
+    await expect(page.getByRole("link", { name: "Apply to Become a Partner" })).toBeVisible();
+    const signin = page.getByTestId("partners-portal-signin");
+    await expect(signin).toBeVisible();
+    await expect(signin).toHaveText(/Sign in to the Partner Portal/);
+    expect(await signin.getAttribute("href")).toMatch(PARTNER_SIGNIN);
+
+    await page.goto("/es/socios");
+    expect(await page.getByTestId("partners-portal-signin").getAttribute("href")).toMatch(/lang=es/);
+  });
+});

@@ -83,3 +83,27 @@ test.describe("business software on a phone", () => {
     await page.screenshot({ path: "test-results/home-ctas-phone.png" });
   });
 });
+
+test.describe("portals in the phone drawer", () => {
+  test.use({ viewport: { width: 390, height: 844 } });
+  test("Client Portal and Partner Portal sit side by side at the same height", async ({ page }) => {
+    await page.goto("/");
+    await page.locator('button[aria-controls="mobile-drawer"]').click();
+    const client = page.getByTestId("drawer-client-portal");
+    const partner = page.getByTestId("drawer-partner-portal");
+    await expect(client).toBeVisible();
+    await expect(partner).toBeVisible();
+    const a = (await client.boundingBox())!;
+    const b = (await partner.boundingBox())!;
+    expect(Math.abs(a.y - b.y)).toBeLessThanOrEqual(1);
+    expect(Math.abs(a.height - b.height)).toBeLessThanOrEqual(1);
+    expect(Math.abs(a.width - b.width)).toBeLessThanOrEqual(1);
+    expect(b.x + b.width).toBeLessThanOrEqual(390);
+    expect(a.height).toBeGreaterThanOrEqual(44);
+    expect(await client.getAttribute("href")).toBe("/login");
+    expect(await partner.getAttribute("href")).toMatch(
+      /^https:\/\/erp\.vyntexusa\.com\/partners\/signin\?lang=en&theme=(dark|light)$/,
+    );
+    await page.screenshot({ path: "test-results/portal-drawer-phone.png" });
+  });
+});
