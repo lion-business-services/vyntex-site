@@ -65,3 +65,69 @@ test.describe("chatbot", () => {
     await expect(panel).toBeHidden();
   });
 });
+
+test.describe("business software on a phone", () => {
+  test.use({ viewport: { width: 390, height: 844 } });
+  test("the Software button stays in the top bar and the three homepage actions stack without overflow", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.locator('a.vx-erp-launch[data-variant="compact"]')).toBeVisible();
+    for (const id of ["cta-try-demo", "cta-software-pricing", "cta-book-demo"]) {
+      const box = await page.getByTestId(id).boundingBox();
+      expect(box).not.toBeNull();
+      expect(box!.x).toBeGreaterThanOrEqual(0);
+      expect(box!.x + box!.width).toBeLessThanOrEqual(390);
+      expect(box!.height).toBeGreaterThanOrEqual(44);
+    }
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+    expect(overflow).toBeLessThanOrEqual(0);
+    await page.screenshot({ path: "test-results/home-ctas-phone.png" });
+  });
+});
+
+test.describe("portals in the phone drawer", () => {
+  test.use({ viewport: { width: 390, height: 844 } });
+  test("Client Portal and Partner Portal sit side by side at the same height", async ({ page }) => {
+    await page.goto("/");
+    await page.locator('button[aria-controls="mobile-drawer"]').click();
+    const client = page.getByTestId("drawer-client-portal");
+    const partner = page.getByTestId("drawer-partner-portal");
+    await expect(client).toBeVisible();
+    await expect(partner).toBeVisible();
+    const a = (await client.boundingBox())!;
+    const b = (await partner.boundingBox())!;
+    expect(Math.abs(a.y - b.y)).toBeLessThanOrEqual(1);
+    expect(Math.abs(a.height - b.height)).toBeLessThanOrEqual(1);
+    expect(Math.abs(a.width - b.width)).toBeLessThanOrEqual(1);
+    expect(b.x + b.width).toBeLessThanOrEqual(390);
+    expect(a.height).toBeGreaterThanOrEqual(44);
+    expect(await client.getAttribute("href")).toBe("/login");
+    expect(await partner.getAttribute("href")).toMatch(
+      /^https:\/\/erp\.vyntexusa\.com\/partners\/signin\?lang=en&theme=(dark|light)$/,
+    );
+    await page.screenshot({ path: "test-results/portal-drawer-phone.png" });
+  });
+});
+
+test.describe("phone top bar", () => {
+  for (const width of [360, 390]) {
+    test(`at ${width}px the logo, Software button and menu button fit with even gaps`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 800 });
+      await page.goto("/");
+      const menu = page.locator('button[aria-controls="mobile-drawer"]');
+      const box = (await menu.boundingBox())!;
+      expect(box.x).toBeGreaterThanOrEqual(0);
+      expect(box.x + box.width).toBeLessThanOrEqual(width);
+      const logo = (await page.locator('header nav a[aria-label="VYNTEX"]').boundingBox())!;
+      const erp = (await page.locator('a.vx-erp-launch[data-variant="compact"]').boundingBox())!;
+      const gapA = erp.x - (logo.x + logo.width);
+      const gapB = box.x - (erp.x + erp.width);
+      expect(gapA).toBeGreaterThanOrEqual(8);
+      expect(Math.abs(gapA - gapB)).toBeLessThanOrEqual(2);
+      // The theme switch moves into the drawer, beside EN / ES.
+      await menu.click();
+      await expect(page.locator("#mobile-drawer .vx-drawer-theme button")).toBeVisible();
+      const close = (await menu.boundingBox())!;
+      expect(close.x + close.width).toBeLessThanOrEqual(width);
+    });
+  }
+});

@@ -20,6 +20,9 @@ export function TextField({
   type = "text",
   placeholder,
   autoComplete,
+  id,
+  min,
+  max,
 }: {
   label: string;
   field: UseFormRegisterReturn;
@@ -28,22 +31,31 @@ export function TextField({
   type?: string;
   placeholder?: string;
   autoComplete?: string;
+  /** Element id; defaults to the field name. Set it when two forms can share a page. */
+  id?: string;
+  min?: string;
+  max?: string;
 }) {
+  const inputId = id ?? field.name;
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={field.name} className="text-sm text-vx-silver">
+      <label htmlFor={inputId} className="text-sm text-vx-silver">
         {label} {required ? <span className="text-vx-blue">*</span> : null}
       </label>
       <input
-        id={field.name}
+        id={inputId}
         type={type}
         placeholder={placeholder}
         autoComplete={autoComplete}
+        min={min}
+        max={max}
         aria-invalid={Boolean(error)}
+        aria-required={required || undefined}
+        aria-describedby={error ? `${inputId}-error` : undefined}
         className={inputBase}
         {...field}
       />
-      {error ? <p className="text-xs text-red-400">{error}</p> : null}
+      {error ? <p id={`${inputId}-error`} className="text-xs text-red-400">{error}</p> : null}
     </div>
   );
 }
@@ -55,6 +67,7 @@ export function TextAreaField({
   required,
   rows = 4,
   placeholder,
+  id,
 }: {
   label: string;
   field: UseFormRegisterReturn;
@@ -62,21 +75,26 @@ export function TextAreaField({
   required?: boolean;
   rows?: number;
   placeholder?: string;
+  /** Element id; defaults to the field name. */
+  id?: string;
 }) {
+  const inputId = id ?? field.name;
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={field.name} className="text-sm text-vx-silver">
+      <label htmlFor={inputId} className="text-sm text-vx-silver">
         {label} {required ? <span className="text-vx-blue">*</span> : null}
       </label>
       <textarea
-        id={field.name}
+        id={inputId}
         rows={rows}
         placeholder={placeholder}
         aria-invalid={Boolean(error)}
+        aria-required={required || undefined}
+        aria-describedby={error ? `${inputId}-error` : undefined}
         className={inputBase}
         {...field}
       />
-      {error ? <p className="text-xs text-red-400">{error}</p> : null}
+      {error ? <p id={`${inputId}-error`} className="text-xs text-red-400">{error}</p> : null}
     </div>
   );
 }
@@ -88,6 +106,7 @@ export function SelectField({
   placeholder,
   error,
   required,
+  id,
 }: {
   label: string;
   field: UseFormRegisterReturn;
@@ -95,16 +114,21 @@ export function SelectField({
   placeholder?: string;
   error?: string;
   required?: boolean;
+  /** Element id; defaults to the field name. */
+  id?: string;
 }) {
+  const inputId = id ?? field.name;
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={field.name} className="text-sm text-vx-silver">
+      <label htmlFor={inputId} className="text-sm text-vx-silver">
         {label} {required ? <span className="text-vx-blue">*</span> : null}
       </label>
       <select
-        id={field.name}
+        id={inputId}
         defaultValue=""
         aria-invalid={Boolean(error)}
+        aria-required={required || undefined}
+        aria-describedby={error ? `${inputId}-error` : undefined}
         className={inputBase}
         {...field}
       >
@@ -119,7 +143,7 @@ export function SelectField({
           </option>
         ))}
       </select>
-      {error ? <p className="text-xs text-red-400">{error}</p> : null}
+      {error ? <p id={`${inputId}-error`} className="text-xs text-red-400">{error}</p> : null}
     </div>
   );
 }

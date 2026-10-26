@@ -1,4 +1,4 @@
-import { SITE } from "@/lib/site";
+import { SITE, ERP } from "@/lib/site";
 import { PUBLIC_LOCALE_ROUTES } from "@/lib/seo-routes";
 import { NJ_TOWNS } from "@/lib/local-nj";
 
@@ -49,6 +49,16 @@ export default function VyntexJsonLd() {
             }})),
         },
       },
+      // The Business Software. Plans and prices are published (and marked up
+      // with Offer data) on erp.vyntexusa.com/pricing, from the ERP's own
+      // pricing file, so no price is repeated here.
+      { "@type": "SoftwareApplication", "@id": `${ERP.url}/#software`,
+        name: ERP.name, alternateName: "VYNTEX Business Software", url: `${ERP.url}/`,
+        applicationCategory: "BusinessApplication", operatingSystem: "Web browser",
+        inLanguage: ["en", "es"],
+        description: "Business management software: leads, clients, jobs, scheduling, documents, e-signature, payments, automations and reports in one place, with editions for each industry. Live demo with sample data, no account needed.",
+        publisher: { "@id": `${base}/#organization` },
+        potentialAction: { "@type": "ViewAction", name: "Try the live demo", target: `${ERP.url}${ERP.paths.demo}` } },
       { "@type": "WebSite", "@id": `${base}/#website`, url: base,
         name: SITE.name, inLanguage: ["en-US", "es-US"],
         publisher: { "@id": `${base}/#organization` } },

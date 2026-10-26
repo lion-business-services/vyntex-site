@@ -32,6 +32,8 @@ export type EmailKind =
   | "contact_client"
   | "consultation_internal"
   | "consultation_client"
+  | "demo_request_internal"
+  | "demo_request_client"
   | "reseller_application_internal"
   | "reseller_application_client"
   | "reseller_approved"

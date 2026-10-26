@@ -102,7 +102,37 @@ export const ERP = {
     demo: "/demo",
     pricing: "/pricing",
     requestDemo: "/request-demo",
+    /**
+     * VYNTEX Partner Portal sign-in. Invitation only: accounts exist just for
+     * the emails VYNTEX invited, and every partner signs in with an
+     * authenticator app. Not the website's older reseller area (/portal/partner).
+     */
+    partners: "/partners/signin",
   },
+} as const;
+
+/**
+ * Where "Book a Free Demo" goes, everywhere on the site and in llms.txt.
+ *
+ * Book a Free Demo is a form on this website: the consultation modal in its
+ * "Business Software demo" mode (components/BookConsultation.tsx). It posts to
+ * /api/consultation, which saves the request in Supabase, emails the team
+ * through Resend and FormSubmit, and confirms to the visitor.
+ *
+ * Every button is a real link to the contact page with ?intent=demo, so it
+ * works without JavaScript and crawlers can follow it; with JavaScript the
+ * click opens the form in place, and landing on that address opens it too.
+ *
+ * When a self-serve calendar exists (for example a VYNTEX CRM / GoHighLevel
+ * booking calendar), set calendarUrl and every button goes there instead.
+ */
+export const DEMO_BOOKING = {
+  /** An absolute URL to an external calendar, or null to use the website demo form. */
+  calendarUrl: null as string | null,
+  /** The contact page for each language; the form opens on top of it. */
+  paths: { en: "/contact", es: "/es/contacto" },
+  /** Query that asks the page to open the demo form. */
+  query: { intent: "demo" },
 } as const;
 
 export function erpHref(
@@ -113,4 +143,19 @@ export function erpHref(
   if (opts.lang) url.searchParams.set("lang", opts.lang);
   if (opts.theme) url.searchParams.set("theme", opts.theme);
   return url.toString();
+}
+
+/**
+ * The "Book a Free Demo" address: the external calendar when one is set,
+ * otherwise the website demo form (/contact?intent=demo, or
+ * /es/contacto?intent=demo in Spanish). Pass absolute: true for links that
+ * leave the site (llms.txt, emails, AI agents). `theme` is accepted for
+ * backward compatibility and ignored: the form is on this site.
+ */
+export function demoBookingHref(
+  opts: { lang?: "en" | "es"; theme?: "light" | "dark"; absolute?: boolean } = {},
+): string {
+  if (DEMO_BOOKING.calendarUrl) return DEMO_BOOKING.calendarUrl;
+  const path = `${DEMO_BOOKING.paths[opts.lang ?? "en"]}?${new URLSearchParams(DEMO_BOOKING.query).toString()}`;
+  return opts.absolute ? `${SITE.url}${path}` : path;
 }
