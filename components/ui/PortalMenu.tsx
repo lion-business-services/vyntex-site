@@ -61,7 +61,7 @@ function menuItems(refs: (HTMLElement | null)[]): HTMLElement[] {
 function focusAt(refs: (HTMLElement | null)[], i: number) {
   const list = menuItems(refs);
   if (list.length === 0) return;
-  list[(i + list.length) % list.length].focus();
+  list[(i + list.length) % list.length]?.focus();
 }
 
 export default function PortalMenu({ authed }: { authed: boolean }) {
