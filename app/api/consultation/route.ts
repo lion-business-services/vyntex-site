@@ -6,6 +6,7 @@ import {
   DEMO_SERVICE_TOKEN,
   type DemoRequestInput,
 } from "@/lib/validation/demo-request";
+import { erpTrialLink } from "@/lib/site";
 import { getSupabaseAdmin } from "@/lib/supabase/admin";
 import { limiters } from "@/lib/rate-limit";
 import { getClientIp, hashIp, checkSpam } from "@/lib/request";
@@ -166,6 +167,7 @@ function prepareDemo(data: DemoRequestInput): Prepared {
         "Preferred Contact": preferredContactLabel(data.preferredContact),
         Language: data.language === "es" ? "Spanish" : "English",
         Notes: data.message,
+        "Start a 7-day trial": erpTrialLink(emailData),
       },
     },
     row: {

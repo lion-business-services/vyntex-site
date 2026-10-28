@@ -112,6 +112,17 @@ export const ERP = {
 } as const;
 
 /**
+ * The link in VYNTEX's own demo-request email that opens the ERP operator console with the "New client workspace"
+ * form filled in for a 7-day trial (nothing is created until the operator presses Create). Everything travels after
+ * "#", which browsers never send to a server, so the client's name and email stay out of server logs.
+ */
+export function erpTrialLink(d: { businessName: string; fullName: string; email: string; industry: string; language: string }): string {
+  const enc = (v: string) => encodeURIComponent(String(v || "").trim().slice(0, 200));
+  const lang = d.language === "es" ? "es" : "en";
+  return `${ERP.url}/admin#new-trial&business=${enc(d.businessName || d.fullName)}&owner=${enc(d.fullName)}&email=${enc(d.email)}&industry=${enc(d.industry)}&lang=${lang}`;
+}
+
+/**
  * Where "Book a Free Demo" goes, everywhere on the site and in llms.txt.
  *
  * Book a Free Demo is a form on this website: the consultation modal in its

@@ -1,4 +1,4 @@
-import { SITE } from "@/lib/site";
+import { SITE, erpTrialLink } from "@/lib/site";
 
 /**
  * Transactional email templates (HTML + plain text). User-supplied content is
@@ -377,7 +377,9 @@ ${row("Preferred time", demoTimeLabel(d.preferredTime))}
 ${row("Preferred contact", preferredContactLabel(d.preferredContact))}
 ${row("Language", d.language.toUpperCase())}
 </table>
-<div style="margin-top:16px;padding:14px;background:#F9FAFB;border-radius:8px;font-size:13px;color:#111827;white-space:pre-wrap;">${esc(d.message || "No notes.")}</div>`,
+<div style="margin-top:16px;padding:14px;background:#F9FAFB;border-radius:8px;font-size:13px;color:#111827;white-space:pre-wrap;">${esc(d.message || "No notes.")}</div>
+<p style="margin:20px 0 6px;"><a href="${esc(erpTrialLink(d))}" style="display:inline-block;background:#0EA5E9;color:#050714;font-weight:bold;font-size:13px;text-decoration:none;padding:11px 20px;border-radius:8px;">Start a 7-day trial for this client</a></p>
+<p style="margin:0;font-size:12px;color:#6B7280;">Opens the VYNTEX ERP console with the new workspace form filled in. Nothing is created until you press Create.</p>`,
     `Demo request from ${d.fullName}, ${d.businessName}`,
   );
   const text = `New VYNTEX ERP demo request
@@ -393,7 +395,10 @@ Preferred contact: ${preferredContactLabel(d.preferredContact)}
 Language: ${d.language}
 
 Notes:
-${d.message || "No notes."}`;
+${d.message || "No notes."}
+
+Start a 7-day trial for this client (opens the VYNTEX ERP console with the form filled in):
+${erpTrialLink(d)}`;
   return { subject, html, text };
 }
 
